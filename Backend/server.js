@@ -79,7 +79,9 @@ async function handler(request) {
 
             users.push({
                 username: username,
-                password: password
+                password: password,
+                points: 0,
+                level: 1
             });
 
             return new Response(JSON.stringify("User registered"), {
