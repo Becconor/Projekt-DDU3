@@ -92,7 +92,7 @@ async function testScore() {
 
 async function callTests() {
     await testReg();
-    await testLogin("Text", "test")
+    await testLogin("Sebastian", "sebbe")
     await testScore()
 }
 

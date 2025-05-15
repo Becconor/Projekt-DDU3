@@ -25,28 +25,26 @@ async function handler(request) {
             const usernameValue = url.searchParams.get("username");
             const passwordValue = url.searchParams.get("password");
 
-            if (!usernameValue) {
-                return new Response(JSON.stringify(alert("Skapa ett konto.")), {
+            if (!usernameValue || !passwordValue) {
+                return new Response(JSON.stringify("Saknar användarnamn eller lösenord"), {
                     status: 400,
                     headers: headers
-                });
-            };
+                })
+            }
 
-            if (url.searchParams.has("username") && url.searchParams.has("password")) {
-                for (let user of users) {
-                    if (passwordValue === user.password) {
-                        return new Response(JSON.stringify("Login successful!"), {
-                            status: 200,
-                            headers: headers
-                        });
-                    } else {
-                        return new Response(JSON.stringify(alert("Fel lösenord!")), {
-                            status: 400,
-                            headers: headers
-                        });
-                    };
-                };
-            };
+            const match = users.find(user => user.username === usernameValue && user.password === passwordValue);
+
+            if (match) {
+                return new Response(JSON.stringify("Login successful!"), {
+                    status: 200,
+                    headers: headers
+                })
+            } else {
+                return new Response(JSON.stringify("Fel användarnamn eller lösenord"), {
+                    status: 400,
+                    headers: headers
+                })
+            }
         };
 
         if (url.pathname === "/leadboard") {
