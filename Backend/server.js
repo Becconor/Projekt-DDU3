@@ -54,7 +54,7 @@ async function handler(request) {
             };
         };
 
-        if (pathname === "/ledboard") {
+        if (pathname === "/leadboard") {
 
             users.sort()
 
