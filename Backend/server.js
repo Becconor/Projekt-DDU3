@@ -1,7 +1,7 @@
 const users = [
-    { username: "Text", password: "test", points: 0, level: 1 },
-    { username: "Text2", password: "test2", points: 100, level: 1 },
-    { username: "Text3", password: "test3", points: 200, level: 2 }
+    { username: "Text", password: "test", score: 0, level: 1 },
+    { username: "Text2", password: "test2", score: 100, level: 1 },
+    { username: "Text3", password: "test3", score: 200, level: 2 }
 ];
 
 async function handler(request) {
@@ -16,15 +16,15 @@ async function handler(request) {
 
     if (request.method == "OPTIONS") {
         return new Response(null, { headers: headers });
-    }
+    };
 
     if (request.method === "GET") {
         if (pathname === "/") {
             return new Response(JSON.stringify(users), {
                 status: 200,
                 headers: headers
-            })
-        }
+            });
+        };
 
         if (pathname === "/login") {
             const usernameValue = url.searchParams.get("username");
@@ -34,26 +34,26 @@ async function handler(request) {
                 return new Response(JSON.stringify(alert("Skapa ett konto.")), {
                     status: 400,
                     headers: headers
-                })
-            }
+                });
+            };
 
             if (url.searchParams.has("username") && url.searchParams.has("password")) {
                 for (let user of users) {
                     if (passwordValue === user.password) {
-                        return new Response(JSON.stringify(user), {
+                        return new Response(JSON.stringify("Login successful!"), {
                             status: 200,
                             headers: headers
-                        })
+                        });
                     } else {
                         return new Response(JSON.stringify(alert("Fel lösenord!")), {
                             status: 400,
                             headers: headers
-                        })
-                    }
-                }
-            }
-        }
-    }
+                        });
+                    };
+                };
+            };
+        };
+    };
 
     if (request.method === "POST") {
         if (pathname === "/register") {
@@ -80,7 +80,8 @@ async function handler(request) {
             users.push({
                 username: username,
                 password: password,
-                score: 0
+                score: 0,
+                level: 1
             });
 
             return new Response(JSON.stringify("User registered"), {
@@ -107,6 +108,6 @@ async function handler(request) {
     }
 }
 
-}
+
 
 Deno.serve(handler);
