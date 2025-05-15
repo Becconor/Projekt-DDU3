@@ -39,7 +39,7 @@ async function testReg() {
     const response = await fetch("http://0.0.0.0:8000/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: "Sebastian", password: "sebbe123" })
+        body: JSON.stringify({ username: "Sebastian", password: "sebbe" })
     })
     const message = document.createElement("p");
     document.body.appendChild(message)
@@ -83,7 +83,7 @@ async function testScore() {
     console.log(data);
 
     if (response.status === 200) {
-        message.textContent = `Poäng har lagts till!`
+        message.textContent = `${data}`
     } else {
         message.textContent = `Fel!, status: ${response.status}`
     }
@@ -93,7 +93,7 @@ async function testScore() {
 async function callTests() {
     await testReg();
     await testLogin("Text", "test")
-    // await testScore()
+    await testScore()
 }
 
 callTests()
