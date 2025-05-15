@@ -19,14 +19,9 @@ async function handler(request) {
     };
 
     if (request.method === "GET") {
-        if (pathname === "/") {
-            return new Response(JSON.stringify(users), {
-                status: 200,
-                headers: headers
-            });
-        };
-
         if (pathname === "/login") {
+
+            console.log("Inne i login")
             const usernameValue = url.searchParams.get("username");
             const passwordValue = url.searchParams.get("password");
 
@@ -52,6 +47,20 @@ async function handler(request) {
                     };
                 };
             };
+        };
+
+        if (url.pathname === "/leadboard") {
+            let sortAllUsers = allUsers.map(user => ({
+                username: user.username,
+                score: user.score
+            }));
+
+            sortAllUsers.sort((a, b) => b.score - a.score);
+
+            return new Response(JSON.stringify(sortAllUsers), {
+                status: 200,
+                headers: headers
+            });
         };
     };
 

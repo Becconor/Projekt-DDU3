@@ -45,7 +45,7 @@ async function testReg() {
     document.body.appendChild(message)
 
     if (response.status === 201) {
-        message.textContent = "Lyckad förfrågan om att registrera användare, funkar!";
+        message.textContent = "Successful request to register user!";
     } else if (response.status === 409) {
         message.textContent = `Username already exist`
     } else if (response.status === 400) {
@@ -53,5 +53,41 @@ async function testReg() {
     }
 }
 
+async function testLogin(username, password) {
+    const response = await fetch(`http://0.0.0.0:8000/login?username=${username}&password=${password}`, {
+        method: "GET"
+    });
 
-testReg();
+    const message = document.createElement("p");
+    document.body.appendChild(message);
+
+    if (response.status === 200) {
+        message.textContent = "Successful login!";
+    } else if (response.status === 400) {
+        message.textContent = "Unsuccessful login! Wrong password! Try again!";
+    }
+}
+
+// async function testScore() {
+//     const response = await fetch("http://0.0.0.0:8000/score", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ username: "Text", score: 100 })
+//     });
+
+//     const message = document.createElement("p");
+//     document.body.appendChild(message);
+
+//     if (response.status === 200) {
+//         message.textContent = `Funkar!`
+//     }
+// }
+
+
+async function callTests() {
+    await testReg();
+    await testLogin(Text, test)
+    // await testScore()
+}
+
+callTests()
