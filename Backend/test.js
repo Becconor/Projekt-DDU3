@@ -16,15 +16,6 @@
 //  ...osv...
 //}
 
-//test1 är att skicka en GET-förfrågan för att få alla users, detta är förutsättningen för register och login
-async function testLeaderboard() {
-    const response = await fetch("http://0.0.0.0:8000/leaderboard", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
-
     const message = document.createElement("p");
     body.appendChild(message);
 
@@ -33,7 +24,7 @@ async function testLeaderboard() {
     } else {
         message.textContent = `Nånting gick snett med test1!${response.status}`;
     }
-}
+
 
 async function callTests() {
     await testLeaderboard();
