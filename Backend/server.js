@@ -53,6 +53,17 @@ async function handler(request) {
                 };
             };
         };
+
+        if (pathname === "/ledboard") {
+
+            users.sort()
+
+
+            return new Response(JSON.stringify(users), {
+                status: 200,
+                headers: headers
+            });
+        };
     };
 
     if (request.method === "POST") {
