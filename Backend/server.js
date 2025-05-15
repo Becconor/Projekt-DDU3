@@ -68,7 +68,10 @@ async function handler(request) {
 
     if (request.method === "POST") {
         if (pathname === "/register") {
+
+            console.log("inne")
             const body = await request.json();
+            console.log(body, "datan");
             const username = body.username;
             const password = body.password;
 

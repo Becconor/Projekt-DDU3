@@ -16,16 +16,46 @@
 //  ...osv...
 //}
 
-    const message = document.createElement("p");
-    body.appendChild(message);
+//test1 är att skicka en GET-förfrågan för att få alla users, detta är förutsättningen för register och login
+async function testLeaderboard() {
+    const response = await fetch("http://0.0.0.0:8000/leaderboard", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
 
-    if (response.status === 200) {
-        message.textContent = "Lyckad förfrågan om att få alla users scores rangordnade";
-    } else {
-        message.textContent = `Nånting gick snett med test1!${response.status}`;
-    }
+    //     const message = document.createElement("p");
+    //     body.appendChild(message);
+
+    //     if (response.status === 200) {
+    //         message.textContent = "Lyckad förfrågan om att få alla users scores rangordnade";
+    //     } else {
+    //         message.textContent = `Nånting gick snett med test1!${response.status}`;
+    //     }
+    // }
+
+    async function testReg() {
+        const response = await fetch("http://0.0.0.0:8000/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username: "Sebastian", password: "sebbe123" })
+        })
+        const message = document.createElement("p");
+        body.appendChild(message);
+
+        if (response.status === 201) {
+            message.textContent = "Lyckad förfrågan om att registrera användare, funkar!";
+        } else if (response.status === 409) {
+            message.textContent = `Username already exist`
+        } else if (response.status === 400) {
+            message.textContent = `Missing username or password`
+        }
 
 
-async function callTests() {
-    await testLeaderboard();
-}
+        async function callTests() {
+            // await testLeaderboard();
+            await testReg()
+        }
+
+        callTests();
