@@ -19,12 +19,12 @@ async function handler(request) {
     };
 
     if (request.method === "GET") {
-        // if (pathname === "/") {
-        //     return new Response(JSON.stringify(users), {
-        //         status: 200,
-        //         headers: headers
-        //     });
-        // };
+        if (pathname === "/") {
+            return new Response(JSON.stringify(users), {
+                status: 200,
+                headers: headers
+            });
+        };
 
         if (pathname === "/login") {
             const usernameValue = url.searchParams.get("username");
@@ -53,25 +53,11 @@ async function handler(request) {
                 };
             };
         };
-
-        if (pathname === "/leadboard") {
-
-            users.sort()
-
-
-            return new Response(JSON.stringify(users), {
-                status: 200,
-                headers: headers
-            });
-        };
     };
 
     if (request.method === "POST") {
         if (pathname === "/register") {
-
-            console.log("inne")
             const body = await request.json();
-            console.log(body, "datan");
             const username = body.username;
             const password = body.password;
 
@@ -103,7 +89,6 @@ async function handler(request) {
                 headers: headers
             })
         }
-
         if (pathname === "/score") {
             const body = await request.json();
             const score = body.score;
@@ -117,7 +102,6 @@ async function handler(request) {
                 status: 200,
                 headers: headers
             })
-
         }
 
     }

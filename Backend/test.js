@@ -42,7 +42,7 @@ async function testReg() {
         body: JSON.stringify({ username: "Sebastian", password: "sebbe123" })
     })
     const message = document.createElement("p");
-    body.appendChild(message);
+    document.body.appendChild(message)
 
     if (response.status === 201) {
         message.textContent = "Lyckad förfrågan om att registrera användare, funkar!";
@@ -53,9 +53,5 @@ async function testReg() {
     }
 }
 
-async function callTests() {
-    // await testLeaderboard();
-    await testReg()
-}
 
-callTests();
+testReg();
