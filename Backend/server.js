@@ -47,8 +47,8 @@ async function handler(request) {
             }
         };
 
-        if (url.pathname === "/leadboard") {
-            let sortAllUsers = allUsers.map(user => ({
+        if (url.pathname === "/leaderboard") {
+            let sortAllUsers = users.map(user => ({
                 username: user.username,
                 score: user.score
             }));
