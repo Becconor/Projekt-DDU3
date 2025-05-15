@@ -19,15 +19,6 @@ async function handler(request) {
                 status: 200,
                 headers: headers
             })
-
-            const body = await request.json();
-
-            const alreadyExistUsername = users.some(user => user.name === users.name);
-            const alreadyExistPassword = users.some(user => user.password === users.password);
-
-            if (alreadyExistUsername) {
-            }
-
         }
 
         if (pathname === "/login") {
@@ -61,7 +52,6 @@ async function handler(request) {
 
     if (request.method === "POST") {
         if (pathname === "/register") {
-
             const body = await request.json();
             const username = body.username;
             const password = body.password;
