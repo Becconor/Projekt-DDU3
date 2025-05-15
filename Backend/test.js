@@ -35,6 +35,26 @@ async function testLeaderboard() {
     }
 }
 
+async function testReg() {
+    fetch("http://0.0.0.0:8000/register", {
+        method: "POST",
+        header: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: "Sebastian", password: "sebbe123" })
+    })
+    const message = document.createElement("p");
+    body.appendChild(message);
+
+    if (response.status === 201) {
+        message.textContent = "Lyckad förfrågan om att registrera användare, funkar!";
+    } else if (response.status === 409) {
+        message.textContent = `Username already exist`
+    } else if (response.status === 400) {
+        message.textContent = `Missing username or password`
+    }
+}
+
 async function callTests() {
     await testLeaderboard();
+    await testReg()
 }
+
