@@ -19,12 +19,12 @@ async function handler(request) {
     };
 
     if (request.method === "GET") {
-        if (pathname === "/") {
-            return new Response(JSON.stringify(users), {
-                status: 200,
-                headers: headers
-            });
-        };
+        // if (pathname === "/") {
+        //     return new Response(JSON.stringify(users), {
+        //         status: 200,
+        //         headers: headers
+        //     });
+        // };
 
         if (pathname === "/login") {
             const usernameValue = url.searchParams.get("username");
