@@ -11,7 +11,9 @@ async function handler(request) {
     headers.set("Content-Type", "application/json");
     headers.set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
 
-
+    if (request.method == "OPTIONS") {
+        return new Response(null, { headers: headers });
+    }
 
     if (request.method === "GET") {
         if (pathname === "/") {
