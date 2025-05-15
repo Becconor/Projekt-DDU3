@@ -1,7 +1,10 @@
-const users = [];
+const users = [
+    { username: "Text", password: "test", points: 0, level: 1 },
+    { username: "Text2", password: "test2", points: 100, level: 1 },
+    { username: "Text3", password: "test3", points: 200, level: 2 }
+];
 
 async function handler(request) {
-
     const url = new URL(request.url);
     const pathname = url.pathname;
 
