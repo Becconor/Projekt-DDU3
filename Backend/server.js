@@ -1,7 +1,7 @@
 const users = [
-    { username: "Text", password: "test", points: 0, level: 1 },
-    { username: "Text2", password: "test2", points: 100, level: 1 },
-    { username: "Text3", password: "test3", points: 200, level: 2 }
+    { username: "Text", password: "test", score: 0, level: 1 },
+    { username: "Text2", password: "test2", score: 100, level: 1 },
+    { username: "Text3", password: "test3", score: 200, level: 2 }
 ];
 
 async function handler(request) {
@@ -80,7 +80,7 @@ async function handler(request) {
             users.push({
                 username: username,
                 password: password,
-                points: 0,
+                score: 0,
                 level: 1
             });
 
@@ -91,9 +91,23 @@ async function handler(request) {
         }
         if (pathname === "/score") {
             const body = await request.json();
+            const score = body.score;
+            const username = body.username;
+
+            const existingPlayer = users.find(player => player.username === username);
+
+            existingPlayer.score += score
+
+            return new Response(JSON.stringify(`Poäng har uppdaterats för ${existingPlayer.name}`), {
+                status: 200,
+                headers: headers
+            })
 
         }
+
     }
 }
+
+
 
 Deno.serve(handler);
