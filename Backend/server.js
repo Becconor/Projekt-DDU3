@@ -94,10 +94,6 @@ async function handler(request) {
 
         }
     }
-
-    if (request.method === "PATCH") {
-
-    }
 }
 
 Deno.serve(handler);
