@@ -40,7 +40,7 @@ async function handler(request) {
             if (url.searchParams.has("username") && url.searchParams.has("password")) {
                 for (let user of users) {
                     if (passwordValue === user.password) {
-                        return new Response(JSON.stringify(user), {
+                        return new Response(JSON.stringify("Login successful!"), {
                             status: 200,
                             headers: headers
                         });
@@ -95,6 +95,9 @@ async function handler(request) {
         }
     }
 
+    if (request.method === "PATCH") {
+
+    }
 }
 
 Deno.serve(handler);
