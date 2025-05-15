@@ -69,20 +69,25 @@ async function testLogin(username, password) {
     }
 }
 
-// async function testScore() {
-//     const response = await fetch("http://0.0.0.0:8000/score", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({ username: "Text", score: 100 })
-//     });
+async function testScore() {
+    const response = await fetch("http://0.0.0.0:8000/score", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: "Text", score: 100 })
+    });
 
-//     const message = document.createElement("p");
-//     document.body.appendChild(message);
+    const message = document.createElement("p");
+    document.body.appendChild(message);
 
-//     if (response.status === 200) {
-//         message.textContent = `Funkar!`
-//     }
-// }
+    const data = await response.json();
+    console.log(data);
+
+    if (response.status === 200) {
+        message.textContent = `Poäng har lagts till!`
+    } else {
+        message.textContent = `Fel!, status: ${response.status}`
+    }
+}
 
 
 async function callTests() {
@@ -91,5 +96,4 @@ async function callTests() {
     // await testScore()
 }
 
-callTests();
-testReg();
+callTests()
