@@ -38,7 +38,7 @@
 async function testReg() {
     fetch("http://0.0.0.0:8000/register", {
         method: "POST",
-        header: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: "Sebastian", password: "sebbe123" })
     })
     const message = document.createElement("p");
