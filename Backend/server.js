@@ -98,6 +98,7 @@ async function handler(request) {
                 headers: headers
             })
         }
+
         if (pathname === "/score") {
             const body = await request.json();
             const score = body.score;
@@ -114,6 +115,11 @@ async function handler(request) {
         }
 
     }
+
+    return new Response(JSON.stringify("Här ska du inte vara!", request), {
+        status: 200,
+        headers: headers,
+    })
 }
 
 
