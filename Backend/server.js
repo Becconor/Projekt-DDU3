@@ -14,7 +14,12 @@ async function handler(request) {
 
 
     if (request.method === "GET") {
-        if (pathname === "/logIn") {
+        if (pathname === "/") {
+            return new Response(JSON.stringify(users), {
+                status: 200,
+                headers: headers
+            })
+
             const body = await request.json();
 
             const alreadyExistUsername = users.some(user => user.name === users.name);
@@ -23,6 +28,34 @@ async function handler(request) {
             if (alreadyExistUsername) {
             }
 
+        }
+
+        if (pathname === "/login") {
+            const usernameValue = url.searchParams.get("username");
+            const passwordValue = url.searchParams.get("password");
+
+            if (!usernameValue) {
+                return new Response(JSON.stringify(alert("Skapa ett konto.")), {
+                    status: 400,
+                    headers: headers
+                })
+            }
+
+            if (url.searchParams.has("username") && url.searchParams.has("password")) {
+                for (let user of users) {
+                    if (passwordValue === user.password) {
+                        return new Response(JSON.stringify(user), {
+                            status: 200,
+                            headers: headers
+                        })
+                    } else {
+                        return new Response(JSON.stringify(alert("Fel lösenord!")), {
+                            status: 400,
+                            headers: headers
+                        })
+                    }
+                }
+            }
         }
     }
 }
