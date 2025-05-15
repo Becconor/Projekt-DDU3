@@ -84,7 +84,12 @@ async function handler(request) {
                 headers: headers
             })
         }
+        if (pathname === "/score") {
+            const body = await request.json();
+
+        }
     }
+
 }
 
 Deno.serve(handler);
