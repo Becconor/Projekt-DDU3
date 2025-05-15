@@ -54,7 +54,6 @@ async function testReg() {
 
 }
 
-<<<<<<< HEAD
 async function testLogin(username, password) {
     const response = await fetch(`http://0.0.0.0:8000/login?username=${username}&password=${password}`, {
         method: "GET"
@@ -88,11 +87,9 @@ async function testLogin(username, password) {
 
 async function callTests() {
     await testReg();
-    await testLogin(Text, test)
+    await testLogin("Text", "test")
     // await testScore()
 }
 
-callTests()
-=======
+callTests();
 testReg();
->>>>>>> 1527b0c3cb58c1a1ed9acc127a27d09ddf842915
