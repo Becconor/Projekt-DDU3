@@ -79,7 +79,8 @@ async function handler(request) {
 
             users.push({
                 username: username,
-                password: password
+                password: password,
+                score: 0
             });
 
             return new Response(JSON.stringify("User registered"), {
@@ -89,9 +90,22 @@ async function handler(request) {
         }
         if (pathname === "/score") {
             const body = await request.json();
+            const score = body.score;
+            const username = body.username;
+
+            const existingPlayer = users.find(player => player.username === username);
+
+            existingPlayer.score += score
+
+            return new Response(JSON.stringify(`Poäng har uppdaterats för ${existingPlayer.name}`), {
+                status: 200,
+                headers: headers
+            })
 
         }
+
     }
+}
 
 }
 
