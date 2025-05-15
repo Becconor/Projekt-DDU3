@@ -16,15 +16,15 @@ async function handler(request) {
 
     if (request.method == "OPTIONS") {
         return new Response(null, { headers: headers });
-    }
+    };
 
     if (request.method === "GET") {
         if (pathname === "/") {
             return new Response(JSON.stringify(users), {
                 status: 200,
                 headers: headers
-            })
-        }
+            });
+        };
 
         if (pathname === "/login") {
             const usernameValue = url.searchParams.get("username");
@@ -34,8 +34,8 @@ async function handler(request) {
                 return new Response(JSON.stringify(alert("Skapa ett konto.")), {
                     status: 400,
                     headers: headers
-                })
-            }
+                });
+            };
 
             if (url.searchParams.has("username") && url.searchParams.has("password")) {
                 for (let user of users) {
@@ -43,17 +43,17 @@ async function handler(request) {
                         return new Response(JSON.stringify(user), {
                             status: 200,
                             headers: headers
-                        })
+                        });
                     } else {
                         return new Response(JSON.stringify(alert("Fel lösenord!")), {
                             status: 400,
                             headers: headers
-                        })
-                    }
-                }
-            }
-        }
-    }
+                        });
+                    };
+                };
+            };
+        };
+    };
 
     if (request.method === "POST") {
         if (pathname === "/register") {
