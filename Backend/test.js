@@ -59,11 +59,19 @@ async function testLogin(username, password) {
         method: "GET"
     });
 
-    const message = document.createElement("p");
-    document.body.appendChild(message);
+    const successMessage = document.createElement("p");
+    const userInfo = document.createElement("p");
+    document.body.append(message, userInfo);
 
     if (response.status === 200) {
-        message.textContent = "Successful login!";
+
+        const userInfoForBar = await response.json();
+
+        userInfo.textContent = userInfoForBar;
+        successMessage.textContent = "Successful login!";
+
+        //OBS! I index.js så behöver login-processen fortsättas härifrån förmodligen då klienten ska förfråga om att få bli skickad till nästa sida, startsidan 
+        //men vi måste klura ut hur den förfrågan ska ske
     } else if (response.status === 400) {
         message.textContent = "Unsuccessful login! Wrong password! Try again!";
     }

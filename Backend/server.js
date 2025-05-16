@@ -33,9 +33,16 @@ async function handler(request) {
             }
 
             const match = users.find(user => user.username === usernameValue && user.password === passwordValue);
+            console.log(match, "användaren som matchades");
 
             if (match) {
-                return new Response(JSON.stringify("Login successful!"), {
+
+                const userInfoForBar = JSON.stringify({ username: `${match.username}`, score: `${match.score}` });
+                console.log(userInfoForBar);
+                const message = JSON.stringify("Login successful!");
+
+                return new Response(userInfoForBar, {
+                    message: message,
                     status: 200,
                     headers: headers
                 })
