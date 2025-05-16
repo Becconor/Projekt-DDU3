@@ -32,8 +32,13 @@ async function testLeaderboard() {
     document.body.appendChild(dataMessage);
 
     if (response.status === 200) {
+<<<<<<< HEAD
+        message.textContent = `Lyckad förfrågan om att få alla users scores rangordnade ${JSON.stringify(data)}`;
+        console.log(data)
+=======
         message.textContent = `Lyckad förfrågan om att få alla users scores rangordnade`;
         dataMessage.textContent = `${dataJson}`;
+>>>>>>> b804560c4d1c12d67181c754e3cfbb89c59bd815
     } else {
         message.textContent = `Nånting gick snett med test1!${response.status}`;
     }
@@ -64,16 +69,17 @@ async function testLogin(username, password) {
     });
 
     const successMessage = document.createElement("p");
-    document.body.append(successMessage)
+    const userInfo = document.createElement("p");
+    document.body.append(successMessage, userInfo);
 
-    if (response.status === 200) {
+} if (response.status === 200) {
 
-        successMessage.textContent = `${response.message}`;
-        //OBS! I index.js så behöver login-processen fortsättas härifrån förmodligen då klienten ska förfråga om att få bli skickad till nästa sida, startsidan 
-        //men vi måste klura ut hur den förfrågan ska ske
-    } else if (response.status === 400) {
-        message.textContent = "Unsuccessful login! Wrong password! Try again!";
-    }
+    successMessage.textContent = `${response.message}`;
+    //OBS! I index.js så behöver login-processen fortsättas härifrån förmodligen då klienten ska förfråga om att få bli skickad till nästa sida, startsidan 
+    //men vi måste klura ut hur den förfrågan ska ske
+} else if (response.status === 400) {
+    message.textContent = "Unsuccessful login! Wrong password! Try again!";
+}
 }
 
 async function testScore() {
@@ -96,12 +102,23 @@ async function testScore() {
     }
 }
 
+async function testCurrentUser() {
+    const response = await fetch("http://0.0.0.0:8000/me", {
+        method: "GET"
+    })
+
+    const data = await response.json()
+
+    console.log(data)
+}
+
 
 async function callTests() {
     await testReg();
     await testLogin("Sebastian", "sebbe")
     await testScore()
     await testLeaderboard()
+    await testCurrentUser();
 }
 
 callTests()
