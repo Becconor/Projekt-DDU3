@@ -148,7 +148,7 @@ async function handler(request) {
             const username = body.username;
             const score = body.score;
 
-            const existingPlayer = allUsers.find(player => player.username === username);
+            const existingPlayer = users.find(player => player.username === username);
 
             if (!existingPlayer) {
                 return new Response(JSON.stringify("Användaren hittades inte!"), {
