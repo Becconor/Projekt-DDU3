@@ -44,7 +44,7 @@ async function testReg() {
         body: JSON.stringify({ username: "Sebastian", password: "sebbe" })
     })
     const message = document.createElement("p");
-    document.body.appendChild(message)
+    document.body.appendChild(message);
 
     if (response.status === 201) {
         message.textContent = "1. Successful request to register user!";
@@ -124,11 +124,11 @@ async function testCurrentUser() {
         method: "GET"
     })
 
-    const data = await response.json()
+    const data = await response.json();
     const message = document.createElement("p");
-    message.textContent = `3. Användar information för profilen är uppdaterad`
-    document.body.appendChild(message)
-    console.log(`3.`, data)
+    message.textContent = `3. Användar information för profilen är uppdaterad`;
+    document.body.appendChild(message);
+    console.log(`3.`, data);
 }
 
 async function testLogout() {
@@ -141,7 +141,7 @@ async function testLogout() {
         const logOutMessage = await response.json();
         const message = document.createElement("p");
         message.textContent = `12. ${logOutMessage}`;
-        document.body.appendChild(message)
+        document.body.appendChild(message);
     }
 
 }
@@ -149,13 +149,13 @@ async function testLogout() {
 
 async function callTests() {
     await testReg();
-    await testLogin("Sebastian", "sebbe")
+    await testLogin("Sebastian", "sebbe");
     await testCurrentUser();
-    await PATCHScore("Sebastian", 100)
+    await PATCHScore("Sebastian", 100);
     await PATCHExitGame("Test");
-    await testLeaderboard()
-    await testLogout()
+    await testLeaderboard();
+    await testLogout();
 
 }
 
-callTests()
+callTests();
