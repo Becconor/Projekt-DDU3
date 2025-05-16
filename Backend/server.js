@@ -16,7 +16,7 @@ async function handler(request) {
 
     if (request.method == "OPTIONS") {
         return new Response(null, { headers: headers });
-    };
+    }
 
     if (request.method === "GET") {
         if (pathname === "/login") {
@@ -59,8 +59,8 @@ async function handler(request) {
                 status: 200,
                 headers: headers
             });
-        };
-    };
+        }
+    }
 
     if (request.method === "POST") {
         if (pathname === "/register") {
