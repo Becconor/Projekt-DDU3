@@ -77,23 +77,47 @@ async function testLogin(username, password) {
     }
 }
 
-async function testScore() {
-    const response = await fetch("http://0.0.0.0:8000/score", {
-        method: "POST",
+async function PATCHScore(username, score) {
+    const response = await fetch("http://localhost:8000/gameScore", {
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: "Sebastian", score: 100 })
+        body: JSON.stringify({
+            username: username,
+            score: score
+        }),
     });
 
     const message = document.createElement("p");
     document.body.appendChild(message);
 
-    const data = await response.json();
-    console.log(data);
+    if (response.status === 200) {
+        message.textContent = "Poäng har adderats till totalpoängen för användaren!";
+        // await GETHandlerAllUsers();
+
+    } else if (response.status === 404) {
+        message.textContent = "Användaren hittades inte!";
+    } else {
+        message.textContent = "Något gick fel!";
+    }
+}
+
+async function PATCHExitGame(username) {
+    const response = await fetch("http://localhost:8000/gameScore", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username: username,
+            score: 0
+        }),
+    });
+
+    const message = document.createElement("p");
+    document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = `${data}`
+        message.textContent = "Spel avbrutet, poängen uppdaterades ej.";
     } else {
-        message.textContent = `Fel!, status: ${response.status}`
+        message.textContent = "Något gick fel vid avslut.";
     }
 }
 
@@ -111,7 +135,8 @@ async function testCurrentUser() {
 async function callTests() {
     await testReg();
     await testLogin("Sebastian", "sebbe")
-    await testScore()
+    await PATCHScore("Test", "test")
+    await PATCHExitGame("Test");
     await testLeaderboard()
     await testCurrentUser();
 }
