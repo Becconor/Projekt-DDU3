@@ -30,7 +30,7 @@ async function testLeaderboard() {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = `11.Lyckad förfrågan om att få alla users scores rangordnade`;
+        message.textContent = `11. Lyckad förfrågan om att få alla users scores rangordnade`;
         console.log(`11.Leader Board:${dataJSON}`);
     } else {
         message.textContent = `Nånting gick snett med test1!${response.status}`;
@@ -47,7 +47,7 @@ async function testReg() {
     document.body.appendChild(message)
 
     if (response.status === 201) {
-        message.textContent = "Successful request to register user!";
+        message.textContent = "1. Successful request to register user!";
     } else if (response.status === 409) {
         message.textContent = `Username already exist`
     } else if (response.status === 400) {
@@ -67,7 +67,7 @@ async function testLogin(username, password) {
     if (response.status === 200) {
 
         const message = await response.json();
-        successMessage.textContent = message;
+        successMessage.textContent = `2. ${message}`;
         //OBS! I index.js så behöver login-processen fortsättas härifrån förmodligen då klienten ska förfråga om att få bli skickad till nästa sida, startsidan 
         //men vi måste klura ut hur den förfrågan ska ske
     } else if (response.status === 400) {
@@ -89,7 +89,7 @@ async function PATCHScore(username, score) {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = "Poäng har adderats till totalpoängen för användaren!";
+        message.textContent = "8. Poäng har adderats till totalpoängen för användaren!";
         // await GETHandlerAllUsers();
 
     } else if (response.status === 404) {
@@ -113,7 +113,7 @@ async function PATCHExitGame(username) {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = "Spel avbrutet, poängen uppdaterades ej.";
+        message.textContent = "9-10. Spel misslyckat, poängen uppdaterades ej.";
     } else {
         message.textContent = "Något gick fel vid avslut.";
     }

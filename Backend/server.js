@@ -41,7 +41,7 @@ async function handler(request) {
 
             if (match) {
 
-                return new Response(JSON.stringify("Login successful!"), {
+                return new Response(JSON.stringify("2. Login successful!"), {
                     status: 200,
                     headers: headers
                 })
@@ -112,7 +112,7 @@ async function handler(request) {
                 level: 1
             });
 
-            return new Response(JSON.stringify("User registered"), {
+            return new Response(JSON.stringify("1. User registered"), {
                 status: 201,
                 headers: headers
             })
