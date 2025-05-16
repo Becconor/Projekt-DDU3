@@ -69,10 +69,12 @@ async function testLogin(username, password) {
 
     if (response.status === 200) {
 
+        successMessage.textContent = `${response.message}`;
+
         const userInfoForBar = await response.json();
 
         userInfo.textContent = `${userInfoForBar.username}, ${userInfoForBar.score}`;
-        successMessage.textContent = "Successful login!";
+
 
         //OBS! I index.js så behöver login-processen fortsättas härifrån förmodligen då klienten ska förfråga om att få bli skickad till nästa sida, startsidan 
         //men vi måste klura ut hur den förfrågan ska ske
