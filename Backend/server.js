@@ -32,7 +32,7 @@ async function handler(request) {
                 return new Response(JSON.stringify("Saknar användarnamn eller lösenord"), {
                     status: 400,
                     headers: headers
-                })
+                });
             }
 
             const match = users.find(user => user.username === usernameValue && user.password === passwordValue);
@@ -49,7 +49,7 @@ async function handler(request) {
                 return new Response(JSON.stringify("Fel användarnamn eller lösenord"), {
                     status: 400,
                     headers: headers
-                })
+                });
             }
         };
 
@@ -71,7 +71,7 @@ async function handler(request) {
                 return new Response(JSON.stringify("Ingen användare är inloggad"), {
                     status: 400,
                     headers: headers
-                })
+                });
             }
 
             delete currentUser.password;
@@ -79,7 +79,7 @@ async function handler(request) {
             return new Response(JSON.stringify(currentUser), {
                 status: 200,
                 headers: headers
-            })
+            });
         }
     }
 
@@ -93,7 +93,7 @@ async function handler(request) {
                 return new Response(JSON.stringify("Missing username or password"), {
                     status: 400,
                     headers: headers
-                })
+                });
             }
 
             const alreadyExists = users.some(user => user.username === username);
@@ -102,7 +102,7 @@ async function handler(request) {
                 return new Response(JSON.stringify("Username already exist"), {
                     status: 409,
                     headers: headers
-                })
+                });
             }
 
             users.push({
@@ -115,7 +115,7 @@ async function handler(request) {
             return new Response(JSON.stringify("1. User registered"), {
                 status: 201,
                 headers: headers
-            })
+            });
         }
 
         if (pathname === "/logout") {
@@ -124,7 +124,7 @@ async function handler(request) {
             return new Response(JSON.stringify("Utloggad"), {
                 status: 200,
                 headers: headers
-            })
+            });
         }
 
         // if (pathname === "/score") {
@@ -178,7 +178,7 @@ async function handler(request) {
     return new Response(JSON.stringify("Här ska du inte vara!", request), {
         status: 200,
         headers: headers,
-    })
+    });
 }
 
 
