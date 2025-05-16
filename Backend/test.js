@@ -131,6 +131,16 @@ async function testCurrentUser() {
     console.log(`3.`, data)
 }
 
+async function testLogout() {
+    const response = await fetch("http://0.0.0.0:8000/logout", {
+        method: "POST"
+    })
+
+    const message = document.createElement("p");
+    message.textContent = `12. Användaren har loggat ut`
+    document.body.appendChild(message)
+}
+
 
 async function callTests() {
     await testReg();
@@ -139,6 +149,7 @@ async function callTests() {
     await PATCHScore("Sebastian", 100)
     await PATCHExitGame("Test");
     await testLeaderboard()
+    await testLogout()
 
 }
 

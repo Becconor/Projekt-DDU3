@@ -118,6 +118,15 @@ async function handler(request) {
             })
         }
 
+        if (pathname === "/logout") {
+            currentUser = null;
+
+            return new Response(JSON.stringify("Utloggad"), {
+                status: 200,
+                headers: headers
+            })
+        }
+
         // if (pathname === "/score") {
         //     const body = await request.json();
         //     const score = body.score;
