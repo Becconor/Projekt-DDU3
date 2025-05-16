@@ -32,8 +32,13 @@ async function testLeaderboard() {
     document.body.appendChild(dataMessage);
 
     if (response.status === 200) {
+<<<<<<< HEAD
+        message.textContent = `Lyckad förfrågan om att få alla users scores rangordnade ${JSON.stringify(data)}`;
+        console.log(data)
+=======
         message.textContent = `Lyckad förfrågan om att få alla users scores rangordnade`;
         dataMessage.textContent = `${dataJson}`;
+>>>>>>> b804560c4d1c12d67181c754e3cfbb89c59bd815
     } else {
         message.textContent = `Nånting gick snett med test1!${response.status}`;
     }
@@ -109,12 +114,23 @@ async function testScore() {
     }
 }
 
+async function testCurrentUser() {
+    const response = await fetch("http://0.0.0.0:8000/me", {
+        method: "GET"
+    })
+
+    const data = await response.json()
+
+    console.log(data)
+}
+
 
 async function callTests() {
     await testReg();
     await testLogin("Sebastian", "sebbe")
     await testScore()
     await testLeaderboard()
+    await testCurrentUser();
 }
 
 callTests()
