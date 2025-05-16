@@ -128,7 +128,7 @@ async function testCurrentUser() {
 
     const data = await response.json()
     const message = document.createElement("p");
-    message.textContent = `${data}`
+    message.textContent = `${JSON.stringify(data)}`
     document.body.appendChild(message)
     console.log(data)
 }
@@ -137,10 +137,11 @@ async function testCurrentUser() {
 async function callTests() {
     await testReg();
     await testLogin("Sebastian", "sebbe")
+    await testCurrentUser();
     await PATCHScore("Sebastian", 100)
     await PATCHExitGame("Test");
     await testLeaderboard()
-    await testCurrentUser();
+
 }
 
 callTests()
