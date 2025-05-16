@@ -40,10 +40,7 @@ async function handler(request) {
 
             if (match) {
 
-                const message = JSON.stringify("Login successful!");
-
-                return new Response({
-                    message: message,
+                return new Response(JSON.stringify("Login successful!"), {
                     status: 200,
                     headers: headers
                 })
