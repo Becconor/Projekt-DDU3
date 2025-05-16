@@ -63,31 +63,19 @@ async function testLogin(username, password) {
         method: "GET"
     });
 
-    const message = document.createElement("p");
-    document.body.appendChild(message);
+    const successMessage = document.createElement("p");
+    const userInfo = document.createElement("p");
+    document.body.append(successMessage, userInfo);
 
-    if (response.status === 200) {
-        message.textContent = "Successful login!";
-        const successMessage = document.createElement("p");
-        const userInfo = document.createElement("p");
-        document.body.append(successMessage, userInfo);
-        
+} if (response.status === 200) {
 
-    } if (response.status === 200) {
-
-        successMessage.textContent = `${response.message}`;
-
-        const userInfoForBar = await response.json();
-
-        userInfo.textContent = `${userInfoForBar.username}, ${userInfoForBar.score}`;
-
-
-        //OBS! I index.js så behöver login-processen fortsättas härifrån förmodligen då klienten ska förfråga om att få bli skickad till nästa sida, startsidan 
-        //men vi måste klura ut hur den förfrågan ska ske
-    } else if (response.status === 400) {
-        message.textContent = "Unsuccessful login! Wrong password! Try again!";
-    }
+    successMessage.textContent = `${response.message}`;
+    //OBS! I index.js så behöver login-processen fortsättas härifrån förmodligen då klienten ska förfråga om att få bli skickad till nästa sida, startsidan 
+    //men vi måste klura ut hur den förfrågan ska ske
+} else if (response.status === 400) {
+    message.textContent = "Unsuccessful login! Wrong password! Try again!";
 }
+
 
 async function testScore() {
     const response = await fetch("http://0.0.0.0:8000/score", {
