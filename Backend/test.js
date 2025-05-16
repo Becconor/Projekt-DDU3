@@ -25,11 +25,15 @@ async function testLeaderboard() {
         }
     });
     const data = await response.json()
+    const dataJson = JSON.stringify(data);
     const message = document.createElement("p");
+    const dataMessage = document.createElement("p");
     document.body.appendChild(message);
+    document.body.appendChild(dataMessage);
 
     if (response.status === 200) {
         message.textContent = `Lyckad förfrågan om att få alla users scores rangordnade`;
+        dataMessage.textContent = `${dataJson}`;
     } else {
         message.textContent = `Nånting gick snett med test1!${response.status}`;
     }

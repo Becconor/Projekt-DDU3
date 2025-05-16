@@ -61,6 +61,7 @@ async function handler(request) {
             }));
 
             sortAllUsers.sort((a, b) => b.score - a.score);
+            
 
             return new Response(JSON.stringify(sortAllUsers), {
                 status: 200,
