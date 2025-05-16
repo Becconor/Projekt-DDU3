@@ -4,9 +4,12 @@ const users = [
     { username: "Text3", password: "test3", score: 200, level: 2 }
 ];
 
+let currentUser = null;
+
 async function handler(request) {
     const url = new URL(request.url);
     const pathname = url.pathname;
+
 
     const headers = new Headers();
     headers.set("Access-Control-Allow-Origin", "*");
@@ -35,6 +38,7 @@ async function handler(request) {
             const match = users.find(user => user.username === usernameValue && user.password === passwordValue);
 
             if (match) {
+                currentUser = match;
                 return new Response(JSON.stringify("Login successful!"), {
                     status: 200,
                     headers: headers
@@ -60,6 +64,20 @@ async function handler(request) {
                 headers: headers
             });
         };
+
+        if (pathname === "/me") {
+            if (!currentUser) {
+                return new Response(JSON.stringify("Ingen användare är inloggad"), {
+                    status: 400,
+                    headers: headers
+                })
+            }
+
+            return new Response(JSON.stringify(currentUser), {
+                status: 200,
+                headers: headers
+            })
+        }
     };
 
     if (request.method === "POST") {

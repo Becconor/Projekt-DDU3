@@ -29,7 +29,8 @@ async function testLeaderboard() {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = `Lyckad förfrågan om att få alla users scores rangordnade`;
+        message.textContent = `Lyckad förfrågan om att få alla users scores rangordnade ${JSON.stringify(data)}`;
+        console.log(data)
     } else {
         message.textContent = `Nånting gick snett med test1!${response.status}`;
     }
@@ -89,12 +90,23 @@ async function testScore() {
     }
 }
 
+async function testCurrentUser() {
+    const response = await fetch("http://0.0.0.0:8000/me", {
+        method: "GET"
+    })
+
+    const data = await response.json()
+
+    console.log(data)
+}
+
 
 async function callTests() {
     await testReg();
     await testLogin("Sebastian", "sebbe")
     await testScore()
     await testLeaderboard()
+    await testCurrentUser();
 }
 
 callTests()
