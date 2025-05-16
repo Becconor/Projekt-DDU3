@@ -1,7 +1,7 @@
 const users = [
-    { username: "Text", password: "test", score: 0, level: 1 },
-    { username: "Text2", password: "test2", score: 100, level: 1 },
-    { username: "Text3", password: "test3", score: 200, level: 2 }
+    { username: "Test", password: "test", score: 0, level: 1 },
+    { username: "Test2", password: "test2", score: 100, level: 1 },
+    { username: "Test3", password: "test3", score: 200, level: 2 }
 ];
 
 let currentUser = null;
@@ -14,8 +14,8 @@ async function handler(request) {
     const headers = new Headers();
     headers.set("Access-Control-Allow-Origin", "*");
     headers.set("Access-Control-Allow-Headers", "Content-Type");
+    headers.set("Access-Control-Allow-Methods", "GET, POST, PATCH, OPTIONS");
     headers.set("Content-Type", "application/json");
-    headers.set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
 
     if (request.method == "OPTIONS") {
         return new Response(null, { headers: headers });
@@ -118,28 +118,52 @@ async function handler(request) {
             })
         }
 
-        if (pathname === "/score") {
-            const body = await request.json();
-            const score = body.score;
-            const username = body.username;
+        // if (pathname === "/score") {
+        //     const body = await request.json();
+        //     const score = body.score;
+        //     const username = body.username;
 
-            const existingPlayer = users.find(player => player.username === username);
+        //     const existingPlayer = users.find(player => player.username === username);
+
+        //     if (!existingPlayer) {
+        //         return new Response(JSON.stringify("Användaren finns inte!"), {
+        //             status: 404,
+        //             headers: headers
+        //         })
+        //     }
+
+        //     existingPlayer.score += score
+
+        //     return new Response(JSON.stringify(`Poäng har uppdaterats för ${existingPlayer.username}`), {
+        //         status: 200,
+        //         headers: headers
+        //     })
+        // }
+
+    }
+
+    if (request.method === "PATCH") {
+        if (url.pathname === "/gameScore") {
+            const body = await request.json();
+            const username = body.username;
+            const score = body.score;
+
+            const existingPlayer = allUsers.find(player => player.username === username);
 
             if (!existingPlayer) {
-                return new Response(JSON.stringify("Användaren finns inte!"), {
+                return new Response(JSON.stringify("Användaren hittades inte!"), {
                     status: 404,
                     headers: headers
-                })
+                });
             }
 
-            existingPlayer.score += score
+            existingPlayer.score += score;
 
             return new Response(JSON.stringify(`Poäng har uppdaterats för ${existingPlayer.username}`), {
                 status: 200,
                 headers: headers
-            })
+            });
         }
-
     }
 
     return new Response(JSON.stringify("Här ska du inte vara!", request), {
