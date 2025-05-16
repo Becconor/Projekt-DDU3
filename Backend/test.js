@@ -69,17 +69,16 @@ async function testLogin(username, password) {
     });
 
     const successMessage = document.createElement("p");
-    const userInfo = document.createElement("p");
-    document.body.append(successMessage, userInfo);
+    document.body.appendChild(successMessage);
 
-} if (response.status === 200) {
+    if (response.status === 200) {
 
-    successMessage.textContent = `${response.message}`;
-    //OBS! I index.js så behöver login-processen fortsättas härifrån förmodligen då klienten ska förfråga om att få bli skickad till nästa sida, startsidan 
-    //men vi måste klura ut hur den förfrågan ska ske
-} else if (response.status === 400) {
-    message.textContent = "Unsuccessful login! Wrong password! Try again!";
-}
+        successMessage.textContent = `${response.message}`;
+        //OBS! I index.js så behöver login-processen fortsättas härifrån förmodligen då klienten ska förfråga om att få bli skickad till nästa sida, startsidan 
+        //men vi måste klura ut hur den förfrågan ska ske
+    } else if (response.status === 400) {
+        message.textContent = "Unsuccessful login! Wrong password! Try again!";
+    }
 }
 
 async function testScore() {
