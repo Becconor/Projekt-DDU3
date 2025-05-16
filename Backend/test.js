@@ -24,13 +24,14 @@ async function testLeaderboard() {
             "Content-Type": "application/json"
         }
     });
-    const data = await response.json()
+    const data = await response.json();
+    const dataJSON = JSON.stringify(data);
     const message = document.createElement("p");
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = `Lyckad förfrågan om att få alla users scores rangordnade`;
-        console.log(`Leader Board:${data}`);
+        message.textContent = `11.Lyckad förfrågan om att få alla users scores rangordnade`;
+        console.log(`11.Leader Board:${dataJSON}`);
     } else {
         message.textContent = `Nånting gick snett med test1!${response.status}`;
     }
