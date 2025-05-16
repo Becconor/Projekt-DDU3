@@ -37,11 +37,9 @@ async function handler(request) {
 
             if (match) {
 
-                const userInfoForBar = JSON.stringify({ username: `${match.username}`, score: `${match.score}` });
-                console.log(userInfoForBar);
                 const message = JSON.stringify("Login successful!");
 
-                return new Response(userInfoForBar, {
+                return new Response({
                     message: message,
                     status: 200,
                     headers: headers
