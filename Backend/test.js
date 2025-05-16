@@ -32,13 +32,8 @@ async function testLeaderboard() {
     document.body.appendChild(dataMessage);
 
     if (response.status === 200) {
-<<<<<<< HEAD
-        message.textContent = `Lyckad förfrågan om att få alla users scores rangordnade ${JSON.stringify(data)}`;
-        console.log(data)
-=======
         message.textContent = `Lyckad förfrågan om att få alla users scores rangordnade`;
         dataMessage.textContent = `${dataJson}`;
->>>>>>> b804560c4d1c12d67181c754e3cfbb89c59bd815
     } else {
         message.textContent = `Nånting gick snett med test1!${response.status}`;
     }

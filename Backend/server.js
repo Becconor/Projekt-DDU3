@@ -39,10 +39,6 @@ async function handler(request) {
             console.log(match, "användaren som matchades");
 
             if (match) {
-<<<<<<< HEAD
-                currentUser = match;
-                return new Response(JSON.stringify("Login successful!"), {
-=======
 
                 const userInfoForBar = JSON.stringify({ username: `${match.username}`, score: `${match.score}` });
                 console.log(userInfoForBar);
@@ -50,7 +46,6 @@ async function handler(request) {
 
                 return new Response(userInfoForBar, {
                     message: message,
->>>>>>> b804560c4d1c12d67181c754e3cfbb89c59bd815
                     status: 200,
                     headers: headers
                 })
@@ -73,27 +68,8 @@ async function handler(request) {
                 status: 200,
                 headers: headers
             });
-<<<<<<< HEAD
-        };
-
-        if (pathname === "/me") {
-            if (!currentUser) {
-                return new Response(JSON.stringify("Ingen användare är inloggad"), {
-                    status: 400,
-                    headers: headers
-                })
-            }
-
-            return new Response(JSON.stringify(currentUser), {
-                status: 200,
-                headers: headers
-            })
-        }
-    };
-=======
         }
     }
->>>>>>> b804560c4d1c12d67181c754e3cfbb89c59bd815
 
     if (request.method === "POST") {
         if (pathname === "/register") {
