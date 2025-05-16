@@ -127,7 +127,9 @@ async function testCurrentUser() {
     })
 
     const data = await response.json()
-
+    const message = document.createElement("p");
+    message.textContent = `${data}`
+    document.body.appendChild(message)
     console.log(data)
 }
 
