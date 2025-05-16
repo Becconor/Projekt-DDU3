@@ -41,7 +41,7 @@ async function handler(request) {
 
             if (match) {
 
-                return new Response(JSON.stringify("2. Login successful!"), {
+                return new Response(JSON.stringify("Login successful!"), {
                     status: 200,
                     headers: headers
                 })
