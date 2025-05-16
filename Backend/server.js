@@ -37,6 +37,7 @@ async function handler(request) {
 
             const match = users.find(user => user.username === usernameValue && user.password === passwordValue);
             console.log(match, "användaren som matchades");
+            currentUser = match
 
             if (match) {
 
@@ -63,6 +64,22 @@ async function handler(request) {
                 status: 200,
                 headers: headers
             });
+        }
+
+        if (pathname === "/me") {
+            if (!currentUser) {
+                return new Response(JSON.stringify("Ingen användare är inloggad"), {
+                    status: 400,
+                    headers: headers
+                })
+            }
+
+            delete currentUser.password;
+
+            return new Response(JSON.stringify(currentUser), {
+                status: 200,
+                headers: headers
+            })
         }
     }
 
