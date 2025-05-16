@@ -137,7 +137,7 @@ async function testCurrentUser() {
 async function callTests() {
     await testReg();
     await testLogin("Sebastian", "sebbe")
-    await PATCHScore("Test", "test")
+    await PATCHScore("Sebastian", "100")
     await PATCHExitGame("Test");
     await testLeaderboard()
     await testCurrentUser();
