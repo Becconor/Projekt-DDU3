@@ -136,9 +136,14 @@ async function testLogout() {
         method: "POST"
     })
 
-    const message = document.createElement("p");
-    message.textContent = `12. Användaren har loggat ut`
-    document.body.appendChild(message)
+    if (response.status === 200) {
+
+        const logOutMessage = await response.json();
+        const message = document.createElement("p");
+        message.textContent = `12. ${logOutMessage}`;
+        document.body.appendChild(message)
+    }
+
 }
 
 
