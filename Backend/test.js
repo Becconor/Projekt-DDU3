@@ -125,9 +125,9 @@ async function testCurrentUser() {
 
     const data = await response.json()
     const message = document.createElement("p");
-    message.textContent = `Användar information för profilen är uppdaterad`
+    message.textContent = `3. Användar information för profilen är uppdaterad`
     document.body.appendChild(message)
-    console.log(data)
+    console.log(`3. ${data}`)
 }
 
 
