@@ -19,7 +19,7 @@ async function handler(request) {
 
     if (request.method == "OPTIONS") {
         return new Response(null, { headers: headers });
-    };
+    }
 
     if (request.method === "GET") {
         if (pathname === "/login") {
@@ -36,10 +36,21 @@ async function handler(request) {
             }
 
             const match = users.find(user => user.username === usernameValue && user.password === passwordValue);
+            console.log(match, "användaren som matchades");
 
             if (match) {
+<<<<<<< HEAD
                 currentUser = match;
                 return new Response(JSON.stringify("Login successful!"), {
+=======
+
+                const userInfoForBar = JSON.stringify({ username: `${match.username}`, score: `${match.score}` });
+                console.log(userInfoForBar);
+                const message = JSON.stringify("Login successful!");
+
+                return new Response(userInfoForBar, {
+                    message: message,
+>>>>>>> b804560c4d1c12d67181c754e3cfbb89c59bd815
                     status: 200,
                     headers: headers
                 })
@@ -58,11 +69,11 @@ async function handler(request) {
             }));
 
             sortAllUsers.sort((a, b) => b.score - a.score);
-
             return new Response(JSON.stringify(sortAllUsers), {
                 status: 200,
                 headers: headers
             });
+<<<<<<< HEAD
         };
 
         if (pathname === "/me") {
@@ -79,6 +90,10 @@ async function handler(request) {
             })
         }
     };
+=======
+        }
+    }
+>>>>>>> b804560c4d1c12d67181c754e3cfbb89c59bd815
 
     if (request.method === "POST") {
         if (pathname === "/register") {
