@@ -139,7 +139,8 @@ async function handler(request) {
     if (request.method === "PATCH") {
         if (url.pathname === "/gameScore") {
             const body = await request.json();
-            const username = body.username;
+            console.log(body, "värdet vi får i request-body");
+            // const username = body.username;
             const score = body.score;
 
             //const existingPlayer = allUsers.find(player => player.username === username);
