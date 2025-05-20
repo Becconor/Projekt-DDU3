@@ -15,6 +15,7 @@ async function POSTHandlerRegistration(username, password, password2) {
     if (response.status === 200) {
         message.textContent = "1. En ny användaren har registrerats!";
         await GETLogin(username, password);
+
     } else if (response.status === 409) {
         message.textContent = "1. Användaren finns redan!";
     } else if (response.status === 400) {
@@ -34,6 +35,7 @@ async function GETLogin(username, password) {
     if (response.status === 200) {
         message.textContent = "2. Inloggning genomförd!";
         await GETCurrentUser();
+
     } else if (response.status === 401) {
         message.textContent = "2. Fel lösenord!";
         console.log(user);
@@ -55,6 +57,8 @@ async function GETCurrentUser() {
     if (response.status === 200) {
         message.textContent = `3. Användar information för profilen är uppdaterad`;
         console.log(`3.`, data);
+        await PATCHScore("Sebastian", 150);
+
     } else if (response.status === 400) {
         message.textContent = `3. Ingen användare är inloggad`;
         console.log(`3.`, data);
@@ -76,7 +80,7 @@ async function PATCHScore(username, score) {
 
     if (response.status === 200) {
         message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
-        // await GETHandlerAllUsers();
+        await PATCHExitGame("Sebastian");
 
     } else if (response.status === 404) {
         message.textContent = "4. Användaren hittades inte!";
@@ -100,6 +104,8 @@ async function PATCHExitGame(username) {
 
     if (response.status === 200) {
         message.textContent = "5. Spel avbrutet, poängen uppdaterades ej.";
+        await GETHandlerAllUsers();
+
     } else if (response.status === 404) {
         message.textContent = "5. Något gick fel vid avslut.";
     }
@@ -118,7 +124,8 @@ async function GETHandlerAllUsers() {
         message.textContent = "6. Alla användare är rankade!";
         console.log(rankning);
         // await POSTHandler();
-        return rankning;
+        // return rankning;
+        await POSTLogout();
     }
 }
 
@@ -143,15 +150,15 @@ async function testDriver() {
     await POSTHandlerRegistration("Hej", "hej", "");
 
     // await GETLogin("Test", "test");
-    await GETLogin("Sebastian", "sebbe123");
+    // await GETLogin("Sebastian", "sebbe123");
     await GETLogin("Tes", "test");
 
     await GETCurrentUser();
 
-    await PATCHScore("Sebastian", 150);
+    // await PATCHScore("Sebastian", 150);
     await PATCHScore("Tes", 150);
 
-    await PATCHExitGame("Sebastian");
+    // await PATCHExitGame("Sebastian");
     await PATCHExitGame("Tes");
 
     await GETHandlerAllUsers();
