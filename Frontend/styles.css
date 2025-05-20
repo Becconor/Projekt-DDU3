@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+
+/* login */
+#login {
+    background-image: linear-gradient(to right, rgb(252, 179, 75), rgb(255, 255, 255), rgb(252, 179, 75));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+#logga {
+    box-sizing: border-box;
+    color: rgb(252, 179, 75);
+    font-size: 40px;
+
+    text-align: center;
+    padding-top: 150px;
+}
+
+.loginCenter {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#signIn {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 100px 0 0;
+}
+
+#signIn h2 {
+    font-weight: 100;
+    font-size: 26px;
+    padding-bottom: 10px;
+}
+
+#signIn input {
+    height: 30px;
+    width: 300px;
+}
+
+#signIn button {
+    height: 30px;
+    width: 100px;
+    /* color: white; */
+}
+
+#signUpTransfer {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 150px 0 0;
+}
+
+#signUpTransfer p {
+    /* font-style: italic; */
+    font-weight: lighter;
+}
+
+#signUpTransfer button {
+    width: 250px;
+    height: 30px;
+}
+
+.signButton {
+    background-color: rgb(252, 179, 75);
+    border-radius: 5px;
+    font-weight: bold;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Profil */
+.built {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    /* background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(211, 211, 211), rgb(128, 128, 128)); */
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+
+
+
+
+header {
+    color: rgb(252, 179, 75);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 10%;
+}
+
+
+
+
+
+.built h2 {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+    height: 7%;
+}
+
+
+
+#p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 7%;
+}
+
+
+
+
+
+
+
+main {
+    display: flex;
+    justify-content: center;
+    /* gap: 30px; */
+
+    padding: 50px;
+    height: 63%;
+}
+
+#profil main div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+
+    padding: 0 50px;
+}
+
+#list {
+    background-color: rgb(252, 179, 75);
+
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 10px;
+
+    overflow-y: scroll;
+    padding: 0 75px;
+    width: 750px;
+
+    border: 20px solid rgb(252, 179, 75);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+/* #list div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+} */
+
+.user {
+    background-color: white;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+}
+
+.user div {
+    display: flex;
+    gap: 50px;
+}
+
+.user h2 {
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons {
+    width: 200px;
+    height: 100px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    background-color: rgb(252, 179, 75);
+    border-radius: 5px;
+}
+
+#playButton {
+    justify-content: center;
+    align-items: center;
+}
+
+#easy {
+    background-color: greenyellow;
+}
+
+#medium {
+    background-color: yellow;
+}
+
+#hard {
+    background-color: red;
+}
+
+
+
+
+
+
+
+footer {
+    /* background-color: rgb(252, 179, 75); */
+    background-image: linear-gradient(rgb(255, 255, 255), rgb(252, 179, 75));
+
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 150px;
+    height: 20%;
+}
+
+footer button {
+    width: 150px;
+    height: 50px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    background-color: rgb(151, 251, 0);
+    border-radius: 5px;
+}
+
+#info {
+    box-sizing: border-box;
+    height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+#points {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    /* height: 75px; */
+}
+
+#myPoints div {
+    display: flex;
+    gap: 10px;
+}
+
+
+#game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gamePlan {
+    background-color: aqua;
+    border: 10px solid aquamarine;
+    box-sizing: border-box;
+}
