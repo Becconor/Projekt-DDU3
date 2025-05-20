@@ -142,7 +142,7 @@ async function testDriver() {
     await POSTHandlerRegistration("Test", "hej", "hej");
     await POSTHandlerRegistration("Hej", "hej", "");
 
-    // await GETLogin("Test", "test");
+    await GETLogin("Test", "test");
     await GETLogin("Sebastian", "sebbe123");
     await GETLogin("Tes", "test");
 
