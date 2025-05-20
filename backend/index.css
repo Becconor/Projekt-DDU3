@@ -1,0 +1,51 @@
+main {
+    display: flex;
+}
+
+#difficulty {
+    display: flex;
+    flex-direction: column;
+}
+
+#animal {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+}
+
+.selected {
+    background-color: orange;
+    border: 2px solid darkorange;
+    color: white;
+}
+
+#startButton {
+    width: 200px;
+    height: 100px;
+}
+
+.difficultyButton {
+    height: 100px;
+    width: 200px;
+    margin: 10px;
+}
+
+.animalButton {
+    height: 100px;
+    width: 200px;
+    margin: 10px;
+}
+
+#gameBoard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    height: 300px;
+}
+
+#gameBoard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}

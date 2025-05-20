@@ -5,23 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-  <select id="difficulty">
-    <option value="6">Lätt</option>
-    <option value="10">Medel</option>
-    <option value="16">Svår</option>
-  </select>
+  <main>
+    <div id="difficulty">
+      <button value="6" class="difficultyButton">Lätt</button>
+      <button value="10" class="difficultyButton">Medel</button>
+      <button value="16" class="difficultyButton">Svår</button>
+    </div>
 
-  <select id="animal">
-    <option value="dog">Hund</option>
-    <option value="cat">Katt</option>
-    <option value="fox">Fox</option>
-  </select>
+    <div id="animal">
+      <button value="dog" class="animalButton">Hund</button>
+      <button value="cat" class="animalButton">Katt</button>
+      <button value="fox" class="animalButton">Fox</button>
+    </div>
 
-  <button id="startButton">Start</button>
-
+    <button id="startButton">Start</button>
+  </main>
   <div id="gameBoard"></div>
 
   <script src="index.js"></script>

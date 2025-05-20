@@ -1,18 +1,41 @@
+//Memory
+let selectedDifficulty = null;
+let selectedAnimal = null;
 
+const difficultyButtons = document.querySelectorAll(".difficultyButton");
+for (let i = 0; i < difficultyButtons.length; i++) {
+    difficultyButtons[i].addEventListener("click", function () {
+        selectedDifficulty = this.value;
 
+        for (let j = 0; j < difficultyButtons.length; j++) {
+            difficultyButtons[j].classList.remove("selected");
+        }
+        this.classList.add("selected")
+    })
+}
 
+const animalButtons = document.querySelectorAll(".animalButton");
+for (let i = 0; i < animalButtons.length; i++) {
+    animalButtons[i].addEventListener("click", function () {
+        selectedAnimal = this.value;
 
-
-
-
+        for (let j = 0; j < animalButtons.length; j++) {
+            animalButtons[j].classList.remove("selected")
+        }
+        this.classList.add("selected")
+    })
+}
+//Vi skapar två varibler. En för svårighetsgrad och en för djuret.
+//Vi loopar igenom alla knappar och tar ut värden från knappen som klickas.
+//Använder en nästlad loop för att ta bort classen selected från en knapp.
+//Sen lägger vi även till classen selected för den man trycker på.
 
 const startButton = document.querySelector("#startButton");
 
 startButton.addEventListener("click", async function () {
-    const difficultyValue = document.querySelector("#difficulty").value;
-    const animalValue = document.querySelector("#animal").value;
 
-    const numberOfCards = Number(difficultyValue);
+    const numberOfCards = Number(selectedDifficulty);
+    const animalValue = selectedAnimal;
     const numberOfUniqueImages = numberOfCards / 2;
 
     let images = [];
@@ -30,7 +53,7 @@ startButton.addEventListener("click", async function () {
         }
         if (animal === "cat") {
             const response = await fetch("https://api.thecatapi.com/v1/images/search");
-            const data = response.json();
+            const data = await response.json();
             return data[0].url;
         }
     }
@@ -71,3 +94,4 @@ startButton.addEventListener("click", async function () {
     //Här selekterar vi vart vi vill att korten ska hamna.
     //Vi loopar sedan igenom cards och skapar en img för varje instans.
 })
+//Memory
