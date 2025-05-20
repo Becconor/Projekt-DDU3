@@ -1,3 +1,4 @@
+
 let bodyDOM = document.getElementById("login");
 let loginDivDOM = document.getElementById("signIn");
 let signInButton = document.getElementById("signInButton");
@@ -58,8 +59,11 @@ async function GETLogin(username, password) {
     if (response.status === 200) {
         /*Är osöker på hur vi ska ta användarens data så gjorde så här, men ändra gärna :) */
         console.log("2. Inloggning genomförd!");
-        /* await GETCurrentUser(); */
+        /* let currentUserResponse = await GETCurrentUser();
+        let currentUserProfile = await currentUserResponse.json();
+        let currentUserData = JSON.stringify(currentUserProfile); */
         createProfilePage();
+        //Skapa funktion för att skapa divar för profil sidan
 
     } else if (response.status === 401) {
         console.log("2. Fel lösenord!");
@@ -82,19 +86,19 @@ function createProfilePage() {
     `;
     mainDOM.innerHTML = `
             <div id="levelButtons">
-            <button class="buttons" id="easy">EASY</button>
-            <button class="buttons" id="medium">MEDIUM</button>
-            <button class="buttons" id="hard">HARD</button>
+            <button value="6" class="difficultyButton" class="buttons" id="easy">EASY</button>
+            <button value="10" class="difficultyButton" class="buttons" id="medium">MEDIUM</button>
+            <button value="16" class="difficultyButton" class="buttons" id="hard">HARD</button>
         </div>
 
         <div id="categoryButtons">
-            <button class="buttons" id="katt">CATS</button>
-            <button class="buttons" id="hund">DOGS</button>
-            <button class="buttons" id="fågel">FOXES</button>
+            <button value="dog" class="animalButton" class="buttons" >CATS</button>
+            <button value="cat" class="animalButton" class="buttons" >DOGS</button>
+            <button value="fox" class="animalButton" class="buttons" >FOXES</button>
         </div>
 
         <div id="playButton">
-            <button class="buttons" id="play">PLAY</button>
+            <button class="buttons" id="playButton">PLAY</button> 
         </div>
     `;
     //Play button har id="startButton" från sebbes sida
