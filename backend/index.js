@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //Memory
 let selectedDifficulty = null;
 let selectedAnimal = null;
@@ -31,8 +30,6 @@ for (let i = 0; i < animalButtons.length; i++) {
 //Använder en nästlad loop för att ta bort classen selected från en knapp.
 //Sen lägger vi även till classen selected för den man trycker på.
 
-=======
->>>>>>> d7969333b6ea951729d216a80ef1b3ece231164a
 const startButton = document.querySelector("#startButton");
 
 startButton.addEventListener("click", async function () {
