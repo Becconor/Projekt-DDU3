@@ -1,77 +1,63 @@
-//FÖRSLAG: att ha våra x-antal fetches, alltså de specifika förfrågningarna vi behöver göra, 
-//i varsin async-funktion och sen ha en async-funktion som anropar alla test-fetches
-//t.ex:
-//
-//async function test1(){
-//  const response = await fetch(request, {
-//   method: "POST", 
-//   osv
-//  });
-//}
-
-//async function callTests(){
-//  await test1();
-//  await test2();
-//  await test3();
-//  ...osv...
-//}
-
-//test1 är att skicka en GET-förfrågan för att få alla users, detta är förutsättningen för register och login
-async function testLeaderboard() {
-    const response = await fetch("http://0.0.0.0:8000/leaderboard", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }
+async function POSTHandlerRegistration(username, password, password2) {
+    const response = await fetch("http://localhost:8000/registrering", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username: username,
+            password: password,
+            password2: password2
+        }),
     });
-    const data = await response.json();
-    const dataJSON = JSON.stringify(data);
+
     const message = document.createElement("p");
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = `11. Lyckad förfrågan om att få alla users scores rangordnade`;
-        console.log(`11.Leader Board:${dataJSON}`);
-    } else {
-        message.textContent = `Nånting gick snett med test1!${response.status}`;
-    }
-}
-
-async function testReg() {
-    const response = await fetch("http://0.0.0.0:8000/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: "Sebastian", password: "sebbe" })
-    })
-    const message = document.createElement("p");
-    document.body.appendChild(message);
-
-    if (response.status === 201) {
-        message.textContent = "1. Successful request to register user!";
+        message.textContent = "1. En ny användaren har registrerats!";
+        await GETLogin(username, password);
     } else if (response.status === 409) {
-        message.textContent = `Username already exist`
+        message.textContent = "1. Användaren finns redan!";
     } else if (response.status === 400) {
-        message.textContent = `Missing username or password`
+        message.textContent = "1. Användarnamn eller lösenord saknas!";
     }
-
 }
 
-async function testLogin(username, password) {
-    const response = await fetch(`http://0.0.0.0:8000/login?username=${username}&password=${password}`, {
+async function GETLogin(username, password) {
+    const response = await fetch(`http://localhost:8000/login?username=${username}&password=${password}`, {
         method: "GET"
     });
 
-    const successMessage = document.createElement("p");
-    document.body.appendChild(successMessage);
+    const user = await response.json();
+    const message = document.createElement("p");
+    document.body.appendChild(message);
 
     if (response.status === 200) {
+        message.textContent = "2. Inloggning genomförd!";
+        await GETCurrentUser();
+    } else if (response.status === 401) {
+        message.textContent = "2. Fel lösenord!";
+        console.log(user);
+    } else if (response.status === 404) {
+        message.textContent = "2. Användarnamnet finns inte, skapa ett konto!";
+        console.log(user);
+    }
+}
 
-        const message = await response.json();
-        successMessage.textContent = `2. ${message}`;
-        //OBS! I index.js så behöver login-processen fortsättas härifrån förmodligen då klienten ska förfråga om att få bli skickad till nästa sida, startsidan 
-        //men vi måste klura ut hur den förfrågan ska ske
+async function GETCurrentUser() {
+    const response = await fetch("http://localhost:8000/profil", {
+        method: "GET"
+    })
+
+    const data = await response.json();
+    const message = document.createElement("p");
+    document.body.appendChild(message);
+
+    if (response.status === 200) {
+        message.textContent = `3. Användar information för profilen är uppdaterad`;
+        console.log(`3.`, data);
     } else if (response.status === 400) {
-        message.textContent = "Unsuccessful login! Wrong password! Try again!";
+        message.textContent = `3. Ingen användare är inloggad`;
+        console.log(`3.`, data);
     }
 }
 
@@ -89,13 +75,13 @@ async function PATCHScore(username, score) {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = "8. Poäng har adderats till totalpoängen för användaren!";
+        message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
         // await GETHandlerAllUsers();
 
     } else if (response.status === 404) {
-        message.textContent = "Användaren hittades inte!";
+        message.textContent = "4. Användaren hittades inte!";
     } else {
-        message.textContent = "Något gick fel!";
+        message.textContent = "4. Något gick fel!";
     }
 }
 
@@ -113,49 +99,63 @@ async function PATCHExitGame(username) {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = "9-10. Spel misslyckat, poängen uppdaterades ej.";
-    } else {
-        message.textContent = "Något gick fel vid avslut.";
+        message.textContent = "5. Spel avbrutet, poängen uppdaterades ej.";
+    } else if (response.status === 404) {
+        message.textContent = "5. Något gick fel vid avslut.";
     }
 }
 
-async function testCurrentUser() {
-    const response = await fetch("http://0.0.0.0:8000/me", {
-        method: "GET"
-    })
+async function GETHandlerAllUsers() {
+    const response = await fetch("http://localhost:8000/rankningslista");
 
-    const data = await response.json();
     const message = document.createElement("p");
-    message.textContent = `3. Användar information för profilen är uppdaterad`;
     document.body.appendChild(message);
-    console.log(`3.`, data);
+
+    if (!response.ok) {
+        message.textContent = "6. Någonting gick fel!";
+    } else {
+        const rankning = await response.json();
+        message.textContent = "6. Alla användare är rankade!";
+        console.log(rankning);
+        // await POSTHandler();
+        return rankning;
+    }
 }
 
-async function testLogout() {
-    const response = await fetch("http://0.0.0.0:8000/logout", {
+async function POSTLogout() {
+    const response = await fetch("http://localhost:8000/logout", {
         method: "POST"
     })
 
     if (response.status === 200) {
-
         const logOutMessage = await response.json();
         const message = document.createElement("p");
-        message.textContent = `12. ${logOutMessage}`;
+        message.textContent = `7. ${logOutMessage}`;
         document.body.appendChild(message);
     }
 
 }
 
 
-async function callTests() {
-    await testReg();
-    await testLogin("Sebastian", "sebbe");
-    await testCurrentUser();
-    await PATCHScore("Sebastian", 100);
-    await PATCHExitGame("Test");
-    await testLeaderboard();
-    await testLogout();
+async function testDriver() {
+    await POSTHandlerRegistration("Hej", "hej", "hej");
+    await POSTHandlerRegistration("Test", "hej", "hej");
+    await POSTHandlerRegistration("Hej", "hej", "");
 
+    // await GETLogin("Test", "test");
+    await GETLogin("Test", "test1");
+    await GETLogin("Tes", "test");
+
+    await GETCurrentUser();
+
+    await PATCHScore("Test", 150);
+    await PATCHScore("Tes", 150);
+
+    await PATCHExitGame("Test");
+    await PATCHExitGame("Tes");
+
+    await GETHandlerAllUsers();
+    await POSTLogout();
 }
 
-callTests();
+testDriver();
