@@ -4,6 +4,15 @@ const allUsers = [
     { username: "Test3", password: "test3", score: 200, level: 2 },
 ];
 
+class User {
+    constructor(username, password) {
+        this.username = username;
+        this.password = password;
+        this.level = 1;
+        this.score = 0;
+    }
+}
+
 let currentUser = null;
 
 async function handler(request) {
@@ -72,7 +81,7 @@ async function handler(request) {
             let sortAllUsers = allUsers.map(user => ({
                 username: user.username,
                 score: user.score
-            }));
+            }));//ha en klass istället som skapar rankningslistan och därmed går igenom alla users och filtrerar bort password-nyckeln då den inte ska synas på rankningssidan
 
             sortAllUsers.sort((a, b) => b.score - a.score);
 
@@ -107,16 +116,11 @@ async function handler(request) {
                 }
             }
 
-            let newUser = {
-                username: inputUsername,
-                password: inputPassword,
-                score: 0,
-                level: 1
-            };
+            let currentUser = new User(inputUsername, inputPassword);
+            console.log(currentUser, "Den spelaren som precis registrerade sig!");
+            allUsers.push(currentUser);
 
-            allUsers.push(newUser);
-
-            return new Response(JSON.stringify("Ny användare har lagts till:", newUser), {
+            return new Response(JSON.stringify("Ny användare har lagts till:", currentUser), {
                 status: 200,
                 headers: headers,
             });
