@@ -138,18 +138,18 @@ async function handler(request) {
             const username = body.username;
             const score = body.score;
 
-            const existingPlayer = allUsers.find(player => player.username === username);
+            //const existingPlayer = allUsers.find(player => player.username === username);
 
-            if (!existingPlayer) {
+            if (!currentUser) {
                 return new Response(JSON.stringify("Användaren hittades inte!"), {
                     status: 404,
                     headers: headers
                 });
             }
 
-            existingPlayer.score += score;
+            currentUser.score += score;
 
-            return new Response(JSON.stringify(`Poäng har uppdaterats för ${existingPlayer.username}`), {
+            return new Response(JSON.stringify(`Poäng har uppdaterats för ${currentUser.username}`), {
                 status: 200,
                 headers: headers
             });

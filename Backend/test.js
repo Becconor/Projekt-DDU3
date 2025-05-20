@@ -138,20 +138,20 @@ async function POSTLogout() {
 
 
 async function testDriver() {
-    await POSTHandlerRegistration("Hej", "hej", "hej");
+    await POSTHandlerRegistration("Sebastian", "sebbe123", "sebbe123");
     await POSTHandlerRegistration("Test", "hej", "hej");
     await POSTHandlerRegistration("Hej", "hej", "");
 
     // await GETLogin("Test", "test");
-    await GETLogin("Test", "test1");
+    await GETLogin("Sebastian", "sebbe123");
     await GETLogin("Tes", "test");
 
     await GETCurrentUser();
 
-    await PATCHScore("Test", 150);
+    await PATCHScore("Sebastian", 150);
     await PATCHScore("Tes", 150);
 
-    await PATCHExitGame("Test");
+    await PATCHExitGame("Sebastian");
     await PATCHExitGame("Tes");
 
     await GETHandlerAllUsers();
