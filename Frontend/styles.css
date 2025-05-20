@@ -124,7 +124,7 @@ header {
 
 
 
-.built h2 {
+.bodyBox h2 {
     display: flex;
     justify-content: center;
     align-items: end;
