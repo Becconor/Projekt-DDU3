@@ -112,7 +112,7 @@ async function handler(request) {
                     return new Response(JSON.stringify("Användarnamnet är upptaget!"), {
                         status: 409,
                         headers: headers
-                    })
+                    });
                 }
             }
 
@@ -123,7 +123,7 @@ async function handler(request) {
             return new Response(JSON.stringify("Ny användare har lagts till:", currentUser), {
                 status: 200,
                 headers: headers,
-            });
+            })
         }
 
         if (url.pathname === "/logout") {
