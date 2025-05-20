@@ -58,11 +58,8 @@ async function GETLogin(username, password) {
     if (response.status === 200) {
         /*Är osöker på hur vi ska ta användarens data så gjorde så här, men ändra gärna :) */
         console.log("2. Inloggning genomförd!");
-        /* let currentUserResponse = await GETCurrentUser();
-        let currentUserProfile = await currentUserResponse.json();
-        let currentUserData = JSON.stringify(currentUserProfile); */
+        /* await GETCurrentUser(); */
         createProfilePage();
-        //Skapa funktion för att skapa divar för profil sidan
 
     } else if (response.status === 401) {
         console.log("2. Fel lösenord!");
