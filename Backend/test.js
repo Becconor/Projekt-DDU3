@@ -153,7 +153,7 @@ async function testDriver() {
     // await GETLogin("Sebastian", "sebbe123");
     await GETLogin("Tes", "test");
 
-    await GETCurrentUser();
+    // await GETCurrentUser();
 
     // await PATCHScore("Sebastian", 150);
     await PATCHScore("Tes", 150);
@@ -161,8 +161,8 @@ async function testDriver() {
     // await PATCHExitGame("Sebastian");
     await PATCHExitGame("Tes");
 
-    await GETHandlerAllUsers();
-    await POSTLogout();
+    // await GETHandlerAllUsers();
+    // await POSTLogout();
 }
 
 testDriver();
