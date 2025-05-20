@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 const startButton = document.querySelector("#startButton");
 
 startButton.addEventListener("click", async function () {
