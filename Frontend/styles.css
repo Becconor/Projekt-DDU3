@@ -250,8 +250,8 @@ main {
 
 footer {
     /* background-color: rgb(252, 179, 75); */
-    background-image: linear-gradient(rgb(255, 255, 255), rgb(252, 179, 75));
-
+    /*background-image: linear-gradient(rgb(255, 255, 255), rgb(252, 179, 75));*/
+    background-image: radial-gradient(rgb(255, 255, 255), rgb(252, 179, 75));
 
     display: flex;
     justify-content: space-between;
