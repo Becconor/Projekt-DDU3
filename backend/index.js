@@ -1,5 +1,12 @@
-<<<<<<< HEAD
 //Memory
+class Card {
+    constructor(url, id, theme) {
+        this.url = url;
+        this.id = id;
+        this.theme = theme;
+    }
+}
+
 let selectedDifficulty = null;
 let selectedAnimal = null;
 
@@ -31,8 +38,6 @@ for (let i = 0; i < animalButtons.length; i++) {
 //Använder en nästlad loop för att ta bort classen selected från en knapp.
 //Sen lägger vi även till classen selected för den man trycker på.
 
-=======
->>>>>>> d7969333b6ea951729d216a80ef1b3ece231164a
 const startButton = document.querySelector("#startButton");
 
 startButton.addEventListener("click", async function () {
@@ -63,23 +68,26 @@ startButton.addEventListener("click", async function () {
 
     for (let i = 0; i < numberOfUniqueImages; i++) {
         const imageURL = await getImage(animalValue);
-        images.push(imageURL);
+        const id = i;
+        console.log(id, "id för bilden");
+        const image = new Card(imageURL, id, animalValue);
+        images.push(image);
     }
     //Här loopar vi igenom hälften så många gånger som svårighetsgraden. Till exempel
     //Svårighetsgrad lätt vilket är 6 kort i memoryt, då loopar vi igenom 3 gånger.
     //Vi anropar då getImage 3 gånger där vi fetchar det valda djuret.
     //Vi får ut 3 bilder som vi pushar till image arrayen.
-
-    let cards = [];
     for (let i = 0; i < images.length; i++) {
-        cards.push(images[i]);
-        cards.push(images[i]);
+        const originalImage = images[i];
+        const copyOfOrginialImage = new Card(originalImage.id, originalImage.id, originalImage.theme);
+        images.push(copyOfOrginialImage);
+        console.log(images, images.length, "bör innehålla alla korten, alltså alla par");
     }
     //Vi skapar en cards array. Vi loopar igenom images där vi nu har i detta fall 3 bilder.
     //För varje instans så pushar vi det objektet i arrayen två gånger.
     //cards inehåller nu 6 objekt.
 
-    cards.sort(function () {
+    images.sort(function () {
         return Math.random() - 0.5;
     })
     //Här blandar vi korten. Förstår inte riktigt denna rad men ska se om det finns ett 
@@ -88,9 +96,9 @@ startButton.addEventListener("click", async function () {
     const gameBoard = document.querySelector("#gameBoard");
     gameBoard.innerHTML = "";
 
-    for (let i = 0; i < cards.length; i++) {
+    for (let i = 0; i < images.length; i++) {
         const img = document.createElement("img");
-        img.src = cards[i];
+        img.src = images[i];
         img.style.width = "100px"
         gameBoard.appendChild(img);
     }
