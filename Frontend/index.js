@@ -111,7 +111,7 @@ function homePage() {
         </div>
 
         <div id="playButton">
-            <button class="buttons" id="playButton">PLAY</button> 
+            <button class="buttons" id="playNow">PLAY</button> 
         </div>
     `;
     //Play button har id="startButton" från sebbes sida
