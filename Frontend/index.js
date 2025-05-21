@@ -28,7 +28,8 @@ footerDOM.innerHTML = `
 `;
 
 let signInButton = document.getElementById("signInButton");
-let signUpButton = document.getElementById("signUpButton");
+let signUpButton = document.createElement("button");
+//signUpButton
 
 let usernameDOM = document.getElementById("username");
 let PasswordDOM = document.getElementById("password");
