@@ -247,10 +247,14 @@ main div {
 #playButton {
     justify-content: center;
     align-items: center;
+    padding: 0 50px;
+}
+
+#playNow{
     width: 200px;
     height: 100px;
     background-color: rgb(252, 179, 75);
-    padding: 0 50px;
+
 }
 
 
