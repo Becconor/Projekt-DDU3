@@ -98,10 +98,10 @@
 
 /* Profil */
 .bodyBox {
-     display: flex;
+    display: flex;
     flex-direction: column;
-    align-items: center; 
-     background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(211, 211, 211), rgb(128, 128, 128)); 
+    align-items: center;
+    background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(211, 211, 211), rgb(128, 128, 128));
     box-sizing: border-box;
     height: 100vh;
 }
@@ -151,9 +151,9 @@ header {
 main {
     display: flex;
     justify-content: center;
-    /* gap: 30px; */
+    gap: 30px;
     padding: 50px;
-    /* height: 63%; */
+    height: 63%;
 }
 
 #profil main div {
