@@ -70,8 +70,7 @@ async function GETLogin(username, password) {
 }
 
 
-signUpButton.addEventListener("click", function () {
-
+function register() {
     loginDivDOM.innerHTML = `
         <h2>Create Account</h2>
             <input type="text" placeholder="Username">
@@ -90,26 +89,7 @@ signUpButton.addEventListener("click", function () {
     loginButtonDOM.addEventListener("click", () => {
         POSTHandlerRegistration(usernameValue, password1Value, password2Value);
     });
-});
-
-function home() {
-
 }
-
-function playGame() {
-
-}
-
-function ranking() {
-
-}
-
-login();
-
-
-
-
-
 
 
 async function POSTHandlerRegistration(username, password, password2) {
@@ -134,6 +114,26 @@ async function POSTHandlerRegistration(username, password, password2) {
         message.textContent = "1. Användarnamn eller lösenord saknas!";
     }
 }
+
+
+
+
+
+function home() {
+
+}
+
+function playGame() {
+
+}
+
+function ranking() {
+
+}
+
+login();
+
+
 
 async function GETCurrentUser() {
     const response = await fetch("http://localhost:8000/profil", {
