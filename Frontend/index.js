@@ -1,31 +1,29 @@
 // login sida
 
 let bodyDOM = document.querySelector("body");
-let headerDOM = document.querySelector("header");
-let mainDOM = document.querySelector("main");
-let footerDOM = document.querySelector("footer");
+bodyDOM.id = "login";
 
 function login() {
-    bodyDOM.id = "login";
-    let loginH1 = headerDOM.querySelector("h1");
-    loginH1.id = "logga";
+    bodyDOM.innerHTML = `
+        <h1 id="logga">REMEMBER ME</h1>
 
-    mainDOM.innerHTML = `
         <div class="loginCenter" id="signIn">
             <h2>Login</h2>
 
             <input type="text" placeholder="Username" id="username">
             <input type="text" placeholder="Password" id="password">
             <button id="signInButton" class="signButton">SIGN IN</button>
+            
+            <div class="loginCenter" id="signUpTransfer">
+                <p>Not a member?</p>
+                <button id="signButton" class="signButton">REGISTER HERE</button>
+            </div>
         </div>
     `;
 
-    footerDOM.innerHTML = `
-        <div class="loginCenter" id="signUpTransfer">
-            <p>Not a member?</p>
-            <button id="signButton" class="signButton">REGISTER HERE</button>
-        </div>
-    `;
+    let loginH1 = headerDOM.querySelector("h1");
+    loginH1.id = "logga";
+
 
     let signInButton = document.getElementById("signInButton");
     let signUpButton = document.getElementById("signButton");
@@ -320,7 +318,6 @@ async function GETLogin(username, password) {
 }
 
 function createProfilePage() {
-
     bodyDOM.innerHTML = ``;
     let headerDOM = document.createElement("header");
     let mainDOM = document.createElement("main");
