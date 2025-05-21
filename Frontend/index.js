@@ -95,6 +95,8 @@ function homePage() {
     `;
 
     mainDOM.innerHTML = `
+        <h2>Select your game!</h2>
+        
         <div id="levelButtons">
             <button value="6" class="buttons" class="difficultyButton" id="easy">EASY</button>
             <button value="10" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
