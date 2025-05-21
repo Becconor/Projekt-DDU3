@@ -123,7 +123,7 @@ header {
 
 
 
-.bodyBox h2 {
+#profil h2 {
     display: flex;
     justify-content: center;
     align-items: end;
