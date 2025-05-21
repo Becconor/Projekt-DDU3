@@ -134,7 +134,7 @@ function homePage() {
         <div id="info">
             <div id="profilImage"></div>
 
-            <h2>Rebecca</h2>
+            <h2>${currentUser.username}</h2>
 
             <p>LogOut</p>
         </div>
@@ -279,8 +279,8 @@ async function GETLogin(username, password) {
     if (response.status === 200) {
         alert("Login was successful!");
         // message.textContent = "2. Inloggning genomförd!";
-        await homePage();
         await GETCurrentUser();
+        homePage();
     } else if (response.status === 401) {
         alert("Fel lösenord!");
         // message.textContent = "2. Fel lösenord!";
