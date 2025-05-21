@@ -81,22 +81,21 @@ function homePage() {
     bodyDOM.innerHTML = ``;
 
     let headerDOM = document.createElement("header");
-    let titleDivDOM = document.createElement("div");
+    let titleDivDOM = document.createElement("h2");
     let mainDOM = document.createElement("main");
     let footerDOM = document.createElement("footer");
 
     bodyDOM.removeAttribute("login");
     bodyDOM.classList.add("bodyBox");
     bodyDOM.id = "profil";
+    titleDivDOM.id = "titleH2";
 
     footerDOM.classList.add("footerProfilInfo");
 
     headerDOM.innerHTML = `
         <h1>REMEMBER ME</h1>
     `;
-    titleDivDOM.innerHTML = `
-        <h2 id="titleH2">Select your game!</h2>
-    `;
+    titleDivDOM.textContent = "Select your game!";
 
     mainDOM.innerHTML = `
         <div id="levelButtons">
