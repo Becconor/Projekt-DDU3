@@ -111,10 +111,6 @@ login();
 
 
 
-
-
-
-
 async function POSTHandlerRegistration(username, password, password2) {
     const response = await fetch("http://localhost:8000/registrering", {
         method: "POST",
@@ -130,6 +126,7 @@ async function POSTHandlerRegistration(username, password, password2) {
     document.body.appendChild(message);
 
     if (response.status === 200) {
+
         message.textContent = "1. En ny användaren har registrerats!";
     } else if (response.status === 409) {
         message.textContent = "1. Användaren finns redan!";
@@ -137,6 +134,12 @@ async function POSTHandlerRegistration(username, password, password2) {
         message.textContent = "1. Användarnamn eller lösenord saknas!";
     }
 }
+
+
+
+
+
+
 
 async function GETCurrentUser() {
     const response = await fetch("http://localhost:8000/profil", {
@@ -399,6 +402,10 @@ function createProfilePage() {
     bodyDOM.appendChild(mainDOM);
     bodyDOM.appendChild(footerDOM);
 }
+
+
+
+
 
 //Från Sebastians js branch index.js (20/5 15:23) 
 
