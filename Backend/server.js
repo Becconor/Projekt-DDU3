@@ -25,7 +25,10 @@ async function handler(request) {
     headers.set("Content-Type", "application/json");
 
     if (request.method == "OPTIONS") {
-        return new Response(null, { headers: headers });
+        return new Response(null, {
+            status: 204,
+            headers: headers
+        });
     }
 
     if (request.method == "GET") {
