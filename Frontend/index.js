@@ -39,6 +39,8 @@ function login() {
 
         GETLogin(usernameValue, passwordValue);
     });
+
+    signUpButton.addEventListener("click", registerUser);
 }
 
 login();
