@@ -318,7 +318,6 @@ async function GETLogin(username, password) {
 }
 
 function createProfilePage() {
-
     bodyDOM.innerHTML = ``;
     let headerDOM = document.createElement("header");
     let mainDOM = document.createElement("main");
