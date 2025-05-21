@@ -26,7 +26,7 @@ function login() {
 
 
     let signInButton = document.getElementById("signInButton");//Ligga i globalt fält
-    let signUpButton = document.getElementById("signButton");//Ligga i globalt fält
+    let signUpButton = document.getElementById("signUpButton");//Ligga i globalt fält
 
 
     let usernameDOM = document.getElementById("username");
