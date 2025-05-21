@@ -73,7 +73,12 @@ startButton.addEventListener("click", async function () {
         const id = i;
         console.log(id, "id för bilden");
         const image = new Card(imageURL, id, animalValue);
-        images.push(image);
+        console.log(image, "Kolla så den har alla nycklar, så att objektet är korrekt");
+        if (!images.includes(image.url)) {
+            images.push(image);
+        } else {
+            console.log("nu måste vi egentligen få en till bild");
+        }
     }
 
     console.log(images.length, "den nuvarande längden på arrayen, borde vara 3");
