@@ -223,3 +223,103 @@ async function POSTLogout() {
 // }
 
 // testDriver();
+
+
+
+
+
+
+
+//Från JJ's index.js
+/*-_------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+/* let bodyDOM = document.getElementById("login");
+let loginDivDOM = document.getElementById("signIn");
+let signInButton = document.getElementById("signInButton");
+let loginButtonDOM = document.getElementById("signButton");
+let mainDOM = "";
+
+
+function getRegisterUser(username, password) {
+    loginDivDOM.innerHTML = `
+        <h2>Create Account</h2>
+            <input type="text" placeholder="Username">
+            <input type="text" placeholder="Password" id="password1">
+            <input type="text" placeholder="Confirm Password" id="password2">
+            <button class="signButton">SIGN UP</button>
+    `;
+    let confirmPasswordInputDOM = document.getElementById("password2");
+    loginButtonDOM.textContent = "SIGN UP"
+    let usernameValue = username.value;
+    let password1Value = password.value;
+    let password2Value = confirmPasswordInputDOM.value;
+    loginButtonDOM.addEventListener("click", () => {
+        POSTHandlerRegistration(usernameValue, password1Value, password2Value);
+    });
+
+}
+
+async function POSTHandlerRegistration(username, password, password2) {
+    const response = await fetch("http://localhost:8000/registrering", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username: username,
+            password: password,
+            password2: password2
+        }),
+    });
+
+    if (response.status === 200) {
+        message.textContent = "1. En ny användaren har registrerats!";
+        await GETLogin(username, password);
+
+    } else if (response.status === 409) {
+        message.textContent = "1. Användaren finns redan!";
+    } else if (response.status === 400) {
+        message.textContent = "1. Användarnamn eller lösenord saknas!";
+    }
+
+}
+
+
+
+async function GETLogin(username, password) {
+    const response = await fetch(`http://localhost:8000/login?username=${username.value}&password=${password.value}`, {
+        method: "GET"
+    });
+
+    const user = await response.json();
+
+    if (response.status === 200) {
+        //Är osöker på hur vi ska ta användarens data så gjorde så här, men ändra gärna :) 
+        console.log("2. Inloggning genomförd!");
+        //let currentUserResponse = await GETCurrentUser();
+        //let currentUserProfile = await currentUserResponse.json();
+        //let currentUserData = JSON.stringify(currentUserProfile); 
+        createProfilePage(); //Finns i den andra branchen
+
+
+    } else if (response.status === 401) {
+        console.log("2. Fel lösenord!");
+    } else if (response.status === 404) {
+        console.log("2. Användarnamnet finns inte, skapa ett konto!");
+    }
+}
+
+
+//För vanliga logga in knappen
+signInButton.addEventListener("click", () => {
+    let usernameInputDOM = document.getElementById("username");
+    let passwordInputDOM = document.getElementById("password1");
+    GETLogin(usernameInputDOM, passwordInputDOM);
+})
+
+//För registrera dig knappen
+loginButtonDOM.addEventListener("click", () => {
+    let usernameInputDOM = document.getElementById("username");
+    let passwordInputDOM = document.getElementById("password1");
+    getRegisterUser(usernameInputDOM, passwordInputDOM);
+});*/

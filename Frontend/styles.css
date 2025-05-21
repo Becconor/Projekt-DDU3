@@ -293,7 +293,7 @@ main {
 
 
 
-footer {
+.footerProfilInfo {
     /* background-color: rgb(252, 179, 75); */
     /*background-image: linear-gradient(rgb(255, 255, 255), rgb(252, 179, 75));*/
     background-image: radial-gradient(rgb(255, 255, 255), rgb(252, 179, 75));
@@ -306,7 +306,7 @@ footer {
     height: 20%;
 }
 
-footer button {
+.footerProfilInfo button {
     width: 150px;
     height: 50px;
 
