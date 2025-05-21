@@ -250,9 +250,6 @@ main {
     background-color: rgb(252, 179, 75);
 }
 
-#playButton:active {
-    background-color: darkgreen;
-}
 
 .difficultyButton {
     margin: 10px;
