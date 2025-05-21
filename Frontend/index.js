@@ -90,6 +90,10 @@ login();
 
 
 
+
+
+
+// Server request
 async function POSTHandlerRegistration(username, password, password2) {
     const response = await fetch("http://localhost:8000/registrering", {
         method: "POST",
@@ -114,8 +118,6 @@ async function POSTHandlerRegistration(username, password, password2) {
     }
 }
 
-
-
 async function GETLogin(username, password) {
     const response = await fetch(`http://localhost:8000/login?username=${username}&password=${password}`, {
         method: "GET"
@@ -136,9 +138,6 @@ async function GETLogin(username, password) {
         console.log(user);
     }
 }
-
-
-
 
 async function GETCurrentUser() {
     const response = await fetch("http://localhost:8000/profil", {
