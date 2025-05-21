@@ -85,30 +85,31 @@ function homePage() {
     bodyDOM.removeAttribute("login");
     bodyDOM.classList.add(".bodyBox");
     bodyDOM.id = "profil";
+
     headerDOM.innerHTML = `
         <h1>REMEMBER ME</h1>
     `;
     mainDOM.innerHTML = `
-            <div id="levelButtons">
-            <button value="6" class="difficultyButton" class="buttons" id="easy">EASY</button>
-            <button value="10" class="difficultyButton" class="buttons" id="medium">MEDIUM</button>
-            <button value="16" class="difficultyButton" class="buttons" id="hard">HARD</button>
+        <div id="levelButtons">
+            <button class="buttons" id="easy">EASY</button>
+            <button class="buttons" id="medium">MEDIUM</button>
+            <button class="buttons" id="hard">HARD</button>
         </div>
 
         <div id="categoryButtons">
-            <button value="dog" class="animalButton" class="buttons" >CATS</button>
-            <button value="cat" class="animalButton" class="buttons" >DOGS</button>
-            <button value="fox" class="animalButton" class="buttons" >FOXES</button>
+            <button class="buttons" id="katt">CATS</button>
+            <button class="buttons" id="hund">DOGS</button>
+            <button class="buttons" id="fågel">FOXES</button>
         </div>
 
         <div id="playButton">
-            <button class="buttons" id="playButton">PLAY</button> 
+            <button class="buttons" id="play">PLAY</button>
         </div>
     `;
     //Play button har id="startButton" från sebbes sida
 
     footerDOM.innerHTML = `
-    <div id="info">
+        <div id="info">
             <div id="profilImage"></div>
 
             <h2>Rebecca</h2>
