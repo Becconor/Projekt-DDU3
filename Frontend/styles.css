@@ -155,7 +155,7 @@ main {
     height: 63%;
 }
 
-#profil main div {
+main div {
     display: flex;
     flex-direction: column;
     justify-content: center;
