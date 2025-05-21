@@ -69,7 +69,7 @@ async function GETLogin(username, password) {
 function registerUser() {
     
     bodyDOM.innerHTML =`
-            < h1 id="logga"> REMEMBER ME </h1 >
+            <h1 id="logga">REMEMBER ME</h1>
 
             <div class="loginCenter" id="signIn">
                 <h2>Create Account</h2>
