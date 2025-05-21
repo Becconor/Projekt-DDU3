@@ -123,11 +123,10 @@ header {
 
 
 
-main h2 {
+#titleH2 {
     display: flex;
     justify-content: center;
     align-items: end;
-
     height: 7%;
 }
 

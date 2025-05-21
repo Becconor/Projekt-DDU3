@@ -81,6 +81,7 @@ function homePage() {
     bodyDOM.innerHTML = ``;
 
     let headerDOM = document.createElement("header");
+    let titleDivDOM = document.createElement("div");
     let mainDOM = document.createElement("main");
     let footerDOM = document.createElement("footer");
 
@@ -93,10 +94,11 @@ function homePage() {
     headerDOM.innerHTML = `
         <h1>REMEMBER ME</h1>
     `;
+    titleDivDOM.innerHTML = `
+        <h2 id="titleH2">Select your game!</h2>
+    `;
 
     mainDOM.innerHTML = `
-        <h2>Select your game!</h2>
-        
         <div id="levelButtons">
             <button value="6" class="buttons" class="difficultyButton" id="easy">EASY</button>
             <button value="10" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
@@ -143,6 +145,7 @@ function homePage() {
     `;
 
     bodyDOM.appendChild(headerDOM);
+    bodyDOM.appendChild(titleDivDOM);
     bodyDOM.appendChild(mainDOM);
     bodyDOM.appendChild(footerDOM);
 }
