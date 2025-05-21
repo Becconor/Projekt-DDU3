@@ -70,12 +70,17 @@ async function GETLogin(username, password) {
 
 function RegisterUser () {
 
-    loginDivDOM.innerHTML = `
-        <h2>Create Account</h2>
+    bodyDOM.innerHTML = `
+        <h1 id="logga">REMEMBER ME</h1>
+
+        <div class="loginCenter" id="signIn">
+            <h2>Create Account</h2>
+            
             <input type="text" placeholder="Username">
             <input type="text" placeholder="Password" id="password1">
             <input type="text" placeholder="Confirm Password" id="password2">
             <button class="signButton">SIGN UP</button>
+        </div>
     `;
     loginButtonDOM.textContent = "SIGN UP"
     let usernameDOM = document.getElementById("username");
