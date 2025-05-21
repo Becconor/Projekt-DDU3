@@ -140,6 +140,7 @@ async function POSTHandlerRegistration(username, password, password2) {
 
 
 
+
 async function GETCurrentUser() {
     const response = await fetch("http://localhost:8000/profil", {
         method: "GET"
