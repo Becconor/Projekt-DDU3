@@ -221,7 +221,6 @@ main {
     font-size: 18px;
     font-weight: bold;
 
-    background-color: rgb(252, 179, 75);
     border-radius: 5px;
 }
 
@@ -234,12 +233,12 @@ main {
     display: flex;
     flex-direction: column;
     width: 100px;
-    background-color: aqua;
+    background-color: rgb(244, 105, 237);
 }
 
 .selected {
-    background-color: orange;
-    border: 2px solid darkorange;
+    background-color: rgb(0, 174, 255);
+    border: 2px solid rgb(0, 174, 255);
     color: white;
 }
 
@@ -248,6 +247,11 @@ main {
     align-items: center;
     width: 200px;
     height: 100px;
+    background-color: rgb(252, 179, 75);
+}
+
+#playButton:active{
+    background-color: darkgreen;
 }
 
 .difficultyButton {
@@ -266,11 +270,6 @@ main {
     height: 100%;
     object-fit: cover;
     display: block;
-}
-
-#playButton {
-    justify-content: center;
-    align-items: center;
 }
 
 #easy {
