@@ -67,8 +67,8 @@ async function GETLogin(username, password) {
 }
 
 function registerUser() {
-    
-    bodyDOM.innerHTML =`
+
+    bodyDOM.innerHTML = `
             < h1 id="logga"> REMEMBER ME </h1 >
 
             <div class="loginCenter" id="signIn">
