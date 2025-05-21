@@ -58,8 +58,10 @@ function registerUser() {
                 <input type="text" placeholder="Password" id="password1">
                 <input type="text" placeholder="Confirm Password" id="password2">
                 <button id="signInButton" class="signButton">SIGN UP</button>
-            </div>`;
-    loginButtonDOM.textContent = "SIGN UP"
+        </div>
+    `;
+
+    // loginButtonDOM.textContent = "SIGN UP"
     let usernameDOM = document.getElementById("username");
     let PasswordDOM1 = document.getElementById("password1");
     let PasswordDOM2 = document.getElementById("password2");
@@ -67,6 +69,7 @@ function registerUser() {
     let usernameValue = usernameDOM.value;
     let password1Value = PasswordDOM1.value;
     let password2Value = PasswordDOM2.value;
+
     loginButtonDOM.addEventListener("click", () => {
         POSTHandlerRegistration(usernameValue, password1Value, password2Value);
     });
@@ -124,17 +127,21 @@ async function GETLogin(username, password) {
     });
 
     const user = await response.json();
-    const message = document.createElement("p");
-    document.body.appendChild(message);
+    // const message = document.createElement("p");
+    // document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = "2. Inloggning genomförd!";
+        alert("Login was successful!");
+        // message.textContent = "2. Inloggning genomförd!";
+        await Home();
         await GETCurrentUser();
     } else if (response.status === 401) {
-        message.textContent = "2. Fel lösenord!";
+        alert("Fel lösenord!");
+        // message.textContent = "2. Fel lösenord!";
         console.log(user);
     } else if (response.status === 404) {
-        message.textContent = "2. Användarnamnet finns inte, skapa ett konto!";
+        alert("Användarnamnet finns inte, skapa ett konto!");
+        // message.textContent = "2. Användarnamnet finns inte, skapa ett konto!";
         console.log(user);
     }
 }
