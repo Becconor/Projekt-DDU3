@@ -1,3 +1,5 @@
+
+currentUser = null;
 // login sida
 
 let bodyDOM = document.querySelector("body");
@@ -139,7 +141,7 @@ function homePage() {
                 </div>
             </div>
 
-            <button>Top Players</button>
+            <button id="topPlayersButton">Top Players</button>
         </div>
     `;
 
@@ -147,14 +149,76 @@ function homePage() {
     bodyDOM.appendChild(titleDivDOM);
     bodyDOM.appendChild(mainDOM);
     bodyDOM.appendChild(footerDOM);
+
+    const topPlayersButton = document.getElementById("topPlayersButton")
+
+    topPlayersButton.addEventListener("click", ranking);
 }
 
 function playGame() {
 
 }
 
-function ranking() {
+async function ranking() {
+    const players = await GETHandlerAllUsers()
 
+    bodyDOM.classList.add("bodyBox");
+
+    bodyDOM.innerHTML = `
+    <header>
+      <h1>REMEMBER ME</h1>
+    </header>
+
+    <h2>Top Ranking!</h2>
+
+    <main id="listMain">
+      <div id="list"></div>
+    </main>
+
+    <footer>
+      <div id="info">
+        <div id="profilImage"></div>
+        <h2>${currentUser.username}</h2>
+        <p id="logout">LogOut</p>
+      </div>
+
+      <div id="points">
+        <div id="myPoints">
+          <div>
+            <h3>Level</h3>
+            <h3>${currentUser.level}</h3>
+          </div>
+
+          <div>
+            <p>${currentUser.score}</p>
+            <p>/</p>
+            <p>1000</p>
+          </div>
+        </div>
+        <button id="playFromRank">PLAY</button>
+      </div>
+    </footer>
+    `;
+
+    const listDOM = document.querySelector("#list")
+
+    for (let i = 0; i < players.length; i++) {
+        const user = players[i];
+        listDOM.innerHTML += `
+           <div class="user">
+        <div>
+          <h2>${i + 1}</h2>
+          <h2>${user.username}</h2>
+        </div>
+        <h2>${user.score}p</h2>
+        </div>
+        `;
+    }
+
+    document.querySelector("#logout").addEventListener("click", () => {
+        POSTLogout();
+        login()
+    })
 }
 
 login();
@@ -233,6 +297,7 @@ async function GETCurrentUser() {
         alert("Användar information för profilen är uppdaterad");
         // message.textContent = `3. Användar information för profilen är uppdaterad`;
         console.log(`3.`, data);
+        currentUser = data
     } else if (response.status === 400) {
         alert("Användar information för profilen är uppdaterad");
 
@@ -286,15 +351,11 @@ async function PATCHExitGame(username) {
 async function GETHandlerAllUsers() {
     const response = await fetch("http://localhost:8000/rankningslista");
 
-    const message = document.createElement("p");
-    document.body.appendChild(message);
-
     if (!response.ok) {
-        message.textContent = "6. Någonting gick fel!";
+        console.log("6. Någonting gick fel!");
     } else {
         const rankning = await response.json();
-        message.textContent = "6. Alla användare är rankade!";
-        console.log(rankning);
+        console.log("6. Alla användare är rankade!");
         return rankning;
     }
 }
