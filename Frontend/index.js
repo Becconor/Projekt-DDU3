@@ -5,8 +5,6 @@ let headerDOM = document.querySelector("header");
 let mainDOM = document.querySelector("main");
 let footerDOM = document.querySelector("footer");
 
-
-
 // function login() {
 bodyDOM.id = "login";
 let loginH1 = headerDOM.querySelector("h1");
@@ -19,6 +17,13 @@ mainDOM.innerHTML = `
         <input type="text" placeholder="Username" id="username">
         <input type="text" placeholder="Password" id="password">
         <button id="signInButton" class="signButton">SIGN IN</button>
+    </div>
+`;
+
+footerDOM.innerHTML = `
+    <div class="loginCenter" id="signUpTransfer">
+        <p>Not a member?</p>
+        <button id="signButton" class="signButton">REGISTER HERE</button>
     </div>
 `;
 
