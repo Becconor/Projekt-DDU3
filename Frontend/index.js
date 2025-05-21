@@ -88,6 +88,8 @@ function homePage() {
     bodyDOM.classList.add("bodyBox");
     bodyDOM.id = "profil";
 
+    footerDOM.classList.add("footerProfilInfo");
+
     headerDOM.innerHTML = `
         <h1>REMEMBER ME</h1>
     `;
@@ -112,7 +114,7 @@ function homePage() {
     //Play button har id="startButton" från sebbes sida
 
     footerDOM.innerHTML = `
-    <div id="info">
+        <div id="info">
             <div id="profilImage"></div>
 
             <h2>Rebecca</h2>
@@ -137,6 +139,7 @@ function homePage() {
             <button>Top Players</button>
         </div>
     `;
+
     bodyDOM.appendChild(headerDOM);
     bodyDOM.appendChild(mainDOM);
     bodyDOM.appendChild(footerDOM);
