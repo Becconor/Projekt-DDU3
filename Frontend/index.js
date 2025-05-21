@@ -39,6 +39,8 @@ function login() {
 
         GETLogin(usernameValue, passwordValue);
     });
+
+    signUpButton.addEventListener("click", registerUser);
 }
 
 login();
@@ -65,13 +67,32 @@ async function GETLogin(username, password) {
 }
 
 function registerUser() {
+    
+    bodyDOM.innerHTML = ``
+        `< h1 id = "logga" > REMEMBER ME</h1 >
+
+            <div class="loginCenter" id="signIn">
+                <h2>Create Account</h2>
+
+                <input type="text" placeholder="Username">
+                <input type="text" placeholder="Password" id="password1">
+                <input type="text" placeholder="Confirm Password" id="password2">
+                <button class="signButton">SIGN UP</button>
+            </div>`;
+    loginButtonDOM.textContent = "SIGN UP"
+    let usernameDOM = document.getElementById("username");
+    let PasswordDOM1 = document.getElementById("password1");
+    let PasswordDOM2 = document.getElementById("password2");
+
+    let usernameValue = usernameDOM.value;
+    let password1Value = PasswordDOM1.value;
+    let password2Value = PasswordDOM2.value;
+    loginButtonDOM.addEventListener("click", () => {
+        POSTHandlerRegistration(usernameValue, password1Value, password2Value);
+    });
 
 
-
-    // signUpButton.addEventListener("click", function {
-
-    // })
-}
+};
 
 function home() {
 
