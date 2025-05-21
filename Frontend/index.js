@@ -165,7 +165,7 @@ async function POSTHandlerRegistration(username, password, password2) {
         }),
     });
 
-    
+
 
     if (response.status === 200) {
         console.log("1. En ny användaren har registrerats!");
