@@ -95,7 +95,7 @@ function homePage() {
     `;
 
     mainDOM.innerHTML = `
-            <div id="levelButtons">
+        <div id="levelButtons">
             <button value="6" class="buttons" class="difficultyButton" id="easy">EASY</button>
             <button value="10" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
             <button value="16" class="buttons" class="difficultyButton"  id="hard">HARD</button>
