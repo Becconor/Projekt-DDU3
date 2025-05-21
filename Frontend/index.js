@@ -21,7 +21,7 @@ function login() {
         </div>
     `;
 
-    let loginH1 = headerDOM.querySelector("h1");
+    let loginH1 = bodyDOM.querySelector("h1");
     loginH1.id = "logga";
 
 
