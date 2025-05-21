@@ -206,6 +206,9 @@ async function GETLogin(username, password) {
     }
 }
 
+
+
+
 async function GETCurrentUser() {
     const response = await fetch("http://localhost:8000/profil", {
         method: "GET"
