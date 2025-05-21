@@ -90,15 +90,15 @@ function homePage() {
     `;
     mainDOM.innerHTML = `
             <div id="levelButtons">
-            <button value="6" class="difficultyButton" class="buttons" id="easy">EASY</button>
-            <button value="10" class="difficultyButton" class="buttons" id="medium">MEDIUM</button>
-            <button value="16" class="difficultyButton" class="buttons" id="hard">HARD</button>
+            <button value="6" class="buttons" class="difficultyButton" id="easy">EASY</button>
+            <button value="10" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
+            <button value="16" class="buttons" class="difficultyButton"  id="hard">HARD</button>
         </div>
 
         <div id="categoryButtons">
-            <button value="dog" class="animalButton" class="buttons" >CATS</button>
-            <button value="cat" class="animalButton" class="buttons" >DOGS</button>
-            <button value="fox" class="animalButton" class="buttons" >FOXES</button>
+            <button value="dog" class="buttons" class="animalButton">CATS</button>
+            <button value="cat" class="buttons" class="animalButton">DOGS</button>
+            <button value="fox" class="buttons" class="animalButton">FOXES</button>
         </div>
 
         <div id="playButton">

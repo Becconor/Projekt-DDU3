@@ -225,15 +225,16 @@ main {
     border-radius: 5px;
 }
 
-#difficulty {
+/* #difficulty {
     display: flex;
     flex-direction: column;
-}
+} */
 
-#animal {
+#animalButton {
     display: flex;
     flex-direction: column;
     width: 100px;
+    background-color: aqua;
 }
 
 .selected {
@@ -250,8 +251,6 @@ main {
 }
 
 .difficultyButton {
-    height: 100px;
-    width: 200px;
     margin: 10px;
 }
 
