@@ -98,10 +98,10 @@
 
 /* Profil */
 .bodyBox {
-    /* display: flex;
+     display: flex;
     flex-direction: column;
-    align-items: center; */
-    /* background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(211, 211, 211), rgb(128, 128, 128)); */
+    align-items: center; 
+     background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(211, 211, 211), rgb(128, 128, 128)); 
     box-sizing: border-box;
     height: 100vh;
 }
