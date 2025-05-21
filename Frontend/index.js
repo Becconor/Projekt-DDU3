@@ -56,7 +56,7 @@ function registerUser() {
             <div class="loginCenter" id="signIn">
                 <h2>Create Account</h2>
 
-                <input type="text" placeholder="Username">
+                <input type="text" placeholder="Username" id="username">
                 <input type="text" placeholder="Password" id="password1">
                 <input type="text" placeholder="Confirm Password" id="password2">
                 <button id="signInButton" class="signButton">SIGN UP</button>
@@ -67,12 +67,24 @@ function registerUser() {
     let usernameDOM = document.getElementById("username");
     let PasswordDOM1 = document.getElementById("password1");
     let PasswordDOM2 = document.getElementById("password2");
+    let signUpButton = document.getElementById("signInButton")
 
-    let usernameValue = usernameDOM.value;
-    let password1Value = PasswordDOM1.value;
-    let password2Value = PasswordDOM2.value;
 
-    loginButtonDOM.addEventListener("click", () => {
+    signUpButton.addEventListener("click", () => {
+        let usernameValue = usernameDOM.value;
+        let password1Value = PasswordDOM1.value;
+        let password2Value = PasswordDOM2.value;
+
+        if (!usernameValue || !password1Value || !password2Value) {
+            alert("Please fill in all fields!");
+            return;
+        }
+
+        if (password1Value !== password2Value) {
+            alert("Password do not match!");
+            return;
+        }
+
         POSTHandlerRegistration(usernameValue, password1Value, password2Value);
     });
 
@@ -241,9 +253,8 @@ async function POSTHandlerRegistration(username, password, password2) {
     });
 
     if (response.status === 200) {
-        alert("1. En ny användaren har registrerats!");
-        await GETCurrentUser();
-        homePage()
+        alert("User registered successfully! Please log in.");
+        login()
     } else if (response.status === 409) {
         alert("1. Användaren finns redan!");
     } else if (response.status === 400) {
