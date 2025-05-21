@@ -16,17 +16,17 @@ function login() {
             
             <div class="loginCenter" id="signUpTransfer">
                 <p>Not a member?</p>
-                <button id="signUpButton" class="signButton">REGISTER HERE</button>
+                <button id="signButton" class="signButton">REGISTER HERE</button>
             </div>
         </div>
     `;
 
-    let loginH1 = bodyDOM.querySelector("h1");
+    let loginH1 = headerDOM.querySelector("h1");
     loginH1.id = "logga";
 
 
-    let signInButton = document.getElementById("signInButton");//Ligga i globalt fält
-    let signUpButton = document.getElementById("signUpButton");//Ligga i globalt fält
+    let signInButton = document.getElementById("signInButton");
+    let signUpButton = document.getElementById("signButton");
 
 
     let usernameDOM = document.getElementById("username");
@@ -39,12 +39,9 @@ function login() {
 
         GETLogin(usernameValue, passwordValue);
     });
-
-    signUpButton.addEventListener("click", registerUser);
 }
 
 login();
-
 
 async function GETLogin(username, password) {
     const response = await fetch(`http://localhost:8000/login?username=${username}&password=${password}`, {
@@ -67,33 +64,14 @@ async function GETLogin(username, password) {
     }
 }
 
-
 function registerUser() {
 
-    bodyDOM.innerHTML = `
-        <h1 id="logga">REMEMBER ME</h1>
 
-        <div class="loginCenter" id="signIn">
-            <h2>Create Account</h2>
-            
-            <input type="text" placeholder="Username">
-            <input type="text" placeholder="Password" id="password1">
-            <input type="text" placeholder="Confirm Password" id="password2">
-            <button class="signButton">SIGN UP</button>
-        </div>
-    `;
-    loginButtonDOM.textContent = "SIGN UP"
-    let usernameDOM = document.getElementById("username");
-    let PasswordDOM1 = document.getElementById("password1");
-    let PasswordDOM2 = document.getElementById("password2");
 
-    let usernameValue = usernameDOM.value;
-    let password1Value = PasswordDOM1.value;
-    let password2Value = PasswordDOM2.value;
-    loginButtonDOM.addEventListener("click", () => {
-        POSTHandlerRegistration(usernameValue, password1Value, password2Value);
-    });
-};
+    // signUpButton.addEventListener("click", function {
+
+    // })
+}
 
 function home() {
 
