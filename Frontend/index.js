@@ -165,15 +165,14 @@ async function POSTHandlerRegistration(username, password, password2) {
         }),
     });
 
-    
-
     if (response.status === 200) {
-        console.log("1. En ny användaren har registrerats!");
+        alert("1. En ny användaren har registrerats!");
+        await GETCurrentUser();
         homePage()
     } else if (response.status === 409) {
-        console.log("1. Användaren finns redan!");
+        alert("1. Användaren finns redan!");
     } else if (response.status === 400) {
-        console.log("1. Användarnamn eller lösenord saknas!");
+        alert("1. Användarnamn eller lösenord saknas!");
     }
 }
 
