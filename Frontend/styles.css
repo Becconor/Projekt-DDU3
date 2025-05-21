@@ -215,6 +215,9 @@ main {
 /* spel knappar*/
 
 .buttons {
+    display: flex;
+    flex-direction: column;
+
     width: 200px;
     height: 100px;
     font-size: 18px;
@@ -227,9 +230,15 @@ main {
     flex-direction: column;
 } */
 
-.animalButton {
-    display: flex;
-    flex-direction: column;
+#cat {
+    background-color: rgb(244, 105, 237);
+}
+
+#dog {
+    background-color: rgb(244, 105, 237);
+}
+
+#fox {
     background-color: rgb(244, 105, 237);
 }
 

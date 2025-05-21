@@ -102,9 +102,9 @@ function homePage() {
         </div>
 
         <div id="categoryButtons">
-            <button value="dog" class="buttons, animalButton">CATS</button>
-            <button value="cat" class="buttons, animalButton">DOGS</button>
-            <button value="fox" class="buttons, animalButton">FOXES</button>
+            <button value="dog" class="buttons" id="cat">CATS</button>
+            <button value="cat" class="buttons" id="dog">DOGS</button>
+            <button value="fox" class="buttons" id="fox">FOXES</button>
         </div>
 
         <div id="playButton">
