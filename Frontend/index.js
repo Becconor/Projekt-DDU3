@@ -40,9 +40,7 @@ function login() {
         GETLogin(usernameValue, passwordValue);
     });
 
-    signUpButton.addEventListener("click", function () {
-
-    });
+    signUpButton.addEventListener("click", registerUser);
 }
 
 login();
@@ -70,7 +68,7 @@ async function GETLogin(username, password) {
 }
 
 
-signUpButton.addEventListener("click", function () {
+function registerUser() {
 
     bodyDOM.innerHTML = `
         <h1 id="logga">REMEMBER ME</h1>
@@ -95,7 +93,7 @@ signUpButton.addEventListener("click", function () {
     loginButtonDOM.addEventListener("click", () => {
         POSTHandlerRegistration(usernameValue, password1Value, password2Value);
     });
-});
+};
 
 function home() {
 
