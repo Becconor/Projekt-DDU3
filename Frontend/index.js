@@ -40,6 +40,9 @@ function login() {
         GETLogin(usernameValue, passwordValue);
     });
 
+    signUpButton.addEventListener("click", function () {
+
+    });
 }
 
 login();
