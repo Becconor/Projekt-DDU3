@@ -79,15 +79,19 @@ function registerUser() {
 
 function homePage() {
     bodyDOM.innerHTML = ``;
+
     let headerDOM = document.createElement("header");
     let mainDOM = document.createElement("main");
     let footerDOM = document.createElement("footer");
+
     bodyDOM.removeAttribute("login");
     bodyDOM.classList.add("bodyBox");
     bodyDOM.id = "profil";
+
     headerDOM.innerHTML = `
         <h1>REMEMBER ME</h1>
     `;
+
     mainDOM.innerHTML = `
             <div id="levelButtons">
             <button value="6" class="difficultyButton" class="buttons" id="easy">EASY</button>
