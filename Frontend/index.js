@@ -12,7 +12,7 @@ function login() {
 
             <input type="text" placeholder="Username" id="username">
             <input type="text" placeholder="Password" id="password">
-            <button id="signInUpButton" class="signButton">SIGN IN</button>
+            <button id="signInButton" class="signButton">SIGN IN</button>
             
             <div class="loginCenter" id="signUpTransfer">
                 <p>Not a member?</p>
@@ -77,7 +77,7 @@ function registerUser() {
                 <input type="text" placeholder="Username">
                 <input type="text" placeholder="Password" id="password1">
                 <input type="text" placeholder="Confirm Password" id="password2">
-                <button id="signInUpButton" class="signButton">SIGN UP</button>
+                <button id="signInButton" class="signButton">SIGN UP</button>
             </div>`;
     loginButtonDOM.textContent = "SIGN UP"
     let usernameDOM = document.getElementById("username");
