@@ -336,13 +336,14 @@ async function POSTLogout() {
 /* ------------------------------------------------------------------------------ */
 
 
-
+//För vanliga logga in knappen
 signInButton.addEventListener("click", () => {
     let usernameInputDOM = document.getElementById("username");
     let passwordInputDOM = document.getElementById("password1");
     GETLogin(usernameInputDOM, passwordInputDOM);
 })
 
+//För registrera dig knappen
 loginButtonDOM.addEventListener("click", () => {
     let usernameInputDOM = document.getElementById("username");
     let passwordInputDOM = document.getElementById("password1");
