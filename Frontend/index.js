@@ -77,8 +77,65 @@ function registerUser() {
 
 };
 
-function home() {
+function homePage() {
+    bodyDOM.innerHTML = ``;
+    let headerDOM = document.createElement("header");
+    let mainDOM = document.createElement("main");
+    let footerDOM = document.createElement("footer");
+    bodyDOM.removeAttribute("login");
+    bodyDOM.classList.add(".bodyBox");
+    bodyDOM.id = "profil";
+    headerDOM.innerHTML = `
+        <h1>REMEMBER ME</h1>
+    `;
+    mainDOM.innerHTML = `
+            <div id="levelButtons">
+            <button value="6" class="difficultyButton" class="buttons" id="easy">EASY</button>
+            <button value="10" class="difficultyButton" class="buttons" id="medium">MEDIUM</button>
+            <button value="16" class="difficultyButton" class="buttons" id="hard">HARD</button>
+        </div>
 
+        <div id="categoryButtons">
+            <button value="dog" class="animalButton" class="buttons" >CATS</button>
+            <button value="cat" class="animalButton" class="buttons" >DOGS</button>
+            <button value="fox" class="animalButton" class="buttons" >FOXES</button>
+        </div>
+
+        <div id="playButton">
+            <button class="buttons" id="playButton">PLAY</button> 
+        </div>
+    `;
+    //Play button har id="startButton" från sebbes sida
+
+    footerDOM.innerHTML = `
+    <div id="info">
+            <div id="profilImage"></div>
+
+            <h2>Rebecca</h2>
+
+            <p>LogOut</p>
+        </div>
+
+        <div id="points">
+            <div id="myPoints">
+                <div>
+                    <h3>Level</h3>
+                    <h3>1</h3>
+                </div>
+
+                <div>
+                    <p>200</p>
+                    <p>/</p>
+                    <p>1000</p>
+                </div>
+            </div>
+
+            <button>Top Players</button>
+        </div>
+    `;
+    bodyDOM.appendChild(headerDOM);
+    bodyDOM.appendChild(mainDOM);
+    bodyDOM.appendChild(footerDOM);
 }
 
 function playGame() {
@@ -112,7 +169,7 @@ async function POSTHandlerRegistration(username, password, password2) {
 
     if (response.status === 200) {
         console.log("1. En ny användaren har registrerats!");
-        createProfilePage()
+        homePage()
     } else if (response.status === 409) {
         console.log("1. Användaren finns redan!");
     } else if (response.status === 400) {
@@ -137,7 +194,7 @@ async function GETLogin(username, password) {
     if (response.status === 200) {
         alert("Login was successful!");
         // message.textContent = "2. Inloggning genomförd!";
-        await Home();
+        await homePage();
         await GETCurrentUser();
     } else if (response.status === 401) {
         alert("Fel lösenord!");
