@@ -3,6 +3,7 @@ let currentUser = null;
 // login sida
 
 let bodyDOM = document.querySelector("body");
+// const playButton = document.getElementById("playNow")
 
 function login() {
     bodyDOM.id = "login";
@@ -178,17 +179,17 @@ function homePage() {
 
     const topPlayersButton = document.getElementById("topPlayersButton");
     const logOutButton = document.getElementById("logOutButton");
-    const playButton = document.getElementById("playNow")
+    // const playButton = document.getElementById("playNow")
 
     topPlayersButton.addEventListener("click", ranking);
     logOutButton.addEventListener("click", function () {
         POSTLogout()
         login()
     })
-    playButton.addEventListener("click", playGame);
+    playButton.addEventListener("click", createGameBoard);
 }
 
-function playGame() {
+function createGameBoard() {
     bodyDOM.classList.add("bodyBox");
 
     bodyDOM.innerHTML = `
@@ -209,6 +210,8 @@ function playGame() {
         <button>Exit game / Collect Points</button>
     </footer>
     `
+    playGame();
+
 }
 
 async function ranking() {
@@ -471,6 +474,292 @@ async function POSTLogout() {
 
 // testDriver();
 
+//Memory
+class Card {
+    constructor(url, id, theme) {
+        this.url = url;
+        this.id = id;
+        this.theme = theme;
+    }
+}
+
+let selectedDifficulty = null;
+let selectedAnimal = null;
+
+const difficultyButtons = document.querySelectorAll(".difficultyButton");
+for (let i = 0; i < difficultyButtons.length; i++) {
+    difficultyButtons[i].addEventListener("click", function () {
+        selectedDifficulty = this.value;
+
+        for (let j = 0; j < difficultyButtons.length; j++) {
+            difficultyButtons[j].classList.remove("selected");
+        }
+        this.classList.add("selected")
+    })
+}
+
+const animalButtons = document.querySelectorAll(".animalButton");
+for (let i = 0; i < animalButtons.length; i++) {
+    animalButtons[i].addEventListener("click", function () {
+        selectedAnimal = this.value;
+
+        for (let j = 0; j < animalButtons.length; j++) {
+            animalButtons[j].classList.remove("selected")
+        }
+        this.classList.add("selected")
+    })
+}
+//Vi skapar två varibler. En för svårighetsgrad och en för djuret.
+//Vi loopar igenom alla knappar och tar ut värden från knappen som klickas.
+//Använder en nästlad loop för att ta bort classen selected från en knapp.
+//Sen lägger vi även till classen selected för den man trycker på.
+
+// const playButton = document.querySelector("#playNow");
+
+function playGame() {
+    playButton.addEventListener("click", async function () {
+
+        const numberOfCards = Number(selectedDifficulty);
+        const animalValue = selectedAnimal;
+        const numberOfUniqueImages = numberOfCards / 2;
+
+        let images = [];
+
+        async function getImage(animal) {
+            if (animal === "dog") {
+                const response = await fetch("https://dog.ceo/api/breeds/image/random");
+                const data = await response.json();
+                console.log(data.message);
+                return data.message;
+            }
+            if (animal === "fox") {
+                const response = await fetch("https://randomfox.ca/floof/");
+                const data = await response.json();
+                return data.image;
+            }
+            if (animal === "cat") {
+                const response = await fetch("https://api.thecatapi.com/v1/images/search");
+                const data = await response.json();
+                return data[0].url;
+            }
+        }
+
+        for (let i = 0; i < numberOfUniqueImages; i++) {
+            const imageURL = await getImage(animalValue);
+            console.log(imageURL);
+            const id = i;
+            console.log(id, "id för bilden");
+            const image = new Card(imageURL, id, animalValue);
+            console.log(image, "Kolla så den har alla nycklar, så att objektet är korrekt");
+            if (!images.includes(image.url)) {
+                images.push(image);
+            } else {
+                console.log("nu måste vi egentligen få en till bild");
+            }
+        }
+
+        console.log(images.length, "den nuvarande längden på arrayen, borde vara 3");
+        //Här loopar vi igenom hälften så många gånger som svårighetsgraden. Till exempel
+        //Svårighetsgrad lätt vilket är 6 kort i memoryt, då loopar vi igenom 3 gånger.
+        //Vi anropar då getImage 3 gånger där vi fetchar det valda djuret.
+        //Vi får ut 3 bilder som vi pushar till image arrayen.
+        images.forEach(image => {
+            const copyOfOrginialImage = new Card(image.url, image.id, image.theme);
+            images.push(copyOfOrginialImage);
+            console.log(images, images.length, "bör innehålla alla korten, alltså alla par");
+        })
+
+        // //Vi skapar en cards array. Vi loopar igenom images där vi nu har i detta fall 3 bilder.
+        // //För varje instans så pushar vi det objektet i arrayen två gånger.
+        // //cards inehåller nu 6 objekt.
+
+        images.sort(function () {
+            return Math.random() - 0.5;
+        })
+        // //Här blandar vi korten. Förstår inte riktigt denna rad men ska se om det finns ett 
+        // //enklare sätt att göra det.
+
+        const gamePlan = document.querySelector("#gamePlan");
+        gamePlan.innerHTML = "";
+
+        for (let i = 0; i < images.length; i++) {
+            const img = document.createElement("img");
+            let card = images[i];
+            img.src = card.url;
+            img.cardData = card;
+            console.log(img.cardData);
+            img.style.width = "100px"
+
+            gamePlan.appendChild(img);
+
+            img.addEventListener("click", () => {
+
+                img.cardData.flipStatusTrue();
+                console.log("Nu är ett kort vänt", img.cardData);
+
+                let clickedCard = img;
+                clickedCardsArray.push(clickedCard);
+
+                console.log(clickedCardsArray.length, "borde minst ett kort");
+
+                if (clickedCardsArray.length === 2) {
+
+                    const allCards = document.querySelectorAll("#gamePlan img");
+                    allCards.forEach(card => {
+                        card.style.pointerEvents = "none";
+                    });
+                    checkIfMatch(clickedCardsArray);
+
+                    clickedCardsArray.length = 0;
+                    console.log(clickedCardsArray.length);
+                }
+            })
+        }
+        //Här selekterar vi vart vi vill att korten ska hamna.
+        //Vi loopar sedan igenom cards och skapar en img för varje instans.
+    })
+}
+playButton.addEventListener("click", async function () {
+
+    const numberOfCards = Number(selectedDifficulty);
+    const animalValue = selectedAnimal;
+    const numberOfUniqueImages = numberOfCards / 2;
+
+    let images = [];
+
+    async function getImage(animal) {
+        if (animal === "dog") {
+            const response = await fetch("https://dog.ceo/api/breeds/image/random");
+            const data = await response.json();
+            console.log(data.message);
+            return data.message;
+        }
+        if (animal === "fox") {
+            const response = await fetch("https://randomfox.ca/floof/");
+            const data = await response.json();
+            return data.image;
+        }
+        if (animal === "cat") {
+            const response = await fetch("https://api.thecatapi.com/v1/images/search");
+            const data = await response.json();
+            return data[0].url;
+        }
+    }
+
+    for (let i = 0; i < numberOfUniqueImages; i++) {
+        const imageURL = await getImage(animalValue);
+        console.log(imageURL);
+        const id = i;
+        console.log(id, "id för bilden");
+        const image = new Card(imageURL, id, animalValue);
+        console.log(image, "Kolla så den har alla nycklar, så att objektet är korrekt");
+        if (!images.includes(image.url)) {
+            images.push(image);
+        } else {
+            console.log("nu måste vi egentligen få en till bild");
+        }
+    }
+
+    console.log(images.length, "den nuvarande längden på arrayen, borde vara 3");
+    //Här loopar vi igenom hälften så många gånger som svårighetsgraden. Till exempel
+    //Svårighetsgrad lätt vilket är 6 kort i memoryt, då loopar vi igenom 3 gånger.
+    //Vi anropar då getImage 3 gånger där vi fetchar det valda djuret.
+    //Vi får ut 3 bilder som vi pushar till image arrayen.
+    images.forEach(image => {
+        const copyOfOrginialImage = new Card(image.url, image.id, image.theme);
+        images.push(copyOfOrginialImage);
+        console.log(images, images.length, "bör innehålla alla korten, alltså alla par");
+    })
+
+    // //Vi skapar en cards array. Vi loopar igenom images där vi nu har i detta fall 3 bilder.
+    // //För varje instans så pushar vi det objektet i arrayen två gånger.
+    // //cards inehåller nu 6 objekt.
+
+    images.sort(function () {
+        return Math.random() - 0.5;
+    })
+    // //Här blandar vi korten. Förstår inte riktigt denna rad men ska se om det finns ett 
+    // //enklare sätt att göra det.
+
+    const gamePlan = document.querySelector("#gamePlan");
+    gamePlan.innerHTML = "";
+
+    for (let i = 0; i < images.length; i++) {
+        const img = document.createElement("img");
+        let card = images[i];
+        img.src = card.url;
+        img.cardData = card;
+        console.log(img.cardData);
+        img.style.width = "100px"
+
+        gamePlan.appendChild(img);
+
+        img.addEventListener("click", () => {
+
+            img.cardData.flipStatusTrue();
+            console.log("Nu är ett kort vänt", img.cardData);
+
+            let clickedCard = img;
+            clickedCardsArray.push(clickedCard);
+
+            console.log(clickedCardsArray.length, "borde minst ett kort");
+
+            if (clickedCardsArray.length === 2) {
+
+                const allCards = document.querySelectorAll("#gamePlan img");
+                allCards.forEach(card => {
+                    card.style.pointerEvents = "none";
+                });
+                checkIfMatch(clickedCardsArray);
+
+                clickedCardsArray.length = 0;
+                console.log(clickedCardsArray.length);
+            }
+        })
+    }
+    //Här selekterar vi vart vi vill att korten ska hamna.
+    //Vi loopar sedan igenom cards och skapar en img för varje instans.
+})
+function checkIfMatch(twoClickedCards) { //en array med de två klickade korten som nu ska kontrolleras ifall de matchar
+    const [card1, card2] = twoClickedCards;
+    console.log(card1, card2, "borde vara två olika kort");
+    console.log(card1.cardData.id, card2.cardData.id);
+
+    if (card1.cardData.id === card2.cardData.id) {
+        console.log("JA en match!")
+
+    } else {
+        console.log("Ingen match, vänd två nya kort");
+        card1.cardData.flipStatusFalse();
+        card2.cardData.flipStatusFalse();
+    }
+
+    const allCards = document.querySelectorAll("#gamePlan img");
+    console.log(allCards);
+
+    allCards.forEach(card => {
+        console.log(card.cardData.flipped);
+        if (card.cardData.flipped === false) {
+            card.style.pointerEvents = "auto";
+        }
+    })
+    twoClickedCards.length = 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -586,7 +875,7 @@ function createProfilePage() {
             <button class="buttons" id="playButton">PLAY</button> 
         </div>
     `;
-    //Play button har id="startButton" från sebbes sida
+    //Play button har id="playButton" från sebbes sida
 
     footerDOM.innerHTML = `
     <div id="info">
@@ -707,14 +996,14 @@ playButtonDOM.addEventListener("click", async function () {
     //Här blandar vi korten. Förstår inte riktigt denna rad men ska se om det finns ett 
     //enklare sätt att göra det.
 
-    const gameBoard = document.querySelector("#gameBoard");
-    gameBoard.innerHTML = "";
+    const gamePlan = document.querySelector("#gamePlan");
+    gamePlan.innerHTML = "";
 
     for (let i = 0; i < cards.length; i++) {
         const img = document.createElement("img");
         img.src = cards[i];
         img.style.width = "100px"
-        gameBoard.appendChild(img);
+        gamePlan.appendChild(img);
     }
     //Här selekterar vi vart vi vill att korten ska hamna.
     //Vi loopar sedan igenom cards och skapar en img för varje instans.
