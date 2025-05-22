@@ -378,9 +378,8 @@ async function POSTLogout() {
 
     if (response.status === 200) {
         const logOutMessage = await response.json();
-        const message = document.createElement("p");
-        message.textContent = `7. ${logOutMessage}`;
-        document.body.appendChild(message);
+        //const message = document.createElement("p");
+        console.log(`7. ${logOutMessage}`)
     }
 
 }
