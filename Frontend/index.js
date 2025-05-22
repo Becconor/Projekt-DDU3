@@ -274,8 +274,8 @@ async function ranking() {
     }
 
     const playFromRank = document.getElementById("playFromRank")
-    playFromRank.addEventListener("click", homePage);
 
+    playFromRank.addEventListener("click", homePage);
     document.querySelector("#logout").addEventListener("click", () => {
         POSTLogout();
         login()
