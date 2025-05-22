@@ -71,9 +71,13 @@ async function handler(request) {
                 });
             }
 
-            delete currentUser.password;
+            const userCopy = {
+                username: currentUser.username,
+                score: currentUser.score,
+                level: currentUser.level
+            };
 
-            return new Response(JSON.stringify(currentUser), {
+            return new Response(JSON.stringify(userCopy), {
                 status: 200,
                 headers: headers
             });
@@ -95,8 +99,8 @@ async function handler(request) {
         }
     }
 
-    if (request.method == "POST") {
-        if (url.pathname == "/registrering") {
+    if (request.method === "POST") {
+        if (url.pathname === "/registrering") {
             const inputBody = await request.json();
             const inputUsername = inputBody.username;
             const inputPassword = inputBody.password;
@@ -119,11 +123,12 @@ async function handler(request) {
                 }
             }
 
-            let currentUser = new User(inputUsername, inputPassword);
+            currentUser = new User(inputUsername, inputPassword);
             console.log(currentUser, "Den spelaren som precis registrerade sig!");
             allUsers.push(currentUser);
+            console.log("Användare i allUsers:", allUsers);
 
-            return new Response(JSON.stringify("Ny användare har lagts till:", currentUser), {
+            return new Response(JSON.stringify(currentUser), {
                 status: 200,
                 headers: headers,
             })
