@@ -144,6 +144,28 @@ header {
 
 
 
+.user {
+    background-color: white;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+}
+
+.rankingUser {
+    display: flex;
+    gap: 50px;
+}
+
+.user h2 {
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 
@@ -189,7 +211,7 @@ main div {
     align-items: center;
 } */
 
-.user {
+/* .user {
     background-color: white;
     border-radius: 5px;
 
@@ -201,7 +223,7 @@ main div {
     padding: 10px;
 }
 
-.user div {
+.rankingUser div {
     display: flex;
     gap: 50px;
 }
@@ -209,7 +231,7 @@ main div {
 .user h2 {
     justify-content: center;
     align-items: center;
-}
+} */
 
 /* spel knappar*/
 

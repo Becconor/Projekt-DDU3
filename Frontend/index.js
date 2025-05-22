@@ -277,11 +277,11 @@ async function ranking() {
         const user = players[i];
         listDOM.innerHTML += `
             <div class="user">
-                <div>
+                <div class="rankingUser">
                     <h2>${i + 1}</h2>
                     <h2>${user.username}</h2>
                 </div>
-                
+
                 <h2>${user.score}p</h2>
             </div>
         `;
