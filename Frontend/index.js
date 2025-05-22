@@ -1,11 +1,12 @@
 
-currentUser = null;
+let currentUser = null;
 // login sida
 
 let bodyDOM = document.querySelector("body");
-bodyDOM.id = "login";
+
 
 function login() {
+    bodyDOM.id = "login";
     bodyDOM.innerHTML = `
         <h1 id="logga">REMEMBER ME</h1>
 
