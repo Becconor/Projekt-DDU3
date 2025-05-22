@@ -258,18 +258,19 @@ async function ranking() {
     bodyDOM.appendChild(mainDOM);
     bodyDOM.appendChild(footerDOM);
 
-    const listDOM = mainDOM.getElementById("#list");
+    const listDOM = document.getElementById("list");
 
     for (let i = 0; i < players.length; i++) {
         const user = players[i];
         listDOM.innerHTML += `
-           <div class="user">
-        <div>
-          <h2>${i + 1}</h2>
-          <h2>${user.username}</h2>
-        </div>
-        <h2>${user.score}p</h2>
-        </div>
+            <div class="user">
+                <div>
+                    <h2>${i + 1}</h2>
+                    <h2>${user.username}</h2>
+                </div>
+                
+                <h2>${user.score}p</h2>
+            </div>
         `;
     }
 
