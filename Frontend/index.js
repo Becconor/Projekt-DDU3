@@ -249,7 +249,7 @@ async function ranking() {
         <div id="info">
             <div id="profilImage"></div>
                 <h2>${currentUser.username}</h2>
-                <p id="logout">LogOut</p>
+                <button id="logOutButton">LogOut</p>
             </div>
 
             <div id="points">
@@ -292,7 +292,13 @@ async function ranking() {
         `;
     }
 
-    const playFromRank = document.getElementById("playFromRank")
+    const playFromRank = document.getElementById("playFromRank");
+    const logOutButton = document.getElementById("logOutButton");
+
+    logOutButton.addEventListener("click", function () {
+        POSTLogout();
+        login()
+    })
 
     playFromRank.addEventListener("click", homePage);
     document.querySelector("#logout").addEventListener("click", () => {
