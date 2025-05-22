@@ -200,45 +200,57 @@ function playGame() {
 async function ranking() {
     const players = await GETHandlerAllUsers()
 
+    let headerDOM = document.createElement("header");
+    let titleDivDOM = document.createElement("h2");
+    let mainDOM = document.createElement("main");
+    let footerDOM = document.createElement("footer");
+
+    bodyDOM.removeAttribute("login");
     bodyDOM.classList.add("bodyBox");
+    bodyDOM.id = "rankning";
+    mainDOM.id = "listMain";
+    titleDivDOM.id = "titleH2";
 
-    bodyDOM.innerHTML = `
-    <header>
-      <h1>REMEMBER ME</h1>
-    </header>
+    footerDOM.classList.add("footerProfilInfo");
 
-    <h2>Top Ranking!</h2>
-
-    <main id="listMain">
-      <div id="list"></div>
-    </main>
-
-    <footer>
-      <div id="info">
-        <div id="profilImage"></div>
-        <h2>${currentUser.username}</h2>
-        <p id="logout">LogOut</p>
-      </div>
-
-      <div id="points">
-        <div id="myPoints">
-          <div>
-            <h3>Level</h3>
-            <h3>${currentUser.level}</h3>
-          </div>
-
-          <div>
-            <p>${currentUser.score}</p>
-            <p>/</p>
-            <p>1000</p>
-          </div>
-        </div>
-        <button id="playFromRank">PLAY</button>
-      </div>
-    </footer>
+    headerDOM.innerHTML = `
+        <h1>REMEMBER ME</h1>
     `;
 
-    const listDOM = document.querySelector("#list")
+    titleDivDOM.textContent = "Top Ranking!";
+
+    mainDOM.innerHTML = `
+        <div id="list"></div>
+    `;
+    //Play button har id="startButton" från sebbes sida
+
+    footerDOM.innerHTML = `
+        <div id="info">
+            <div id="profilImage"></div>
+                <h2>${currentUser.username}</h2>
+                <p id="logout">LogOut</p>
+            </div>
+
+            <div id="points">
+                <div id="myPoints">
+                    <div>
+                    <h3>Level</h3>
+                    <h3>${currentUser.level}</h3>
+                </div>
+
+                <div>
+                    <p>${currentUser.score}</p>
+                    <p>/</p>
+                    <p>1000</p>
+                </div>
+            </div>
+        
+            <button id="playFromRank">PLAY</button>
+        </div>
+    `;
+
+
+    const listDOM = document.querySelector("#list");
 
     for (let i = 0; i < players.length; i++) {
         const user = players[i];
@@ -253,10 +265,18 @@ async function ranking() {
         `;
     }
 
+    const playFromRank = document.getElementById("playFromRank")
+    playFromRank.addEventListener("click", homePage);
+
     document.querySelector("#logout").addEventListener("click", () => {
         POSTLogout();
         login()
     })
+
+    bodyDOM.appendChild(headerDOM);
+    bodyDOM.appendChild(titleDivDOM);
+    bodyDOM.appendChild(mainDOM);
+    bodyDOM.appendChild(footerDOM);
 }
 
 login();
