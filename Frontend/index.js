@@ -199,6 +199,8 @@ function playGame() {
 }
 
 async function ranking() {
+    bodyDOM.innerHTML = ``;
+
     const players = await GETHandlerAllUsers()
 
     let headerDOM = document.createElement("header");
@@ -251,7 +253,12 @@ async function ranking() {
     `;
 
 
-    const listDOM = document.querySelector("#list");
+    bodyDOM.appendChild(headerDOM);
+    bodyDOM.appendChild(titleDivDOM);
+    bodyDOM.appendChild(mainDOM);
+    bodyDOM.appendChild(footerDOM);
+
+    const listDOM = mainDOM.getElementById("#list");
 
     for (let i = 0; i < players.length; i++) {
         const user = players[i];
@@ -273,11 +280,6 @@ async function ranking() {
         POSTLogout();
         login()
     })
-
-    bodyDOM.appendChild(headerDOM);
-    bodyDOM.appendChild(titleDivDOM);
-    bodyDOM.appendChild(mainDOM);
-    bodyDOM.appendChild(footerDOM);
 }
 
 login();
