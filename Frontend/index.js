@@ -4,9 +4,9 @@ let currentUser = null;
 
 let bodyDOM = document.querySelector("body");
 
-
 function login() {
     bodyDOM.id = "login";
+
     bodyDOM.innerHTML = `
         <h1 id="logga">REMEMBER ME</h1>
 
