@@ -3,21 +3,30 @@ let currentUser = null;
 // login sida
 
 let bodyDOM = document.querySelector("body");
+let headerDOM = document.createElement("header");
+let mainDOM = document.createElement("main");
+let footerDOM = document.createElement("footer");
+
+bodyDOM.appendChild(headerDOM);
+bodyDOM.appendChild(mainDOM);
+bodyDOM.appendChild(footerDOM);
+
+headerDOM.innerHTML = `<h1 id="logga">REMEMBER ME</h1>`;
 
 function login() {
     bodyDOM.id = "login";
 
-    bodyDOM.innerHTML = `
-        <h1 id="logga">REMEMBER ME</h1>
-
+    mainDOM.innerHTML = `
         <div class="loginCenter" id="signIn">
             <h2>Login</h2>
-
+            
             <input type="text" placeholder="Username" id="username">
-            <div style="display: flex;">
-            <input type="password" placeholder="Password" id="password">
-            <button type="button" id="togglePassword" style="margin-left: 5px;">👁️</button>
+
+            <div id="inputPassword">
+                <input type="password" placeholder="Password" id="password">
+                <button type="button" id="togglePassword" style="margin-left: 5px;">👁️</button>
             </div>
+
             <button id="signInButton" class="signButton">SIGN IN</button>
             
             <div class="loginCenter" id="signUpTransfer">
@@ -26,10 +35,6 @@ function login() {
             </div>
         </div>
     `;
-
-    let loginH1 = bodyDOM.querySelector("h1");
-    loginH1.id = "logga";
-
 
     let signInButton = document.getElementById("signInButton");
     let signUpButton = document.getElementById("signButton");
