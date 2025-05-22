@@ -172,6 +172,7 @@ function homePage() {
         POSTLogout()
         login()
     })
+    playButton.addEventListener("click", playGame);
 }
 
 function playGame() {
