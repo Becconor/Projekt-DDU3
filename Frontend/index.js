@@ -245,6 +245,12 @@ async function ranking() {
         `;
     }
 
+
+    bodyDOM.appendChild(headerDOM);
+    bodyDOM.appendChild(titleDivDOM);
+    bodyDOM.appendChild(mainDOM);
+    bodyDOM.appendChild(footerDOM);
+
     const playFromRank = document.getElementById("playFromRank")
     playFromRank.addEventListener("click", homePage);
 
@@ -252,11 +258,6 @@ async function ranking() {
         POSTLogout();
         login()
     })
-
-    bodyDOM.appendChild(headerDOM);
-    bodyDOM.appendChild(titleDivDOM);
-    bodyDOM.appendChild(mainDOM);
-    bodyDOM.appendChild(footerDOM);
 }
 
 login();
