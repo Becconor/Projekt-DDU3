@@ -14,7 +14,10 @@ function login() {
             <h2>Login</h2>
 
             <input type="text" placeholder="Username" id="username">
-            <input type="text" placeholder="Password" id="password">
+            <div style="display: flex;">
+            <input type="password" placeholder="Password" id="password">
+            <button type="button" id="togglePassword" style="margin-left: 5px;">👁️</button>
+            </div>
             <button id="signInButton" class="signButton">SIGN IN</button>
             
             <div class="loginCenter" id="signUpTransfer">
@@ -30,11 +33,21 @@ function login() {
 
     let signInButton = document.getElementById("signInButton");
     let signUpButton = document.getElementById("signButton");
+    const togglePasswordButton = document.getElementById("togglePassword");
 
 
     let usernameDOM = document.getElementById("username");
     let PasswordDOM = document.getElementById("password");
 
+    togglePasswordButton.addEventListener("click", function () {
+        if (PasswordDOM.type === "password") {
+            PasswordDOM.type = "text";
+            togglePasswordButton.textContent = "🙈";
+        } else {
+            PasswordDOM.type = "password";
+            togglePasswordButton.textContent = "👁️"
+        }
+    })
 
     signInButton.addEventListener("click", function () {
         let usernameValue = usernameDOM.value;
