@@ -165,6 +165,7 @@ function homePage() {
 
     const topPlayersButton = document.getElementById("topPlayersButton");
     const logOutButton = document.getElementById("logOutButton");
+    const playButton = document.getElementById("playNow")
 
     topPlayersButton.addEventListener("click", ranking);
     logOutButton.addEventListener("click", function () {
@@ -174,7 +175,26 @@ function homePage() {
 }
 
 function playGame() {
+    bodyDOM.classList.add("bodyBox");
 
+    bodyDOM.innerHTML = `
+        <header>
+        <h1>REMEMBER ME</h1>
+    </header>
+
+    <div id="p">
+        <h2>Points: ${currentUser.score} / 100</h2>
+        <h4>-10p</h4>
+    </div>
+
+    <main id="gamePlan">
+        <div></div>
+    </main>
+
+    <footer id="game">
+        <button>Exit game / Collect Points</button>
+    </footer>
+    `
 }
 
 async function ranking() {
