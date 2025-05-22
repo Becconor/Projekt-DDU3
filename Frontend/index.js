@@ -137,7 +137,7 @@ function homePage() {
 
             <h2>${currentUser.username}</h2>
 
-            <p>LogOut</p>
+            <button id="logOutButton">LogOut</button>
         </div>
 
         <div id="points">
@@ -163,9 +163,14 @@ function homePage() {
     bodyDOM.appendChild(mainDOM);
     bodyDOM.appendChild(footerDOM);
 
-    const topPlayersButton = document.getElementById("topPlayersButton")
+    const topPlayersButton = document.getElementById("topPlayersButton");
+    const logOutButton = document.getElementById("logOutButton");
 
     topPlayersButton.addEventListener("click", ranking);
+    logOutButton.addEventListener("click", function () {
+        POSTLogout()
+        login()
+    })
 }
 
 function playGame() {
