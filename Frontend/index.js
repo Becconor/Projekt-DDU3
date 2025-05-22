@@ -3,60 +3,34 @@ let currentUser = null;
 // login sida
 
 let bodyDOM = document.querySelector("body");
+let headerDOM = document.createElement("header");
+let mainDOM = document.createElement("main");
+let footerDOM = document.createElement("footer");
+
+bodyDOM.appendChild(headerDOM);
+bodyDOM.appendChild(mainDOM);
+bodyDOM.appendChild(footerDOM);
+
+headerDOM.innerHTML = `<h1 id="logga">REMEMBER ME</h1>`;
 
 function login() {
-    bodyDOM.id = "login";
+    bodyDOM.id = "loginSite";
 
-    bodyDOM.innerHTML = `
-        <h1 id="logga">REMEMBER ME</h1>
-
-        <div class="loginCenter" id="signIn">
+    mainDOM.innerHTML = `
+        <div id="signIn" class="loginCenter">
             <h2>Login</h2>
 
             <input type="text" placeholder="Username" id="username">
-            <div style="display: flex;">
-            <input type="password" placeholder="Password" id="password">
-            <button type="button" id="togglePassword" style="margin-left: 5px;">👁️</button>
-            </div>
+            <input type="text" placeholder="Password" id="password1">
             <button id="signInButton" class="signButton">SIGN IN</button>
-            
-            <div class="loginCenter" id="signUpTransfer">
-                <p>Not a member?</p>
-                <button id="signButton" class="signButton">REGISTER HERE</button>
-            </div>
+        </div>
+
+        <div class="loginCenter" id="signUpTransfer">
+            <p>Not a member?</p>
+            <button id="signButton" class="signButton">REGISTER HERE</button>
         </div>
     `;
 
-    let loginH1 = bodyDOM.querySelector("h1");
-    loginH1.id = "logga";
-
-
-    let signInButton = document.getElementById("signInButton");
-    let signUpButton = document.getElementById("signButton");
-    const togglePasswordButton = document.getElementById("togglePassword");
-
-
-    let usernameDOM = document.getElementById("username");
-    let PasswordDOM = document.getElementById("password");
-
-    togglePasswordButton.addEventListener("click", function () {
-        if (PasswordDOM.type === "password") {
-            PasswordDOM.type = "text";
-            togglePasswordButton.textContent = "🙈";
-        } else {
-            PasswordDOM.type = "password";
-            togglePasswordButton.textContent = "👁️"
-        }
-    })
-
-    signInButton.addEventListener("click", function () {
-        let usernameValue = usernameDOM.value;
-        let passwordValue = PasswordDOM.value;
-
-        GETLogin(usernameValue, passwordValue);
-    });
-
-    signUpButton.addEventListener("click", registerUser);
 }
 
 login();
@@ -64,239 +38,19 @@ login();
 
 function registerUser() {
 
-    bodyDOM.innerHTML = `
-            <h1 id="logga">REMEMBER ME</h1>
-
-            <div class="loginCenter" id="signIn">
-                <h2>Create Account</h2>
-
-                <input type="text" placeholder="Username" id="username">
-                <input type="text" placeholder="Password" id="password1">
-                <input type="text" placeholder="Confirm Password" id="password2">
-                <button id="signInButton" class="signButton">SIGN UP</button>
-        </div>
-    `;
-
-    // loginButtonDOM.textContent = "SIGN UP"
-    let usernameDOM = document.getElementById("username");
-    let PasswordDOM1 = document.getElementById("password1");
-    let PasswordDOM2 = document.getElementById("password2");
-    let signUpButton = document.getElementById("signInButton")
-
-
-    signUpButton.addEventListener("click", () => {
-        let usernameValue = usernameDOM.value;
-        let password1Value = PasswordDOM1.value;
-        let password2Value = PasswordDOM2.value;
-
-        if (!usernameValue || !password1Value || !password2Value) {
-            alert("Please fill in all fields!");
-            return;
-        }
-
-        if (password1Value !== password2Value) {
-            alert("Password do not match!");
-            return;
-        }
-
-        POSTHandlerRegistration(usernameValue, password1Value, password2Value);
-    });
-
-
 };
 
 function homePage() {
-    bodyDOM.innerHTML = ``;
 
-    let headerDOM = document.createElement("header");
-    let titleDivDOM = document.createElement("h2");
-    let mainDOM = document.createElement("main");
-    let footerDOM = document.createElement("footer");
-
-    bodyDOM.removeAttribute("login");
-    bodyDOM.classList.add("bodyBox");
-    bodyDOM.id = "profil";
-    titleDivDOM.id = "titleH2";
-
-    footerDOM.classList.add("footerProfilInfo");
-
-    headerDOM.innerHTML = `
-        <h1>REMEMBER ME</h1>
-    `;
-    titleDivDOM.textContent = "Select your game!";
-
-    mainDOM.innerHTML = `
-        <div id="levelButtons">
-            <button value="6" class="buttons" class="difficultyButton" id="easy">EASY</button>
-            <button value="10" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
-            <button value="16" class="buttons" class="difficultyButton"  id="hard">HARD</button>
-        </div>
-
-        <div id="categoryButtons">
-            <button value="dog" class="buttons" id="cat">CATS</button>
-            <button value="cat" class="buttons" id="dog">DOGS</button>
-            <button value="fox" class="buttons" id="fox">FOXES</button>
-        </div>
-
-        <div id="playButton">
-            <button class="buttons" id="playNow">PLAY</button> 
-        </div>
-    `;
-    //Play button har id="startButton" från sebbes sida
-
-    footerDOM.innerHTML = `
-        <div id="info">
-            <div id="profilImage"></div>
-
-            <h2>${currentUser.username}</h2>
-
-            <button id="logOutButton">LogOut</button>
-        </div>
-
-        <div id="points">
-            <div id="myPoints">
-                <div>
-                    <h3>Level</h3>
-                    <h3>1</h3>
-                </div>
-
-                <div>
-                    <p>200</p>
-                    <p>/</p>
-                    <p>1000</p>
-                </div>
-            </div>
-
-            <button id="topPlayersButton">Top Players</button>
-        </div>
-    `;
-
-    bodyDOM.appendChild(headerDOM);
-    bodyDOM.appendChild(titleDivDOM);
-    bodyDOM.appendChild(mainDOM);
-    bodyDOM.appendChild(footerDOM);
-
-    const topPlayersButton = document.getElementById("topPlayersButton");
-    const logOutButton = document.getElementById("logOutButton");
-    const playButton = document.getElementById("playNow")
-
-    topPlayersButton.addEventListener("click", ranking);
-    logOutButton.addEventListener("click", function () {
-        POSTLogout()
-        login()
-    })
-    playButton.addEventListener("click", playGame);
 }
 
 function playGame() {
-    bodyDOM.classList.add("bodyBox");
 
-    bodyDOM.innerHTML = `
-        <header>
-        <h1>REMEMBER ME</h1>
-    </header>
-
-    <div id="p">
-        <h2>Points: ${currentUser.score} / 100</h2>
-        <h4>-10p</h4>
-    </div>
-
-    <main id="gamePlan">
-        <div></div>
-    </main>
-
-    <footer id="game">
-        <button>Exit game / Collect Points</button>
-    </footer>
-    `
 }
 
 async function ranking() {
-    bodyDOM.innerHTML = ``;
 
-    const players = await GETHandlerAllUsers()
-
-    let headerDOM = document.createElement("header");
-    let titleDivDOM = document.createElement("h2");
-    let mainDOM = document.createElement("main");
-    let footerDOM = document.createElement("footer");
-
-    bodyDOM.removeAttribute("login");
-    bodyDOM.classList.add("bodyBox");
-    bodyDOM.id = "rankning";
-    mainDOM.id = "listMain";
-    titleDivDOM.id = "titleH2";
-
-    footerDOM.classList.add("footerProfilInfo");
-
-    headerDOM.innerHTML = `
-        <h1>REMEMBER ME</h1>
-    `;
-
-    titleDivDOM.textContent = "Top Ranking!";
-
-    mainDOM.innerHTML = `
-        <div id="list"></div>
-    `;
-    //Play button har id="startButton" från sebbes sida
-
-    footerDOM.innerHTML = `
-        <div id="info">
-            <div id="profilImage"></div>
-                <h2>${currentUser.username}</h2>
-                <p id="logout">LogOut</p>
-            </div>
-
-            <div id="points">
-                <div id="myPoints">
-                    <div>
-                    <h3>Level</h3>
-                    <h3>${currentUser.level}</h3>
-                </div>
-
-                <div>
-                    <p>${currentUser.score}</p>
-                    <p>/</p>
-                    <p>1000</p>
-                </div>
-            </div>
-        
-            <button id="playFromRank">PLAY</button>
-        </div>
-    `;
-
-
-    bodyDOM.appendChild(headerDOM);
-    bodyDOM.appendChild(titleDivDOM);
-    bodyDOM.appendChild(mainDOM);
-    bodyDOM.appendChild(footerDOM);
-
-    const listDOM = document.getElementById("list");
-
-    for (let i = 0; i < players.length; i++) {
-        const user = players[i];
-        listDOM.innerHTML += `
-            <div class="user">
-                <div class="rankingUser">
-                    <h2>${i + 1}</h2>
-                    <h2>${user.username}</h2>
-                </div>
-
-                <h2>${user.score}p</h2>
-            </div>
-        `;
-    }
-
-    const playFromRank = document.getElementById("playFromRank")
-
-    playFromRank.addEventListener("click", homePage);
-    document.querySelector("#logout").addEventListener("click", () => {
-        POSTLogout();
-        login()
-    })
 }
-
-login();
 
 
 

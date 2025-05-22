@@ -6,7 +6,7 @@
 
 
 /* login */
-#login {
+#loginSite {
     background-image: linear-gradient(to right, rgb(252, 179, 75), rgb(255, 255, 255), rgb(252, 179, 75));
     display: flex;
     flex-direction: column;
@@ -37,6 +37,8 @@
 
     padding: 100px 0 0;
 }
+
+/*
 
 #signIn h2 {
     font-weight: 100;
@@ -81,36 +83,22 @@
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 /* Profil */
-.bodyBox {
+/* .bodyBox {
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
     height: 100vh;
     background-color: white;
-}
+} */
 
 
 
 
 
-header {
+/* header {
     color: rgb(252, 179, 75);
     display: flex;
     justify-content: center;
@@ -139,12 +127,12 @@ header {
     align-items: center;
 
     height: 7%;
-}
+} */
 
 
 
 
-.user {
+/* .user {
     background-color: white;
     border-radius: 5px;
 
@@ -164,12 +152,12 @@ header {
 .user h2 {
     justify-content: center;
     align-items: center;
-}
+} */
 
 
 
 
-main {
+/* main {
     display: flex;
     justify-content: center;
     gap: 30px;
@@ -192,18 +180,18 @@ main div {
     display: flex;
     flex-direction: column;
     /* align-items: center; */
-    gap: 10px;
+gap: 10px;
 
-    overflow-y: scroll;
-    padding: 0 75px;
-    width: 750px;
+overflow-y: scroll;
+padding: 0 75px;
+width: 750px;
 
-    border: 20px solid rgb(252, 179, 75);
-    border-radius: 5px;
-    box-sizing: border-box;
+border: 20px solid rgb(252, 179, 75);
+border-radius: 5px;
+box-sizing: border-box;
 }
 
-
+*/
 /* #list div {
     display: flex;
     flex-direction: row;
@@ -235,20 +223,20 @@ main div {
 
 /* spel knappar*/
 
-.buttons {
+/* .buttons {
     width: 200px;
     height: 100px;
     font-size: 18px;
     font-weight: bold;
     border-radius: 5px;
-}
+} */
 
 /* #difficulty {
     display: flex;
     flex-direction: column;
 } */
 
-#cat {
+/* #cat {
     background-color: rgb(244, 105, 237);
 }
 
@@ -274,14 +262,14 @@ main div {
 
 #playNow {
     background-color: rgb(252, 179, 75);
-}
+} */
 
 
 /* .difficultyButton {
     margin: 10px;
 } */
 
-#gameBoard {
+/* #gameBoard {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
@@ -305,13 +293,13 @@ main div {
 
 #hard {
     background-color: red;
-}
+} */
 
 
 
 
 
-footer {
+/* footer {
     width: 100vw;
 }
 
@@ -373,3 +361,5 @@ footer {
     border: 10px solid aquamarine;
     box-sizing: border-box;
 }
+
+*/
