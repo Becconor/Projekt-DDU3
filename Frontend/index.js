@@ -249,8 +249,13 @@ function playGame() {
 
     const exitButton = document.getElementById("gameButton")
     exitButton.addEventListener("click", function () {
-        PATCHScore();
+        // if () {
+        //     PATCHScore();
+        //     homePage();
+        // } else {
+        PATCHExitGame();
         homePage();
+        // }
     });
 }
 
