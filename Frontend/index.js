@@ -1,56 +1,65 @@
-
 let currentUser = null;
-// login sida
 
 let bodyDOM = document.querySelector("body");
 let headerDOM = document.createElement("header");
+let titleDOM = document.createElement("h2");
 let mainDOM = document.createElement("main");
 let footerDOM = document.createElement("footer");
 
+
 bodyDOM.appendChild(headerDOM);
+bodyDOM.appendChild(titleDOM);
 bodyDOM.appendChild(mainDOM);
 bodyDOM.appendChild(footerDOM);
 
-headerDOM.innerHTML = `<h1 id="logga">REMEMBER ME</h1>`;
+headerDOM.innerHTML = `<h1>REMEMBER ME</h1>`;
 
 function login() {
-    bodyDOM.id = "login";
+    footerDOM.removeAttribute("id");
+    mainDOM.removeAttribute("id");
+    titleDOM.removeAttribute("id");
+    headerDOM.removeAttribute("id");
+    footerDOM.innerHTML = ``;
+    titleDOM.innerHTML = ``;
+
+    bodyDOM.id = "loginSite";
 
     mainDOM.innerHTML = `
-        <div class="loginCenter" id="signIn">
+        <div id="login">
             <h2>Login</h2>
-            
-            <input type="text" placeholder="Username" id="username">
 
-            <div id="inputPassword">
-                <input type="password" placeholder="Password" id="password">
-                <button type="button" id="togglePassword" style="margin-left: 5px;">👁️</button>
+            <div id="inputBox">
+                <input type="text" placeholder="Username" id="username" class="inputs">
+
+                <div id="inputPassword">
+                    <input type="password" placeholder="Password" id="password">
+                    <button type="button" id="hidePassword">👁️</button>
+                </div>
             </div>
 
-            <button id="signInButton" class="signButton">SIGN IN</button>
-            
-            <div class="loginCenter" id="signUpTransfer">
+            <button id="signIn" class="loginButtons">SIGN IN</button>
+
+            <div id="registerUser">
                 <p>Not a member?</p>
-                <button id="signButton" class="signButton">REGISTER HERE</button>
+                <button id="registerButton" class="loginButtons">REGISTER HERE</button>
             </div>
         </div>
     `;
 
-    let signInButton = document.getElementById("signInButton");
-    let signUpButton = document.getElementById("signButton");
-    const togglePasswordButton = document.getElementById("togglePassword");
-
+    let signInButton = document.getElementById("signIn");
+    let registerUserButton = document.getElementById("registerUser");
+    const hidePassword = document.getElementById("hidePassword");
 
     let usernameDOM = document.getElementById("username");
     let PasswordDOM = document.getElementById("password");
 
-    togglePasswordButton.addEventListener("click", function () {
+    hidePassword.addEventListener("click", function () {
         if (PasswordDOM.type === "password") {
             PasswordDOM.type = "text";
-            togglePasswordButton.textContent = "🙈";
+            hidePassword.textContent = "🙈";
         } else {
             PasswordDOM.type = "password";
-            togglePasswordButton.textContent = "👁️"
+            hidePassword.textContent = "👁️"
         }
     })
 
@@ -61,24 +70,21 @@ function login() {
         GETLogin(usernameValue, passwordValue);
     });
 
-    signUpButton.addEventListener("click", registerUser);
+    registerUserButton.addEventListener("click", registerUser);
 }
-
-login();
 
 
 function registerUser() {
+    mainDOM.innerHTML = `
+        <div id="login">
+            <h2>Create Account</h2>
 
-    bodyDOM.innerHTML = `
-            <h1 id="logga">REMEMBER ME</h1>
+            <input type="text" placeholder="Username" id="username" class="inputs">
+            <input type="text" placeholder="Password" id="password1" class="inputs">
+            <input type="text" placeholder="Confirm Password" id="password2" class="inputs">
+            <button id="signUp" class="loginButtons">SIGN UP</button>
 
-            <div class="loginCenter" id="signIn">
-                <h2>Create Account</h2>
-
-                <input type="text" placeholder="Username" id="username">
-                <input type="text" placeholder="Password" id="password1">
-                <input type="text" placeholder="Confirm Password" id="password2">
-                <button id="signInButton" class="signButton">SIGN UP</button>
+            <button id="back" class="loginButtons">Back To Login</button>
         </div>
     `;
 
@@ -86,7 +92,8 @@ function registerUser() {
     let usernameDOM = document.getElementById("username");
     let PasswordDOM1 = document.getElementById("password1");
     let PasswordDOM2 = document.getElementById("password2");
-    let signUpButton = document.getElementById("signInButton")
+    let signUpButton = document.getElementById("signUp")
+    let backToLoginButton = document.getElementById("back")
 
 
     signUpButton.addEventListener("click", () => {
@@ -107,174 +114,97 @@ function registerUser() {
         POSTHandlerRegistration(usernameValue, password1Value, password2Value);
     });
 
-
+    backToLoginButton.addEventListener("click", login);
 };
 
+
 function homePage() {
-    bodyDOM.innerHTML = ``;
+    let headerH1 = document.querySelector("h1");
+    headerH1.removeAttribute("id");
 
-    let headerDOM = document.createElement("header");
-    let titleDivDOM = document.createElement("h2");
-    let mainDOM = document.createElement("main");
-    let footerDOM = document.createElement("footer");
+    mainDOM.innerHTML = ``;
+    bodyDOM.removeAttribute("id");
 
-    bodyDOM.removeAttribute("login");
-    bodyDOM.classList.add("bodyBox");
-    bodyDOM.id = "profil";
-    titleDivDOM.id = "titleH2";
+    bodyDOM.id = "sites";
+    headerDOM.id = "logotype";
+    titleDOM.id = "titleH2";
+    mainDOM.id = "chooseGame";
+    footerDOM.id = "footerContainer";
 
-    footerDOM.classList.add("footerProfilInfo");
-
-    headerDOM.innerHTML = `
-        <h1>REMEMBER ME</h1>
-    `;
-    titleDivDOM.textContent = "Select your game!";
+    titleDOM.textContent = "Select your game!";
 
     mainDOM.innerHTML = `
-        <div id="levelButtons">
+        <div id="levelButtons" class="mainContent">
             <button value="6" class="buttons" class="difficultyButton" id="easy">EASY</button>
             <button value="10" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
             <button value="16" class="buttons" class="difficultyButton"  id="hard">HARD</button>
         </div>
 
-        <div id="categoryButtons">
-            <button value="dog" class="buttons" id="cat">CATS</button>
-            <button value="cat" class="buttons" id="dog">DOGS</button>
-            <button value="fox" class="buttons" id="fox">FOXES</button>
+        <div id="categoryButtons" class="mainContent">
+            <button value="dog" class="buttons" class="themeButton" id="cat">CATS</button>
+            <button value="cat" class="buttons" class="themeButton" id="dog">DOGS</button>
+            <button value="fox" class="buttons" class="themeButton" id="fox">FOXES</button>
         </div>
 
-        <div id="playButton">
+        <div id="playButton" class="mainContent">
             <button class="buttons" id="playNow">PLAY</button> 
         </div>
     `;
-    //Play button har id="startButton" från sebbes sida
 
     footerDOM.innerHTML = `
-        <div id="info">
-            <div id="profilImage"></div>
+        <div id="footerContent">
+            <div id="userInfo">
+                <h2>${currentUser.username}</h2>
 
-            <h2>${currentUser.username}</h2>
-
-            <button id="logOutButton">LogOut</button>
-        </div>
-
-        <div id="points">
-            <div id="myPoints">
-                <div>
-                    <h3>Level</h3>
-                    <h3>1</h3>
-                </div>
-
-                <div>
-                    <p>200</p>
-                    <p>/</p>
-                    <p>1000</p>
-                </div>
+                <button id="logOutButton">LogOut</button>
             </div>
 
-            <button id="topPlayersButton">Top Players</button>
+            <div id="info">
+                <div id="myScoreBoard">
+                    <div id="myLevel">
+                        <h3>Level</h3>
+                        <h3>1</h3>
+                    </div>
+
+                    <div id="myPoints">
+                        <p>${currentUser.score}</p>
+                        <p>/</p>
+                        <p>1000</p>
+                    </div>
+                </div>
+
+                <button id="topPlayButton">Top Players</button>
+            </div>
         </div>
     `;
 
-    bodyDOM.appendChild(headerDOM);
-    bodyDOM.appendChild(titleDivDOM);
-    bodyDOM.appendChild(mainDOM);
-    bodyDOM.appendChild(footerDOM);
-
-    const topPlayersButton = document.getElementById("topPlayersButton");
+    const topPlayButton = document.getElementById("topPlayButton");
     const logOutButton = document.getElementById("logOutButton");
-    const playButton = document.getElementById("playNow")
 
-    topPlayersButton.addEventListener("click", ranking);
+    const playButton = document.getElementById("playNow")
+    playButton.addEventListener("click", playGame);
+
     logOutButton.addEventListener("click", function () {
         POSTLogout()
         login()
     })
-    playButton.addEventListener("click", playGame);
+
+    topPlayButton.removeEventListener("click", homePage)
+    topPlayButton.addEventListener("click", ranking);
 }
 
-function playGame() {
-    bodyDOM.classList.add("bodyBox");
+// hompage logout: när jag loggar ut kan jag inte logga in igen med samma användare!
 
-    bodyDOM.innerHTML = `
-        <header>
-        <h1>REMEMBER ME</h1>
-    </header>
-
-    <div id="p">
-        <h2>Points: ${currentUser.score} / 100</h2>
-        <h4>-10p</h4>
-    </div>
-
-    <main id="gamePlan">
-        <div></div>
-    </main>
-
-    <footer id="game">
-        <button>Exit game / Collect Points</button>
-    </footer>
-    `
-}
 
 async function ranking() {
-    bodyDOM.innerHTML = ``;
-
     const players = await GETHandlerAllUsers()
 
-    let headerDOM = document.createElement("header");
-    let titleDivDOM = document.createElement("h2");
-    let mainDOM = document.createElement("main");
-    let footerDOM = document.createElement("footer");
-
-    bodyDOM.removeAttribute("login");
-    bodyDOM.classList.add("bodyBox");
-    bodyDOM.id = "rankning";
-    mainDOM.id = "listMain";
-    titleDivDOM.id = "titleH2";
-
-    footerDOM.classList.add("footerProfilInfo");
-
-    headerDOM.innerHTML = `
-        <h1>REMEMBER ME</h1>
-    `;
-
-    titleDivDOM.textContent = "Top Ranking!";
+    mainDOM.innerHTML = ``;
+    titleDOM.textContent = "Top Ranking!";
 
     mainDOM.innerHTML = `
         <div id="list"></div>
     `;
-    //Play button har id="startButton" från sebbes sida
-
-    footerDOM.innerHTML = `
-        <div id="info">
-            <div id="profilImage"></div>
-                <h2>${currentUser.username}</h2>
-                <button id="logOutButton">LogOut</p>
-            </div>
-
-            <div id="points">
-                <div id="myPoints">
-                    <div>
-                    <h3>Level</h3>
-                    <h3>${currentUser.level}</h3>
-                </div>
-
-                <div>
-                    <p>${currentUser.score}</p>
-                    <p>/</p>
-                    <p>1000</p>
-                </div>
-            </div>
-        
-            <button id="playFromRank">PLAY</button>
-        </div>
-    `;
-
-
-    bodyDOM.appendChild(headerDOM);
-    bodyDOM.appendChild(titleDivDOM);
-    bodyDOM.appendChild(mainDOM);
-    bodyDOM.appendChild(footerDOM);
 
     const listDOM = document.getElementById("list");
 
@@ -292,26 +222,37 @@ async function ranking() {
         `;
     }
 
-    const playFromRank = document.getElementById("playFromRank");
+    const topPlayButton = document.getElementById("topPlayButton");
+    topPlayButton.textContent = "Play Now";
     const logOutButton = document.getElementById("logOutButton");
 
     logOutButton.addEventListener("click", function () {
-        POSTLogout();
+        POSTLogout()
         login()
     })
 
-    playFromRank.addEventListener("click", homePage);
-    document.querySelector("#logout").addEventListener("click", () => {
-        POSTLogout();
-        login()
-    })
+    topPlayButton.removeEventListener("click", ranking);
+    topPlayButton.addEventListener("click", homePage);
 }
 
-login();
 
+function playGame() {
+    mainDOM.innerHTML = ``;
+    footerDOM.innerHTML = ``;
+    titleDOM.textContent = "Play Game!";
 
+    footerDOM.innerHTML = `
+        <div id="gameFooter">
+        <button id="gameButton">Exit game! / Game over! / Collect points!</button>
+        </div>
+    `;
 
-
+    const exitButton = document.getElementById("gameButton")
+    exitButton.addEventListener("click", function () {
+        PATCHScore();
+        homePage();
+    });
+}
 
 
 // Server request
@@ -335,10 +276,6 @@ async function POSTHandlerRegistration(username, password, password2) {
         alert("1. Användarnamn eller lösenord saknas!");
     }
 }
-
-
-
-
 
 
 async function GETLogin(username, password) {
@@ -367,8 +304,6 @@ async function GETLogin(username, password) {
 }
 
 
-
-
 async function GETCurrentUser() {
     const response = await fetch("http://localhost:8000/profil", {
         method: "GET"
@@ -390,6 +325,7 @@ async function GETCurrentUser() {
         console.log(`3.`, data);
     }
 }
+
 
 async function PATCHScore(username, score) {
     const response = await fetch("http://localhost:8000/gameScore", {
@@ -413,6 +349,7 @@ async function PATCHScore(username, score) {
     }
 }
 
+
 async function PATCHExitGame(username) {
     const response = await fetch("http://localhost:8000/gameScore", {
         method: "PATCH",
@@ -433,6 +370,7 @@ async function PATCHExitGame(username) {
     }
 }
 
+
 async function GETHandlerAllUsers() {
     const response = await fetch("http://localhost:8000/rankningslista");
 
@@ -444,6 +382,7 @@ async function GETHandlerAllUsers() {
         return rankning;
     }
 }
+
 
 async function POSTLogout() {
     const response = await fetch("http://localhost:8000/logout", {
@@ -459,28 +398,7 @@ async function POSTLogout() {
 }
 
 
-// async function testDriver() {
-//     await POSTHandlerRegistration("Hej", "hej", "hej");
-//     await POSTHandlerRegistration("Test", "hej", "hej");
-//     await POSTHandlerRegistration("Hej", "hej", "");
-
-//     await GETLogin("Test", "test");
-//     await GETLogin("Test", "test1");
-//     await GETLogin("Tes", "test");
-
-//     await GETCurrentUser();
-
-//     await PATCHScore("Test", 150);
-//     await PATCHScore("Tes", 150);
-
-//     await PATCHExitGame("Test");
-//     await PATCHExitGame("Tes");
-
-//     await GETHandlerAllUsers();
-//     await POSTLogout();
-// }
-
-// testDriver();
+login();
 
 
 
