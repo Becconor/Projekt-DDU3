@@ -369,9 +369,11 @@ async function PATCHExitGame(username) {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = "5. Spel avbrutet, poängen uppdaterades ej.";
+        alert("Spel avbrutet, poängen uppdaterades ej.");
+        // message.textContent = "5. Spel avbrutet, poängen uppdaterades ej.";
     } else if (response.status === 404) {
-        message.textContent = "5. Något gick fel vid avslut.";
+        alert("Något gick fel vid avslut.");
+        // message.textContent = "5. Något gick fel vid avslut.";
     }
 }
 
