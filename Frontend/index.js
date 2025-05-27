@@ -374,7 +374,9 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
                     }
 
                     if (chancesLeft === 0) {
-                        gameButton.textContent = "Game Over!"
+                        mainDOM.innerHTML = ``;
+
+                        mainDOM.innerHTML = `<h1>Game Over!</h1>`;
                         gameButton.addEventListener("click", function () {
                             homePage();
                             return
