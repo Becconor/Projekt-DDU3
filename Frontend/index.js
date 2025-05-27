@@ -297,7 +297,6 @@ function playGame(selectedDifficulty, selectedTheme, selectedChances) {
 
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
-    const numberOfUniqueImages = numberOfCards / 2; // blir det inte bättre med numberOfCards * 2??
 
     let images = [];
 
