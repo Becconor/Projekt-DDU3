@@ -20,6 +20,13 @@ class Card {
         this.id = id;
         this.theme = theme;
     }
+
+    flipStatusTrue() {
+        this.flipped = true;
+    }
+    flipStatusFalse() {
+        this.flipped = false;
+    }
 }
 
 function login() {
@@ -277,7 +284,7 @@ async function ranking() {
 
 
 function playGame(selectedDifficulty, selectedTheme, selectedChances) {
-    
+
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
     titleDOM.textContent = "Play Game!";
