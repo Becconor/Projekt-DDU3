@@ -14,6 +14,21 @@ bodyDOM.appendChild(footerDOM);
 
 headerDOM.innerHTML = `<h1>REMEMBER ME</h1>`;
 
+class Card {
+    constructor(url, id, theme) {
+        this.url = url;
+        this.id = id;
+        this.theme = theme;
+    }
+
+    flipStatusTrue() {
+        this.flipped = true;
+    }
+    flipStatusFalse() {
+        this.flipped = false;
+    }
+}
+
 function login() {
     footerDOM.removeAttribute("id");
     mainDOM.removeAttribute("id");
@@ -183,12 +198,14 @@ function homePage() {
 
     let selectedDifficulty = null;
     let selectedTheme = null;
+    let selectedChances = null;
 
     difficultyButtons.forEach(button => {
         button.addEventListener("click", () => {
             difficultyButtons.forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
             selectedDifficulty = button.value;
+            selectedChances = button.data.points;
         });
     });
 
@@ -210,10 +227,10 @@ function homePage() {
             return;
         }
 
-        console.log("Difficulty:", selectedDifficulty);
+        console.log("numPairs:", selectedDifficulty);
         console.log("Theme:", selectedTheme);
 
-        playGame(selectedDifficulty, selectedTheme);
+        playGame(selectedDifficulty, selectedTheme, selectedChances);
     });
 
     logOutButton.addEventListener("click", function () {
@@ -266,16 +283,57 @@ async function ranking() {
 }
 
 
-function playGame() {
+function playGame(selectedDifficulty, selectedTheme, selectedChances) {
+
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
-    titleDOM.textContent = "Play Game!";
+    titleDOM.textContent = `${selectedChances}`;
+
+    mainDOM.innerHTML = `
+        <div id="gamePlan"></div>
+    `;
 
     footerDOM.innerHTML = `
         <div id="gameFooter">
         <button id="gameButton">Exit game! / Game over! / Collect points!</button>
         </div>
     `;
+
+    const numberOfCards = Number(selectedDifficulty);
+    const animalValue = selectedTheme;
+    const score = selectedChances;
+
+    let images = [];
+
+
+
+    //Lägga till fetch funktionerna här
+
+    async function getImage(animal) {
+        if (animal === "dog") {
+            const response = await fetch("https://dog.ceo/api/breeds/image/random");
+            const data = await response.json();
+            console.log(data.message);
+            return data.message;
+        }
+        if (animal === "fox") {
+            const response = await fetch("https://randomfox.ca/floof/");
+            const data = await response.json();
+            return data.image;
+        }
+        if (animal === "cat") {
+            const response = await fetch("https://api.thecatapi.com/v1/images/search");
+            const data = await response.json();
+            return data[0].url;
+        }
+    }
+
+    //Lägg till skapandet av korten här
+
+
+
+
+    //Lägg till addventListener till 
 
     const exitButton = document.getElementById("gameButton")
     exitButton.addEventListener("click", function () {
