@@ -210,7 +210,7 @@ function homePage() {
             return;
         }
 
-        console.log("Difficulty:", selectedDifficulty);
+        console.log("numPairs:", selectedDifficulty);
         console.log("Theme:", selectedTheme);
 
         playGame(selectedDifficulty, selectedTheme);
