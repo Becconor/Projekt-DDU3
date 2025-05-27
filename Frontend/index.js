@@ -193,8 +193,6 @@ function homePage() {
     topPlayButton.addEventListener("click", ranking);
 }
 
-// hompage logout: när jag loggar ut kan jag inte logga in igen med samma användare!
-
 
 async function ranking() {
     const players = await GETHandlerAllUsers()
@@ -258,6 +256,13 @@ function playGame() {
         // }
     });
 }
+
+
+
+
+
+
+
 
 
 // Server request
