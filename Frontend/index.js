@@ -287,6 +287,12 @@ function playGame() {
         </div>
     `;
 
+    const numberOfCards = Number(selectedDifficulty);
+    const animalValue = selectedAnimal;
+    const numberOfUniqueImages = numberOfCards / 2;
+
+    let images = [];
+
     const exitButton = document.getElementById("gameButton")
     exitButton.addEventListener("click", function () {
         // if () {
