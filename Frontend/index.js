@@ -297,6 +297,7 @@ function playGame(selectedDifficulty, selectedTheme, selectedChances) {
 
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
+    const score = selectedChances;
 
     let images = [];
 
