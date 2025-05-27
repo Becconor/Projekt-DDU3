@@ -1,3 +1,18 @@
+class Card {
+    constructor(url, id, theme) {
+        this.url = url;
+        this.theme = theme;
+    }
+
+    flipStatusTrue() {
+        this.flipped = true;
+    }
+    flipStatusFalse() {
+        this.flipped = false;
+    }
+}
+
+
 let currentUser = null;
 
 let bodyDOM = document.querySelector("body");
@@ -14,20 +29,6 @@ bodyDOM.appendChild(footerDOM);
 
 headerDOM.innerHTML = `<h1>REMEMBER ME</h1>`;
 
-class Card {
-    constructor(url, id, theme) {
-        this.url = url;
-        this.id = id;
-        this.theme = theme;
-    }
-
-    flipStatusTrue() {
-        this.flipped = true;
-    }
-    flipStatusFalse() {
-        this.flipped = false;
-    }
-}
 
 function login() {
     footerDOM.removeAttribute("id");
@@ -150,9 +151,9 @@ function homePage() {
 
     mainDOM.innerHTML = `
         <div id="levelButtons" class="mainContent">
-            <button value="4" data-points="8" class="buttons" class="difficultyButton" id="easy">EASY</button>
-            <button value="6" data-points="10" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
-            <button value="8" data-points="12" class="buttons" class="difficultyButton"  id="hard">HARD</button>
+            <button value="4" data-points="4" class="buttons" class="difficultyButton" id="easy">EASY</button>
+            <button value="6" data-points="4" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
+            <button value="8" data-points="4" class="buttons" class="difficultyButton"  id="hard">HARD</button>
         </div>
 
         <div id="categoryButtons" class="mainContent">
@@ -201,19 +202,19 @@ function homePage() {
     let selectedChances = null;
 
     difficultyButtons.forEach(button => {
-        button.addEventListener("click", () => {
+        button.addEventListener("click", function () {
             difficultyButtons.forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
-            selectedDifficulty = button.value;
-            selectedChances = button.data.points;
+            selectedDifficulty = this.value;
+            selectedChances = this.dataset.points;
         });
     });
 
     themeButtons.forEach(button => {
-        button.addEventListener("click", () => {
+        button.addEventListener("click", function () {
             themeButtons.forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
-            selectedTheme = button.value;
+            selectedTheme = this.value;
         });
     });
 
@@ -283,8 +284,7 @@ async function ranking() {
 }
 
 
-function playGame(selectedDifficulty, selectedTheme, selectedChances) {
-
+async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
     titleDOM.textContent = `${selectedChances}`;
@@ -299,15 +299,12 @@ function playGame(selectedDifficulty, selectedTheme, selectedChances) {
         </div>
     `;
 
+    const gamePlan = document.getElementById("gamePlan");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
     const score = selectedChances;
 
     let images = [];
-
-
-
-    //Lägga till fetch funktionerna här
 
     async function getImage(animal) {
         if (animal === "dog") {
@@ -329,6 +326,80 @@ function playGame(selectedDifficulty, selectedTheme, selectedChances) {
     }
 
     //Lägg till skapandet av korten här
+
+    while (images.length < numberOfCards) {
+        const url = await getImage(animalValue);
+
+        let alreadyExistsURL = false;
+        for (let i = 0; i < images.length; i++) {
+            if (images[i].url === url) {
+                alreadyExistsURL = true;
+            }
+        }
+
+        if (!alreadyExistsURL) {
+            const card = new Card(url, animalValue);
+            images.push(card);
+
+        }
+    }
+
+    const startLength = images.length;
+    for (let i = 0; i < startLength; i++) {
+        const originalCard = images[i];
+        const copyCard = new Card(originalCard.url, originalCard.theme);
+        images.push(copyCard);
+    }
+
+    images.sort(() => Math.random() - 0.5);
+
+    let flippedCards = [];
+
+    for (let i = 0; i < images.length; i++) {
+        const card = images[i];
+        const cardDiv = document.createElement("div");
+        cardDiv.classList.add("memoryCard");
+        cardDiv.cardData = card;
+
+        cardDiv.addEventListener("click", function () {
+            if (flippedCards.length === 2) {
+                return;
+            }
+
+            card.flipStatusTrue();//card är ett objekt från klassen Card
+            cardDiv.style.backgroundImage = `url('${card.url}')`;
+
+            flippedCards.push(cardDiv);
+
+            if (flippedCards.length === 2) {
+                setTimeout(function () {
+                    const firstCard = flippedCards[0];
+                    const secondCard = flippedCards[1];
+
+                    if (firstCard.cardData.url === secondCard.cardData.url) {
+                        // här får vi matchen
+                        firstCard.cardData.flipStatusTrue;
+                        secondCard.cardData.flipStatusTrue;
+                    } else {
+                        firstCard.cardData.flipStatusFalse;
+                        secondCard.cardData.flipStatusFalse;
+
+                        firstCard.style.backgroundImage = "url(`img/backside.png`)";
+                        secondCard.style.backgroundImage = "url(`img/backside.png`)";
+
+                    }
+                    flippedCards = [];
+                }, 1000)
+            }
+        });
+
+
+
+
+        gamePlan.append(cardDiv);
+    }
+
+
 
 
 
@@ -356,6 +427,26 @@ function playGame(selectedDifficulty, selectedTheme, selectedChances) {
 
 
 // Server request
+// async function getImage(animal) {
+//     if (animal === "dog") {
+//         const response = await fetch("https://dog.ceo/api/breeds/image/random");
+//         const data = await response.json();
+//         console.log(data.message);
+//         return data.message;
+//     }
+//     if (animal === "fox") {
+//         const response = await fetch("https://randomfox.ca/floof/");
+//         const data = await response.json();
+//         return data.image;
+//     }
+//     if (animal === "cat") {
+//         const response = await fetch("https://api.thecatapi.com/v1/images/search");
+//         const data = await response.json();
+//         return data[0].url;
+//     }
+// }
+
+
 async function POSTHandlerRegistration(username, password, password2) {
     const response = await fetch("http://localhost:8000/registrering", {
         method: "POST",
