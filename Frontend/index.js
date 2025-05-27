@@ -435,24 +435,24 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
 
 
 // Server request
-// async function getImage(animal) {
-//     if (animal === "dog") {
-//         const response = await fetch("https://dog.ceo/api/breeds/image/random");
-//         const data = await response.json();
-//         console.log(data.message);
-//         return data.message;
-//     }
-//     if (animal === "fox") {
-//         const response = await fetch("https://randomfox.ca/floof/");
-//         const data = await response.json();
-//         return data.image;
-//     }
-//     if (animal === "cat") {
-//         const response = await fetch("https://api.thecatapi.com/v1/images/search");
-//         const data = await response.json();
-//         return data[0].url;
-//     }
-// }
+async function getImage(animal) {
+    if (animal === "dog") {
+        const response = await fetch("https://dog.ceo/api/breeds/image/random");
+        const data = await response.json();
+        console.log(data.message);
+        return data.message;
+    }
+    if (animal === "fox") {
+        const response = await fetch("https://randomfox.ca/floof/");
+        const data = await response.json();
+        return data.image;
+    }
+    if (animal === "cat") {
+        const response = await fetch("https://api.thecatapi.com/v1/images/search");
+        const data = await response.json();
+        return data[0].url;
+    }
+}
 
 
 async function POSTHandlerRegistration(username, password, password2) {
@@ -596,7 +596,7 @@ async function POSTLogout() {
         console.log(`7. ${logOutMessage}`)
     }
 
-}
+} 
 
 
 login();
