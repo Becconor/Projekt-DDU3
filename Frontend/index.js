@@ -276,7 +276,7 @@ async function ranking() {
 }
 
 
-function playGame() {
+function playGame(selectedDifficulty, selectedTheme, selectedChances) {
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
     titleDOM.textContent = "Play Game!";
@@ -288,10 +288,23 @@ function playGame() {
     `;
 
     const numberOfCards = Number(selectedDifficulty);
-    const animalValue = selectedAnimal;
-    const numberOfUniqueImages = numberOfCards / 2;
+    const animalValue = selectedTheme;
+    const numberOfUniqueImages = numberOfCards / 2; // blir det inte bättre med numberOfCards * 2??
 
     let images = [];
+
+
+
+    //Lägga till fetch funktionerna här
+
+
+
+    //Lägg till skapandet av korten här
+
+
+
+
+    //Lägg till addventListener till 
 
     const exitButton = document.getElementById("gameButton")
     exitButton.addEventListener("click", function () {
