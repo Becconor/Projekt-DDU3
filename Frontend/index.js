@@ -307,6 +307,10 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    const points = Number(selectedPoints);
+>>>>>>> Stashed changes
 =======
     const points = Number(selectedPoints);
 >>>>>>> Stashed changes
