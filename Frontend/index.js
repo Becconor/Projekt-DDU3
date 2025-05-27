@@ -20,6 +20,13 @@ class Card {
         this.id = id;
         this.theme = theme;
     }
+
+    flipStatusTrue() {
+        this.flipped = true;
+    }
+    flipStatusFalse() {
+        this.flipped = false;
+    }
 }
 
 function login() {
@@ -277,6 +284,7 @@ async function ranking() {
 
 
 function playGame(selectedDifficulty, selectedTheme, selectedChances) {
+
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
     titleDOM.textContent = `${selectedChances}`;
@@ -293,7 +301,7 @@ function playGame(selectedDifficulty, selectedTheme, selectedChances) {
 
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
-    const numberOfUniqueImages = numberOfCards / 2; // blir det inte bättre med numberOfCards * 2??
+    const score = selectedChances;
 
     let images = [];
 
@@ -301,7 +309,24 @@ function playGame(selectedDifficulty, selectedTheme, selectedChances) {
 
     //Lägga till fetch funktionerna här
 
-
+    async function getImage(animal) {
+        if (animal === "dog") {
+            const response = await fetch("https://dog.ceo/api/breeds/image/random");
+            const data = await response.json();
+            console.log(data.message);
+            return data.message;
+        }
+        if (animal === "fox") {
+            const response = await fetch("https://randomfox.ca/floof/");
+            const data = await response.json();
+            return data.image;
+        }
+        if (animal === "cat") {
+            const response = await fetch("https://api.thecatapi.com/v1/images/search");
+            const data = await response.json();
+            return data[0].url;
+        }
+    }
 
     //Lägg till skapandet av korten här
 
