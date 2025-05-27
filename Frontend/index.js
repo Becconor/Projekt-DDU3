@@ -1,5 +1,5 @@
 class Card {
-    constructor(url, theme) {
+    constructor(url, id, theme) {
         this.url = url;
         this.theme = theme;
         this.flipped = false;
@@ -288,7 +288,7 @@ async function ranking() {
 async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
-    titleDOM.textContent = `Chances left: 4`;
+    titleDOM.textContent = `${selectedChances}`;
 
     mainDOM.innerHTML = `
         <div id="gamePlan"></div>
@@ -300,11 +300,10 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
         </div>
     `;
 
-    const gameButton = document.getElementById("gameButton");
     const gamePlan = document.getElementById("gamePlan");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
-    let chancesLeft = Number(selectedChances);
+    const chancesLeft = Number(selectedChances);
 
     let images = [];
 
@@ -390,17 +389,12 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
                         secondCard.style.backgroundImage = "url(`img/backside.png`)";
 
                         chancesLeft--;
-                        titleDOM.textContent = "Chances left: " + chancesLeft;
 
                     }
-
                     if (chancesLeft <= 0) {
-                        gameButton.textContent = "Game Over!"
-                        gameButton.addEventListener("click", function () {
-                            alert("Game over");
-                            homePage()
-                            return
-                        });
+                        alert("Game over");
+                        homePage()
+                        return
                     }
                     flippedCards = [];
                 }, 1000)
@@ -602,7 +596,7 @@ async function POSTLogout() {
         console.log(`7. ${logOutMessage}`)
     }
 
-}
+} 
 
 
 login();
