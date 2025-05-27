@@ -204,7 +204,17 @@ function homePage() {
     const logOutButton = document.getElementById("logOutButton");
 
     const playButton = document.getElementById("playNow")
-    playButton.addEventListener("click", playGame);
+    playButton.addEventListener("click", function () {
+        if (!selectedDifficulty || !selectedTheme) {
+            alert("Please select both a difficulty and a theme!");
+            return;
+        }
+
+        console.log("Difficulty:", selectedDifficulty);
+        console.log("Theme:", selectedTheme);
+
+        playGame(selectedDifficulty, selectedTheme);
+    });
 
     logOutButton.addEventListener("click", function () {
         POSTLogout()
