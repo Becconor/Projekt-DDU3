@@ -215,7 +215,7 @@ function homePage() {
         console.log("numPairs:", selectedDifficulty);
         console.log("Theme:", selectedTheme);
 
-        playGame(selectedDifficulty, selectedTheme);
+        playGame(selectedDifficulty, selectedTheme, selectedChances);
     });
 
     logOutButton.addEventListener("click", function () {
