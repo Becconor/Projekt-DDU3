@@ -288,7 +288,7 @@ async function ranking() {
 async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
-    titleDOM.textContent = `${selectedChances}`;
+    titleDOM.textContent = `Chances: 4`;
 
     mainDOM.innerHTML = `
         <div id="gamePlan"></div>
@@ -303,7 +303,7 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
     const gamePlan = document.getElementById("gamePlan");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
-    let chancesLeft = Number(selectedChances);
+    let chancesLeft = 4;
 
     let images = [];
 
@@ -370,7 +370,7 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
                         secondCard.style.backgroundImage = "url(`img/backside.png`)";
 
                         chancesLeft--;
-
+                        titleDOM.textContent = "Chances: " + chancesLeft;
                     }
 
                     if (chancesLeft === 0) {
@@ -577,7 +577,7 @@ async function POSTLogout() {
         console.log(`7. ${logOutMessage}`)
     }
 
-} 
+}
 
 
 login();
