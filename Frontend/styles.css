@@ -265,6 +265,19 @@ header {
     font-size: 18px;
 }
 
-.selected{
+.selected {
     border: 3px solid blue;
+}
+
+#gamePlan {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    gap: 10px;
+}
+
+.memoryCard {
+    width: 100px;
+    height: 100px;
+    background-image: url(img/backside.png);
+    background-size: cover;
 }
