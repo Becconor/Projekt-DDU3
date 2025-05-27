@@ -14,6 +14,14 @@ bodyDOM.appendChild(footerDOM);
 
 headerDOM.innerHTML = `<h1>REMEMBER ME</h1>`;
 
+class Card {
+    constructor(url, id, theme) {
+        this.url = url;
+        this.id = id;
+        this.theme = theme;
+    }
+}
+
 function login() {
     footerDOM.removeAttribute("id");
     mainDOM.removeAttribute("id");
