@@ -264,3 +264,7 @@ header {
     font-weight: bolder;
     font-size: 18px;
 }
+
+.selected{
+    border: 3px solid blue;
+}
