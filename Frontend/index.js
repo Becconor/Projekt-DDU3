@@ -206,7 +206,7 @@ function homePage() {
             difficultyButtons.forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
             selectedDifficulty = this.value;
-            selectedChances = this.dataset.points;
+            selectedChances = this.data.points;
         });
     });
 
