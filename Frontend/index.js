@@ -1,5 +1,5 @@
 class Card {
-    constructor(url, id, theme) {
+    constructor(url, theme) {
         this.url = url;
         this.theme = theme;
         this.flipped = false;
@@ -379,11 +379,11 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
 
                     if (firstCard.cardData.url === secondCard.cardData.url) {
                         // här får vi matchen
-                        firstCard.cardData.flipStatusTrue;
-                        secondCard.cardData.flipStatusTrue;
+                        firstCard.cardData.flipStatusTrue();
+                        secondCard.cardData.flipStatusTrue();
                     } else {
-                        firstCard.cardData.flipStatusFalse;
-                        secondCard.cardData.flipStatusFalse;
+                        firstCard.cardData.flipStatusFalse();
+                        secondCard.cardData.flipStatusFalse();
 
                         firstCard.style.backgroundImage = "url(`img/backside.png`)";
                         secondCard.style.backgroundImage = "url(`img/backside.png`)";
