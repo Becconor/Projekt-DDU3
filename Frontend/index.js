@@ -285,7 +285,6 @@ async function ranking() {
 
 
 async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
-
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
     titleDOM.textContent = `${selectedChances}`;
@@ -300,6 +299,7 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
         </div>
     `;
 
+    const gamePlan = document.getElementById("gamePlan");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
     const score = selectedChances;
@@ -341,9 +341,9 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
         const cardDiv = document.createElement("div");
 
         cardDiv.classList.add("memoryCard");
-        cardDiv.classList.add("unflippedCard");
-
         cardDiv.cardData = card;
+
+        gamePlan.append(cardDiv);
     }
 
 
