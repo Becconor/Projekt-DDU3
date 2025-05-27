@@ -135,14 +135,14 @@ function homePage() {
 
     mainDOM.innerHTML = `
         <div id="levelButtons" class="mainContent">
-            <button value="6" class="buttons" class="difficultyButton" id="easy">EASY</button>
-            <button value="10" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
-            <button value="16" class="buttons" class="difficultyButton"  id="hard">HARD</button>
+            <button value="4" dataset.points="8" class="buttons" class="difficultyButton" id="easy">EASY</button>
+            <button value="6" dataset.points="10" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
+            <button value="8" dataset.points="12" class="buttons" class="difficultyButton"  id="hard">HARD</button>
         </div>
 
         <div id="categoryButtons" class="mainContent">
-            <button value="dog" class="buttons" class="themeButton" id="cat">CATS</button>
-            <button value="cat" class="buttons" class="themeButton" id="dog">DOGS</button>
+            <button value="cat" class="buttons" class="themeButton" id="cat">CATS</button>
+            <button value="dog" class="buttons" class="themeButton" id="dog">DOGS</button>
             <button value="fox" class="buttons" class="themeButton" id="fox">FOXES</button>
         </div>
 
@@ -192,8 +192,6 @@ function homePage() {
     topPlayButton.removeEventListener("click", homePage)
     topPlayButton.addEventListener("click", ranking);
 }
-
-// hompage logout: när jag loggar ut kan jag inte logga in igen med samma användare!
 
 
 async function ranking() {
@@ -258,6 +256,13 @@ function playGame() {
         // }
     });
 }
+
+
+
+
+
+
+
 
 
 // Server request
