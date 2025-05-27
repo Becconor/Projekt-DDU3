@@ -202,7 +202,7 @@ function homePage() {
     let selectedChances = null;
 
     difficultyButtons.forEach(button => {
-        button.addEventListener("click", () => {
+        button.addEventListener("click", function () {
             difficultyButtons.forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
             selectedDifficulty = this.value;
@@ -211,7 +211,7 @@ function homePage() {
     });
 
     themeButtons.forEach(button => {
-        button.addEventListener("click", () => {
+        button.addEventListener("click", function () {
             themeButtons.forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
             selectedTheme = this.value;
