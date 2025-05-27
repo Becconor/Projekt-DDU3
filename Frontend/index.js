@@ -303,7 +303,7 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
     const gamePlan = document.getElementById("gamePlan");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
-    const score = selectedChances;
+    const chancesLeft = Number(selectedChances);
 
     let images = [];
 
@@ -388,6 +388,13 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
                         firstCard.style.backgroundImage = "url(`img/backside.png`)";
                         secondCard.style.backgroundImage = "url(`img/backside.png`)";
 
+                        chancesLeft--;
+
+                    }
+                    if (chancesLeft <= 0) {
+                        alert("Game over");
+                        homePage()
+                        return
                     }
                     flippedCards = [];
                 }, 1000)
