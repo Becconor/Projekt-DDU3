@@ -300,6 +300,7 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
         </div>
     `;
 
+    const gameButton = document.getElementById("gameButton");
     const gamePlan = document.getElementById("gamePlan");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
@@ -392,10 +393,14 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
                         titleDOM.textContent = "Chances left: " + chancesLeft;
 
                     }
+
                     if (chancesLeft <= 0) {
-                        alert("Game over");
-                        homePage()
-                        return
+                        gameButton.textContent = "Game Over!"
+                        gameButton.addEventListener("click", function () {
+                            alert("Game over");
+                            homePage()
+                            return
+                        });
                     }
                     flippedCards = [];
                 }, 1000)
@@ -597,7 +602,7 @@ async function POSTLogout() {
         console.log(`7. ${logOutMessage}`)
     }
 
-} 
+}
 
 
 login();
