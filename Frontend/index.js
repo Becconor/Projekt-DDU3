@@ -152,9 +152,9 @@ function homePage() {
 
     mainDOM.innerHTML = `
         <div id="levelButtons" class="mainContent">
-            <button value="4" data-points="4" class="buttons" class="difficultyButton" id="easy">EASY</button>
-            <button value="6" data-points="4" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
-            <button value="8" data-points="4" class="buttons" class="difficultyButton"  id="hard">HARD</button>
+            <button value="4" data-points="100" class="buttons" class="difficultyButton" id="easy">EASY</button>
+            <button value="6" data-points="200" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
+            <button value="8" data-points="300" class="buttons" class="difficultyButton"  id="hard">HARD</button>
         </div>
 
         <div id="categoryButtons" class="mainContent">
@@ -200,14 +200,14 @@ function homePage() {
 
     let selectedDifficulty = null;
     let selectedTheme = null;
-    let selectedChances = null;
+    let selectedPoints = null;
 
     difficultyButtons.forEach(button => {
         button.addEventListener("click", function () {
             difficultyButtons.forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
             selectedDifficulty = this.value;
-            selectedChances = this.dataset.points;
+            selectedPoints = this.dataset.points;
         });
     });
 
@@ -285,7 +285,7 @@ async function ranking() {
 }
 
 
-async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
+async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
     titleDOM.textContent = `Chances: 4`;
@@ -304,6 +304,10 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
     let chancesLeft = 4;
+<<<<<<< Updated upstream
+=======
+    const points = Number(selectedPoints);
+>>>>>>> Stashed changes
 
     let images = [];
 
