@@ -2,6 +2,7 @@ class Card {
     constructor(url, id, theme) {
         this.url = url;
         this.theme = theme;
+        this.flipped = false;
     }
 
     flipStatusTrue() {
@@ -362,7 +363,7 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
         cardDiv.cardData = card;
 
         cardDiv.addEventListener("click", function () {
-            if (flippedCards.length === 2) {
+            if (card.flipped || flippedCards.length === 2 || flippedCards.includes(cardDiv)) {
                 return;
             }
 
