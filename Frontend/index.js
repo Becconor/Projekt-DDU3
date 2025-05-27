@@ -178,6 +178,28 @@ function homePage() {
         </div>
     `;
 
+    const difficultyButtons = document.querySelectorAll("#levelButtons button");
+    const themeButtons = document.querySelectorAll("#categoryButtons button");
+
+    let selectedDifficulty = null;
+    let selectedTheme = null;
+
+    difficultyButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            difficultyButtons.forEach(btn => btn.classList.remove("selected"));
+            button.classList.add("selected");
+            selectedDifficulty = button.value;
+        });
+    });
+
+    themeButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            themeButtons.forEach(btn => btn.classList.remove("selected"));
+            button.classList.add("selected");
+            selectedTheme = button.value;
+        });
+    });
+
     const topPlayButton = document.getElementById("topPlayButton");
     const logOutButton = document.getElementById("logOutButton");
 
