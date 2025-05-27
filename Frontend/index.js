@@ -303,7 +303,7 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
     const gamePlan = document.getElementById("gamePlan");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
-    const chancesLeft = Number(selectedChances);
+    let chancesLeft = Number(selectedChances);
 
     let images = [];
 
