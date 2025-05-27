@@ -279,7 +279,11 @@ async function ranking() {
 function playGame(selectedDifficulty, selectedTheme, selectedChances) {
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
-    titleDOM.textContent = "Play Game!";
+    titleDOM.textContent = `${selectedChances}`;
+
+    mainDOM.innerHTML = `
+        <div id="gamePlan"></div>
+    `;
 
     footerDOM.innerHTML = `
         <div id="gameFooter">
