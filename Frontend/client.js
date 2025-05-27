@@ -160,6 +160,12 @@ export async function POSTLogout() {
 
 }
 
-
+import {
+    getImage,
+    POSTHandlerRegistration,
+    GETLogin,
+    GETCurrentUser,
+    PATCHScore
+} from "./client.js"
 
 
