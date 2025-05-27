@@ -183,12 +183,14 @@ function homePage() {
 
     let selectedDifficulty = null;
     let selectedTheme = null;
+    let selectedChances = null;
 
     difficultyButtons.forEach(button => {
         button.addEventListener("click", () => {
             difficultyButtons.forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
             selectedDifficulty = button.value;
+            selectedChances = button.data.points;
         });
     });
 
