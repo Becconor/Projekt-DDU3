@@ -232,7 +232,7 @@ function homePage() {
         console.log("numPairs:", selectedDifficulty);
         console.log("Theme:", selectedTheme);
 
-        playGame(selectedDifficulty, selectedTheme);
+        playGame(selectedDifficulty, selectedTheme, selectedPoints);
     });
 
     logOutButton.addEventListener("click", function () {
