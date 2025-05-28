@@ -145,31 +145,6 @@ function homePage() {
     mainDOM.innerHTML = ``;
     bodyDOM.removeAttribute("id");
 
-    let myLevel = document.getElementById("level");
-    let levelPoints = document.getElementById("levelPoints");
-
-    if (currentUser.score >= 5000) {
-        levelPoints.textContent = ``;
-        levelPoints.textContent = 5000;
-        myLevel.textContent = 4;
-    } else if (currentUser.score >= 4000) {
-        levelPoints.textContent = ``;
-        levelPoints.textContent = 4000;
-        myLevel.textContent = 3;
-    } else if (currentUser.score >= 3000) {
-        levelPoints.textContent = ``;
-        levelPoints.textContent = 3000;
-        myLevel.textContent = 2;
-    } else if (currentUser.score >= 2000) {
-        levelPoints.textContent = ``;
-        levelPoints.textContent = 2000;
-        myLevel.textContent = 1;
-    } else if (currentUser.score >= 1000) {
-        levelPoints.textContent = ``;
-        levelPoints.textContent = 1000;
-        myLevel.textContent = 0;
-    }
-
     bodyDOM.id = "sites";
     headerDOM.id = "logotype";
     titleDOM.id = "titleH2";
@@ -222,6 +197,31 @@ function homePage() {
             </div>
         </div>
     `;
+
+    let myLevel = document.getElementById("level");
+    let levelPoints = document.getElementById("levelPoints");
+
+    if (currentUser.score >= 5000) {
+        levelPoints.textContent = ``;
+        levelPoints.textContent = 5000;
+        myLevel.textContent = 4;
+    } else if (currentUser.score >= 4000) {
+        levelPoints.textContent = ``;
+        levelPoints.textContent = 4000;
+        myLevel.textContent = 3;
+    } else if (currentUser.score >= 3000) {
+        levelPoints.textContent = ``;
+        levelPoints.textContent = 3000;
+        myLevel.textContent = 2;
+    } else if (currentUser.score >= 2000) {
+        levelPoints.textContent = ``;
+        levelPoints.textContent = 2000;
+        myLevel.textContent = 1;
+    } else if (currentUser.score >= 1000) {
+        levelPoints.textContent = ``;
+        levelPoints.textContent = 1000;
+        myLevel.textContent = 0;
+    }
 
     const difficultyButtons = document.querySelectorAll("#levelButtons button");
     const themeButtons = document.querySelectorAll("#categoryButtons button");
