@@ -183,13 +183,13 @@ function homePage() {
                 <div id="myScoreBoard">
                     <div id="myLevel">
                         <h3>Level</h3>
-                        <h3>1</h3>
+                        <h3 id="level">1</h3>
                     </div>
 
                     <div id="myPoints">
                         <p>${currentUser.score}</p>
                         <p>/</p>
-                        <p>1000</p>
+                        <p id="levelPoints">1000</p>
                     </div>
                 </div>
 
@@ -197,6 +197,23 @@ function homePage() {
             </div>
         </div>
     `;
+
+    let myLevel = document.getElementById("level");
+    let levelPoints = document.getElementById("levelPoints");
+
+    if (currentUser.score >= 2000) {
+        levelPoints.textContent = 2000;
+        myLevel.textContent = 2;
+    } else if (currentUser.score >= 3000) {
+        levelPoints.textContent = 3000;
+        myLevel.textContent = 3;
+    } else if (currentUser.score >= 4000) {
+        levelPoints.textContent = 4000;
+        myLevel.textContent = 4;
+    } else if (currentUser.score >= 5000) {
+        levelPoints.textContent = 5000;
+        myLevel.textContent = 5;
+    }
 
     const difficultyButtons = document.querySelectorAll("#levelButtons button");
     const themeButtons = document.querySelectorAll("#categoryButtons button");

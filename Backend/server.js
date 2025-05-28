@@ -1,5 +1,5 @@
 const allUsers = [
-    { username: "Test", password: "test", score: 0, level: 1 },
+    { username: "Test", password: "test", score: 1900, level: 1 },
     { username: "Test2", password: "test2", score: 300, level: 3 },
     { username: "Test3", password: "test3", score: 200, level: 2 },
 ];
