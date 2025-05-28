@@ -288,7 +288,7 @@ async function ranking() {
 async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
-    titleDOM.textContent = `Wrong Moves Left: 4`;
+    titleDOM.textContent = `Wrong Moves Left: 6`;
 
     mainDOM.innerHTML = `
         <div id="gamePlan"></div>
@@ -303,7 +303,7 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
     const gamePlan = document.getElementById("gamePlan");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
-    let wrongMovesLeft = 4;
+    let wrongMovesLeft = 6;
 
     const points = Number(selectedPoints);
 
