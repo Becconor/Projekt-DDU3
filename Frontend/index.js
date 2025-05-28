@@ -1,5 +1,5 @@
 class Card {
-    constructor(url, id, theme) {
+    constructor(url, theme) {
         this.url = url;
         this.theme = theme;
         this.flipped = false;
