@@ -207,13 +207,17 @@ header {
 }
 
 #topPlayButton {
-    background-color: greenyellow;
+    background-color: #2fc5ff;
     height: 50px;
     width: 150px;
     border-radius: 5px;
 
     font-weight: bolder;
     font-size: 18px;
+}
+
+#topPlayButton:hover {
+    background-color: #2198c8d9;
 }
 
 
