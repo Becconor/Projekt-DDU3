@@ -289,3 +289,15 @@ header {
     cursor: pointer;
     background-size: cover;
 }
+
+.victoryDiv {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.victoryMessage {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}

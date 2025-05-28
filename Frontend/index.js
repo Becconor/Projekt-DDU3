@@ -397,8 +397,10 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
                     if (allFlipped) {
                         mainDOM.innerHTML = ``;
                         mainDOM.innerHTML = `
-                        <h1>You Win!</h1>
-                        <h2>Collect Points Down Below</h2>
+                        <div class="victoryDiv">
+                          <p class="victoryMessage">You Win!</p>
+                          <p class="victoryMessage">Collect Points Down Below</p>
+                        </div>   
                         `;
 
                         gameButton.textContent = `Collect Points`;
