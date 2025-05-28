@@ -79,6 +79,10 @@ header {
     font-weight: bolder;
 }
 
+.loginButtons:hover {
+    background-color: rgb(228, 162, 68);
+}
+
 #registerButton {
     width: 250px;
 }
