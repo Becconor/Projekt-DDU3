@@ -1,8 +1,14 @@
-const allUsers = [
-    { username: "Test", password: "test", score: 1900, level: 1 },
-    { username: "Test2", password: "test2", score: 300, level: 3 },
-    { username: "Test3", password: "test3", score: 200, level: 2 },
-];
+const usersFile = "./users.json";
+
+async function loadUsers() {
+    const data = await Deno.readTextFile(usersFile); //Här hämtar vi json filen 
+    return JSON.parse(data);// och här parsar vi json filen till javascript objekt
+}
+
+async function saveUsers(users) {
+    const jsonData = JSON.stringify(users, null, 2);//Här gör vi om användaren som vi vill uppdatera i json filen till ett JSON objekt
+    await Deno.writeTextFile(usersFile, jsonData);//Här skickar vi det nya jasonObjektet för att läggas till i json filen
+}
 
 class User {
     constructor(username, password) {
