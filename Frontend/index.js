@@ -414,9 +414,9 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
                     if (allFlipped) {
                         mainDOM.innerHTML = ``;
                         mainDOM.innerHTML = `
-                        <div class="victoryDiv">
-                          <p class="victoryMessage">You Win!</p>
-                          <p class="victoryMessage">Collect Points Down Below</p>
+                        <div class="finishedGameMessages">
+                          <p class="finishedMessage">You Win!</p>
+                          <p class="finishedMessage">Collect Points Down Below</p>
                         </div>   
                         `;
 
@@ -430,8 +430,10 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
                     } else if (wrongMovesLeft === 0) {
                         mainDOM.innerHTML = ``;
                         mainDOM.innerHTML = `
-                        <h1>You Have Used All Your Wrong Moves</h1>
-                        <h2>Please Exit Down Below</h2>
+                        <div class="finishedGameMessages">
+                          <p class="finishedMessage">You Have Used All Your Wrong Moves</p>
+                          <p class="finishedMessage">Please Exit Down Below</p>
+                        </div>
                         `;
 
                         gameButton.textContent = `Game Over`;

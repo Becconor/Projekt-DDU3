@@ -290,13 +290,13 @@ header {
     background-size: cover;
 }
 
-.victoryDiv {
+.finishedGameMessages {
     display: flex;
     flex-direction: column;
     align-self: center;
 }
 
-.victoryMessage {
+.finishedMessage {
     font-size: 25px;
     font-weight: bold;
     text-align: center;
