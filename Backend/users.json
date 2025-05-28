@@ -34,5 +34,11 @@
     "password": "Mumin123",
     "level": 1,
     "score": 1100
+  },
+  {
+    "username": "sebbe",
+    "password": "sebbe123",
+    "level": 0,
+    "score": 300
   }
 ]
