@@ -403,7 +403,18 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
                     }
 
                     if (allFlipped) {
+                        mainDOM.innerHTML = ``;
+                        mainDOM.innerHTML = `
+                        <h1>You Have Used All Your Wrong Moves</h1>
+                        <h2>Please Exit Down Below</h2>
+                        `;
 
+                        gameButton.textContent = `Collect Points`;
+                        gameButton.addEventListener("click", function () {
+                            PATCHScore(currentUser.username, points);
+                            homePage();
+                            return
+                        });
                     }
                 }, 1000)
             }
