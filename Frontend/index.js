@@ -452,6 +452,12 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
 
         gamePlan.append(cardDiv);
     }
+
+    gameButton.addEventListener("click", function () {
+        homePage();
+        return
+    });
+
 }
 
 
