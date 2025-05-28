@@ -522,12 +522,13 @@ async function GETCurrentUser() {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        alert("Användar information för profilen är uppdaterad");
         // message.textContent = `3. Användar information för profilen är uppdaterad`;
         console.log(`3.`, data);
         currentUser = data
     } else if (response.status === 400) {
-        alert("Användar information för profilen är uppdaterad");
+        const errorMessage = await response.json();
+        console.log(errorMessage);
+        alert(errorMessage);
 
         // message.textContent = `3. Ingen användare är inloggad`;
         console.log(`3.`, data);
