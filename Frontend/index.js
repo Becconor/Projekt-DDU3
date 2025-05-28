@@ -145,6 +145,26 @@ function homePage() {
     mainDOM.innerHTML = ``;
     bodyDOM.removeAttribute("id");
 
+    let myLevel = document.getElementById("myLevel");
+    myLevel.textContent = 1;
+
+    let levelPoints = document.getElementById("level");
+    levelPoints.textContent = 1000;
+
+    if (currentUser.score >= 2000) {
+        levelPoints.textContent = 2000;
+        myLevel.textContent = 2;
+    } else if (currentUser.score >= 3000) {
+        levelPoints.textContent = 3000;
+        myLevel.textContent = 3;
+    } else if (currentUser.score >= 4000) {
+        levelPoints.textContent = 4000;
+        myLevel.textContent = 4;
+    } else if (currentUser.score >= 5000) {
+        levelPoints.textContent = 5000;
+        myLevel.textContent = 5;
+    }
+
     bodyDOM.id = "sites";
     headerDOM.id = "logotype";
     titleDOM.id = "titleH2";
@@ -183,13 +203,21 @@ function homePage() {
                 <div id="myScoreBoard">
                     <div id="myLevel">
                         <h3>Level</h3>
+<<<<<<< Updated upstream
                         <h3 id="level">1</h3>
+=======
+                        <h3 id="myLevel">1</h3>
+>>>>>>> Stashed changes
                     </div>
 
                     <div id="myPoints">
                         <p>${currentUser.score}</p>
                         <p>/</p>
+<<<<<<< Updated upstream
                         <p id="levelPoints">1000</p>
+=======
+                        <p id="level">${levelPoints}</p>
+>>>>>>> Stashed changes
                     </div>
                 </div>
 
@@ -567,7 +595,8 @@ async function PATCHScore(username, score) {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        alert("4. Poäng har adderats till totalpoängen för användaren!");
+        // alert("4. Poäng har adderats till totalpoängen för användaren!");
+        console.log("Poängen har uppdaterats för användaren");
 
         // message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
     } else if (response.status === 404) {
