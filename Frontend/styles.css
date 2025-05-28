@@ -79,6 +79,10 @@ header {
     font-weight: bolder;
 }
 
+.loginButtons:hover {
+    background-color: rgb(228, 162, 68);
+}
+
 #registerButton {
     width: 250px;
 }
@@ -150,20 +154,40 @@ header {
     background-color: plum;
 }
 
+.buttons:hover {
+    background-color: rgb(181, 132, 181);
+}
+
 #easy {
     background-color: greenyellow;
+}
+
+#easy:hover {
+    background-color: rgb(138, 203, 39);
 }
 
 #medium {
     background-color: yellow;
 }
 
+#medium:hover {
+    background-color: rgb(214, 214, 4);
+}
+
 #hard {
     background-color: red;
 }
 
+#hard:hover {
+    background-color: rgba(184, 0, 0, 0.759);
+}
+
 #playNow {
     background-color: rgb(252, 179, 75);
+}
+
+#playNow:hover {
+    background-color: rgb(224, 159, 69);
 }
 
 #footerContainer {
@@ -187,6 +211,10 @@ header {
     border-bottom: 1px solid black;
 }
 
+#logOutButton:hover {
+    color: rgb(90, 85, 85);
+}
+
 #info {
     display: flex;
     justify-content: center;
@@ -207,13 +235,17 @@ header {
 }
 
 #topPlayButton {
-    background-color: greenyellow;
+    background-color: #2fc5ff;
     height: 50px;
     width: 150px;
     border-radius: 5px;
 
     font-weight: bolder;
     font-size: 18px;
+}
+
+#topPlayButton:hover {
+    background-color: #2198c8d9;
 }
 
 
@@ -288,4 +320,16 @@ header {
     background-color: rgb(252, 179, 75);
     cursor: pointer;
     background-size: cover;
+}
+
+.finishedGameMessages {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.finishedMessage {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
 }

@@ -53,7 +53,7 @@ function login() {
                     <button type="button" id="hidePassword">👁️</button>
                 </div>
                 <div class="wrongPasswordDiv">
-                    <p id="wrongPasswordMessage" class="hidden">Fel lösenord!</p>
+                    <p id="wrongPasswordMessage" class="hidden">Wrong password!</p>
                 </div>
             </div>
 
@@ -183,13 +183,13 @@ function homePage() {
                 <div id="myScoreBoard">
                     <div id="myLevel">
                         <h3>Level</h3>
-                        <h3>1</h3>
+                        <h3 id="level">0</h3>
                     </div>
 
                     <div id="myPoints">
                         <p>${currentUser.score}</p>
                         <p>/</p>
-                        <p>1000</p>
+                        <p id="levelPoints">0</p>
                     </div>
                 </div>
 
@@ -197,6 +197,26 @@ function homePage() {
             </div>
         </div>
     `;
+
+    let level = document.getElementById("level");
+    let levelPoints = document.getElementById("levelPoints");
+
+    if (currentUser.score >= 4000) {
+        levelPoints.textContent = 5000;
+        level.textContent = 4;
+    } else if (currentUser.score >= 3000) {
+        levelPoints.textContent = 4000;
+        level.textContent = 3;
+    } else if (currentUser.score >= 2000) {
+        levelPoints.textContent = 3000;
+        level.textContent = 2;
+    } else if (currentUser.score >= 1000) {
+        levelPoints.textContent = 2000;
+        level.textContent = 1;
+    } else {
+        levelPoints.textContent = 1000;
+        level.textContent = 0;
+    }
 
     const difficultyButtons = document.querySelectorAll("#levelButtons button");
     const themeButtons = document.querySelectorAll("#categoryButtons button");
@@ -304,6 +324,7 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
     `;
 
     const gamePlan = document.getElementById("gamePlan");
+    const gameButton = document.getElementById("gameButton");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
     let wrongMovesLeft = 6;
@@ -397,21 +418,26 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
                     if (allFlipped) {
                         mainDOM.innerHTML = ``;
                         mainDOM.innerHTML = `
-                        <h1>You Win!</h1>
-                        <h2>Collect Points Down Below</h2>
+                        <div class="finishedGameMessages">
+                          <p class="finishedMessage">You Win!</p>
+                          <p class="finishedMessage">Collect Points Down Below</p>
+                        </div>   
                         `;
 
                         gameButton.textContent = `Collect Points`;
-                        gameButton.addEventListener("click", function () {
-                            PATCHScore(currentUser.username, points);
+                        gameButton.addEventListener("click", async function () {
+                            await PATCHScore(currentUser.username, points);
+                            currentUser.score += points;
                             homePage();
                             return
                         });
                     } else if (wrongMovesLeft === 0) {
                         mainDOM.innerHTML = ``;
                         mainDOM.innerHTML = `
-                        <h1>You Have Used All Your Wrong Moves</h1>
-                        <h2>Please Exit Down Below</h2>
+                        <div class="finishedGameMessages">
+                          <p class="finishedMessage">You Have Used All Your Wrong Moves</p>
+                          <p class="finishedMessage">Please Exit Down Below</p>
+                        </div>
                         `;
 
                         gameButton.textContent = `Game Over`;
@@ -427,6 +453,10 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
 
         gamePlan.append(cardDiv);
     }
+    gameButton.addEventListener("click", function () {
+        homePage();
+        return
+    });
 }
 
 
@@ -517,14 +547,15 @@ async function GETCurrentUser() {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        alert("Användar information för profilen är uppdaterad");
         // message.textContent = `3. Användar information för profilen är uppdaterad`;
         console.log(`3.`, data);
         currentUser = data
     } else if (response.status === 400) {
-        alert("Användar information för profilen är uppdaterad");
+        const errorMessage = await response.json();
+        console.log(errorMessage);
+        alert(errorMessage);
 
-        message.textContent = `3. Ingen användare är inloggad`;
+        // message.textContent = `3. Ingen användare är inloggad`;
         console.log(`3.`, data);
     }
 }
@@ -544,11 +575,18 @@ async function PATCHScore(username, score) {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
+        // alert("4. Poäng har adderats till totalpoängen för användaren!");
+        console.log("Poängen har uppdaterats för användaren");
+
+        // message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
     } else if (response.status === 404) {
-        message.textContent = "4. Användaren hittades inte!";
+        alert("4. Användaren hittades inte!");
+
+        // message.textContent = "4. Användaren hittades inte!";
     } else {
-        message.textContent = "4. Något gick fel!";
+        alert("4. Något gick fel!");
+
+        // message.textContent = "4. Något gick fel!";
     }
 }
 
