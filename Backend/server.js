@@ -1,8 +1,14 @@
-const allUsers = [
-    { username: "Test", password: "test", score: 1900, level: 1 },
-    { username: "Test2", password: "test2", score: 300, level: 3 },
-    { username: "Test3", password: "test3", score: 200, level: 2 },
-];
+const usersFile = "./users.json";
+
+async function loadUsers() {
+    const data = await Deno.readTextFile(usersFile); //Här hämtar vi json filen 
+    return JSON.parse(data);// och här parsar vi json filen till javascript objekt
+}
+
+async function saveUsers(users) {
+    const jsonData = JSON.stringify(users, null, 2);//Här gör vi om användaren som vi vill uppdatera i json filen till ett JSON objekt
+    await Deno.writeTextFile(usersFile, jsonData);//Här skickar vi det nya jasonObjektet för att läggas till i json filen
+}
 
 class User {
     constructor(username, password) {
@@ -30,16 +36,17 @@ async function handler(request) {
             headers: headers
         });
     }
-
+    //
     if (request.method == "GET") {
+        const allUsers = await loadUsers();
         if (url.pathname == "/login") {
             if (url.searchParams.has("username") && url.searchParams.has("password")) {
                 const usernameValue = url.searchParams.get("username");
                 const passwordValue = url.searchParams.get("password");
-
-                for (let user of allUsers) {
-                    if (usernameValue === user.username) {
-                        if (passwordValue === user.password) {
+                if (usernameValue && passwordValue) {
+                    const user = allUsers.find(u => u.username === usernameValue);
+                    if (user) {
+                        if (user.password === passwordValue) {
                             currentUser = user;
                             console.log(currentUser)
                             return new Response(JSON.stringify(user), {
@@ -47,19 +54,20 @@ async function handler(request) {
                                 headers: headers
                             });
                         } else {
-
                             return new Response(JSON.stringify("Fel lösenord!"), {
                                 status: 401,
                                 headers: headers
                             });
                         };
+                    } else {
+                        return new Response(JSON.stringify("Användarnamnet finns inte, skapa ett konto!"), {
+                            status: 404,
+                            headers: headers
+                        });
+
                     }
                 }
 
-                return new Response(JSON.stringify("Användarnamnet finns inte, skapa ett konto!"), {
-                    status: 404,
-                    headers: headers
-                });
             }
         }
 
@@ -101,6 +109,7 @@ async function handler(request) {
     }
 
     if (request.method === "POST") {
+        const allUsers = await loadUsers();
         if (url.pathname === "/registrering") {
             const inputBody = await request.json();
             const inputUsername = inputBody.username;
@@ -114,20 +123,19 @@ async function handler(request) {
                 });
             }
 
-
-            for (let user of allUsers) {
-                if (user.username == inputUsername) {
-                    return new Response(JSON.stringify("Användarnamnet är upptaget!"), {
-                        status: 409,
-                        headers: headers
-                    });
-                }
+            const existingUser = allUsers.find(u => u.username === inputUsername);
+            if (existingUser) {
+                return new Response(JSON.stringify("Användarnamnet är upptaget!"), {
+                    status: 409,
+                    headers: headers
+                });
             }
 
             currentUser = new User(inputUsername, inputPassword);
             console.log(currentUser, "Den spelaren som precis registrerade sig!");
             allUsers.push(currentUser);
             console.log("Användare i allUsers:", allUsers);
+            await saveUsers(allUsers);
 
             return new Response(JSON.stringify(currentUser), {
                 status: 200,
@@ -146,6 +154,7 @@ async function handler(request) {
     }
 
     if (request.method === "PATCH") {
+        const allUsers = await loadUsers();
         if (url.pathname === "/gameScore") {
             const body = await request.json();
             console.log(body, "värdet vi får i request-body");
@@ -161,12 +170,19 @@ async function handler(request) {
                 });
             }
 
-            currentUser.score += score;
+            const user = allUsers.find(u => u.username === currentUser.username);
+            if (user) {
+                user.score += score;
+                await saveUsers(allUsers);
+                currentUser = user;
+                return new Response(JSON.stringify(`Poäng har uppdaterats för ${currentUser.username}`), {
+                    status: 200,
+                    headers: headers
+                });
+            } else {
+                return new Response(JSON.stringify("Användaren hittades inte i databasen!"), { status: 404, headers });
+            }
 
-            return new Response(JSON.stringify(`Poäng har uppdaterats för ${currentUser.username}`), {
-                status: 200,
-                headers: headers
-            });
         }
     }
 
