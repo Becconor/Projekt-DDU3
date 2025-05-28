@@ -385,6 +385,22 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
                         });
                     }
                     flippedCards = [];
+
+                    let allFlipped = false;
+                    let flippedCount = 0;
+                    const allCards = document.querySelectorAll(".memoryCard");
+
+                    for (let i = 0; i < allCards.length; i++) {
+                        flippedCount++;
+                    }
+
+                    if (flippedCount === allCards.length) {
+                        allFlipped = true;
+                    }
+
+                    if (allFlipped) {
+
+                    }
                 }, 1000)
             }
         });
