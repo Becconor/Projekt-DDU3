@@ -64,5 +64,11 @@
     "password": "odling",
     "level": 0,
     "score": 0
+  },
+  {
+    "username": "hej",
+    "password": "1234",
+    "level": 0,
+    "score": 0
   }
 ]
