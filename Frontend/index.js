@@ -145,24 +145,29 @@ function homePage() {
     mainDOM.innerHTML = ``;
     bodyDOM.removeAttribute("id");
 
-    let myLevel = document.getElementById("myLevel");
-    myLevel.textContent = 1;
+    let myLevel = document.getElementById("level");
+    let levelPoints = document.getElementById("levelPoints");
 
-    let levelPoints = document.getElementById("level");
-    levelPoints.textContent = 1000;
-
-    if (currentUser.score >= 2000) {
-        levelPoints.textContent = 2000;
-        myLevel.textContent = 2;
-    } else if (currentUser.score >= 3000) {
-        levelPoints.textContent = 3000;
-        myLevel.textContent = 3;
-    } else if (currentUser.score >= 4000) {
-        levelPoints.textContent = 4000;
-        myLevel.textContent = 4;
-    } else if (currentUser.score >= 5000) {
+    if (currentUser.score >= 5000) {
+        levelPoints.textContent = ``;
         levelPoints.textContent = 5000;
-        myLevel.textContent = 5;
+        myLevel.textContent = 4;
+    } else if (currentUser.score >= 4000) {
+        levelPoints.textContent = ``;
+        levelPoints.textContent = 4000;
+        myLevel.textContent = 3;
+    } else if (currentUser.score >= 3000) {
+        levelPoints.textContent = ``;
+        levelPoints.textContent = 3000;
+        myLevel.textContent = 2;
+    } else if (currentUser.score >= 2000) {
+        levelPoints.textContent = ``;
+        levelPoints.textContent = 2000;
+        myLevel.textContent = 1;
+    } else if (currentUser.score >= 1000) {
+        levelPoints.textContent = ``;
+        levelPoints.textContent = 1000;
+        myLevel.textContent = 0;
     }
 
     bodyDOM.id = "sites";
@@ -203,21 +208,13 @@ function homePage() {
                 <div id="myScoreBoard">
                     <div id="myLevel">
                         <h3>Level</h3>
-<<<<<<< Updated upstream
                         <h3 id="level">1</h3>
-=======
-                        <h3 id="myLevel">1</h3>
->>>>>>> Stashed changes
                     </div>
 
                     <div id="myPoints">
                         <p>${currentUser.score}</p>
                         <p>/</p>
-<<<<<<< Updated upstream
                         <p id="levelPoints">1000</p>
-=======
-                        <p id="level">${levelPoints}</p>
->>>>>>> Stashed changes
                     </div>
                 </div>
 
@@ -225,23 +222,6 @@ function homePage() {
             </div>
         </div>
     `;
-
-    let myLevel = document.getElementById("level");
-    let levelPoints = document.getElementById("levelPoints");
-
-    if (currentUser.score >= 2000) {
-        levelPoints.textContent = 2000;
-        myLevel.textContent = 2;
-    } else if (currentUser.score >= 3000) {
-        levelPoints.textContent = 3000;
-        myLevel.textContent = 3;
-    } else if (currentUser.score >= 4000) {
-        levelPoints.textContent = 4000;
-        myLevel.textContent = 4;
-    } else if (currentUser.score >= 5000) {
-        levelPoints.textContent = 5000;
-        myLevel.textContent = 5;
-    }
 
     const difficultyButtons = document.querySelectorAll("#levelButtons button");
     const themeButtons = document.querySelectorAll("#categoryButtons button");
