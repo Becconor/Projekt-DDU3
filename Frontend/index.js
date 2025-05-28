@@ -53,7 +53,7 @@ function login() {
                     <button type="button" id="hidePassword">👁️</button>
                 </div>
                 <div class="wrongPasswordDiv">
-                    <p id="wrongPasswordMessage" class="hidden">Fel lösenord!</p>
+                    <p id="wrongPasswordMessage" class="hidden">Wrong password!</p>
                 </div>
             </div>
 
@@ -145,6 +145,21 @@ function homePage() {
     mainDOM.innerHTML = ``;
     bodyDOM.removeAttribute("id");
 
+
+    if (currentUser.score >= 2000) {
+        levelPoints.textContent = 2000;
+        myLevel.textContent = 2;
+    } else if (currentUser.score >= 3000) {
+        levelPoints.textContent = 3000;
+        myLevel.textContent = 3;
+    } else if (currentUser.score >= 4000) {
+        levelPoints.textContent = 4000;
+        myLevel.textContent = 4;
+    } else if (currentUser.score >= 5000) {
+        levelPoints.textContent = 5000;
+        myLevel.textContent = 5;
+    }
+
     bodyDOM.id = "sites";
     headerDOM.id = "logotype";
     titleDOM.id = "titleH2";
@@ -183,13 +198,13 @@ function homePage() {
                 <div id="myScoreBoard">
                     <div id="myLevel">
                         <h3>Level</h3>
-                        <h3 id="level">1</h3>
+                        <h3 id="myLevel">1</h3>
                     </div>
 
                     <div id="myPoints">
                         <p>${currentUser.score}</p>
                         <p>/</p>
-                        <p id="levelPoints">1000</p>
+                        <p id="levelPoints">${levelPoints}</p>
                     </div>
                 </div>
 
@@ -198,24 +213,24 @@ function homePage() {
         </div>
     `;
 
-    let myLevel = document.getElementById("level");
+    let myLevel = document.getElementById("myLevel");
     let levelPoints = document.getElementById("levelPoints");
+    myLevel.textContent = 1;
 
-    if (currentUser.score >= 4000) {
-        levelPoints.textContent = 5000;
-        myLevel.textContent = 4;
-    } else if (currentUser.score >= 3000) {
-        levelPoints.textContent = 4000;
-        myLevel.textContent = 3;
-    } else if (currentUser.score >= 2000) {
-        levelPoints.textContent = 3000;
-        myLevel.textContent = 2;
-    } else if (currentUser.score >= 1000) {
+    levelPoints.textContent = 1000;
+
+    if (currentUser.score >= 2000) {
         levelPoints.textContent = 2000;
-        myLevel.textContent = 1;
-    } else {
-        levelPoints.textContent = 1000;
-        myLevel.textContent = 0;
+        myLevel.textContent = 2;
+    } else if (currentUser.score >= 3000) {
+        levelPoints.textContent = 3000;
+        myLevel.textContent = 3;
+    } else if (currentUser.score >= 4000) {
+        levelPoints.textContent = 4000;
+        myLevel.textContent = 4;
+    } else if (currentUser.score >= 5000) {
+        levelPoints.textContent = 5000;
+        myLevel.textContent = 5;
     }
 
     const difficultyButtons = document.querySelectorAll("#levelButtons button");
@@ -452,12 +467,6 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
 
         gamePlan.append(cardDiv);
     }
-
-    gameButton.addEventListener("click", function () {
-        homePage();
-        return
-    });
-
 }
 
 

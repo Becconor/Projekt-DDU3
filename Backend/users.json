@@ -2,8 +2,8 @@
   {
     "username": "Test",
     "password": "test",
-    "score": 2100,
-    "level": 0
+    "score": 0,
+    "level": 1
   },
   {
     "username": "Test2",
@@ -22,5 +22,17 @@
     "password": "JJ98",
     "level": 1,
     "score": 600
+  },
+  {
+    "username": "Mumin ",
+    "password": "Mumin123",
+    "level": 1,
+    "score": 0
+  },
+  {
+    "username": "Mumin",
+    "password": "Mumin123",
+    "level": 1,
+    "score": 0
   }
 ]

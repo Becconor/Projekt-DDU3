@@ -36,7 +36,7 @@ async function handler(request) {
             headers: headers
         });
     }
-    
+    //
     if (request.method == "GET") {
         const allUsers = await loadUsers();
         if (url.pathname == "/login") {
