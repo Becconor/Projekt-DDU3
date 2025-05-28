@@ -388,10 +388,15 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
                         // här får vi matchen
                         firstCard.cardData.flipStatusTrue();
                         secondCard.cardData.flipStatusTrue();
+
+                        firstCard.style.transform = "rotateY(180deg)"
+                        secondCard.style.transform = "rotateY(180deg)"
                     } else {
                         firstCard.cardData.flipStatusFalse();
                         secondCard.cardData.flipStatusFalse();
 
+                        firstCard.style.transform = "rotateY(180deg)"
+                        secondCard.style.transform = "rotateY(180deg)"
                         firstCard.style.backgroundImage = "url(`img/backside.png`)";
                         secondCard.style.backgroundImage = "url(`img/backside.png`)";
 
