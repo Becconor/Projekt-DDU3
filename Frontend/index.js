@@ -500,7 +500,7 @@ async function POSTHandlerRegistration(username, password, password2) {
     });
 
     if (response.status === 200) {
-        // alert("User registered successfully! Please log in.");
+
         login()
     } else if (response.status === 409) {
         alert("1. Användaren finns redan!");
@@ -520,7 +520,6 @@ async function GETLogin(username, password) {
     // document.body.appendChild(message);
 
     if (response.status === 200) {
-        // alert("Login was successful!");
         // message.textContent = "2. Inloggning genomförd!";
         await GETCurrentUser();
         homePage();
@@ -575,7 +574,6 @@ async function PATCHScore(username, score) {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        // alert("4. Poäng har adderats till totalpoängen för användaren!");
         console.log("Poängen har uppdaterats för användaren");
 
         // message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
@@ -605,7 +603,7 @@ async function PATCHExitGame(username) {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        alert("Spel avbrutet, poängen uppdaterades ej.");
+
         // message.textContent = "5. Spel avbrutet, poängen uppdaterades ej.";
     } else if (response.status === 404) {
         alert("Något gick fel vid avslut.");
