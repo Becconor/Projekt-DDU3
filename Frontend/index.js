@@ -52,6 +52,9 @@ function login() {
                     <input type="password" placeholder="Password" id="password">
                     <button type="button" id="hidePassword">👁️</button>
                 </div>
+                <div class="wrongPasswordDiv">
+                    <p id="wrongPasswordMessage" class="hidden">Fel lösenord!</p>
+                </div>
             </div>
 
             <button id="signIn" class="loginButtons">SIGN IN</button>
@@ -477,8 +480,9 @@ async function GETLogin(username, password) {
         await GETCurrentUser();
         homePage();
     } else if (response.status === 401) {
-        alert("Fel lösenord!");
-        // message.textContent = "2. Fel lösenord!";
+
+        document.getElementById("inputPassword").value = "";
+        document.getElementById("wrongPasswordMessage").classList.remove("hidden");
         console.log(user);
     } else if (response.status === 404) {
         alert("Användarnamnet finns inte, skapa ett konto!");
