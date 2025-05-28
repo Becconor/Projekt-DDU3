@@ -2,8 +2,8 @@
   {
     "username": "Test",
     "password": "test",
-    "score": 0,
-    "level": 1
+    "score": 1000,
+    "level": 0
   },
   {
     "username": "Test2",

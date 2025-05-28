@@ -198,13 +198,13 @@ function homePage() {
                 <div id="myScoreBoard">
                     <div id="myLevel">
                         <h3>Level</h3>
-                        <h3 id="myLevel">1</h3>
+                        <h3 id="level">0</h3>
                     </div>
 
                     <div id="myPoints">
                         <p>${currentUser.score}</p>
                         <p>/</p>
-                        <p id="levelPoints">${levelPoints}</p>
+                        <p id="levelPoints">0</p>
                     </div>
                 </div>
 
@@ -213,24 +213,24 @@ function homePage() {
         </div>
     `;
 
-    let myLevel = document.getElementById("myLevel");
+    let level = document.getElementById("level");
     let levelPoints = document.getElementById("levelPoints");
-    myLevel.textContent = 1;
 
-    levelPoints.textContent = 1000;
-
-    if (currentUser.score >= 2000) {
-        levelPoints.textContent = 2000;
-        myLevel.textContent = 2;
-    } else if (currentUser.score >= 3000) {
-        levelPoints.textContent = 3000;
-        myLevel.textContent = 3;
-    } else if (currentUser.score >= 4000) {
-        levelPoints.textContent = 4000;
-        myLevel.textContent = 4;
-    } else if (currentUser.score >= 5000) {
+    if (currentUser.score >= 4000) {
         levelPoints.textContent = 5000;
-        myLevel.textContent = 5;
+        level.textContent = 4;
+    } else if (currentUser.score >= 3000) {
+        levelPoints.textContent = 4000;
+        level.textContent = 3;
+    } else if (currentUser.score >= 2000) {
+        levelPoints.textContent = 3000;
+        level.textContent = 2;
+    } else if (currentUser.score >= 1000) {
+        levelPoints.textContent = 2000;
+        level.textContent = 1;
+    } else {
+        levelPoints.textContent = 1000;
+        level.textContent = 0;
     }
 
     const difficultyButtons = document.querySelectorAll("#levelButtons button");
