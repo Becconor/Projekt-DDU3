@@ -1,4 +1,3 @@
-
 import { loadUsers, saveUsers } from "./fileUtils.js";
 
 class User {

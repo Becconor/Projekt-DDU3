@@ -1,5 +1,5 @@
 class Card {
-    constructor(url, id, theme) {
+    constructor(url, theme) {
         this.url = url;
         this.theme = theme;
         this.flipped = false;
@@ -313,7 +313,7 @@ async function ranking() {
 async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
-    titleDOM.textContent = `Wrong Moves Left: 6`;
+    titleDOM.textContent = `Wrong Moves Left: 8`;
 
     mainDOM.innerHTML = `
         <div id="gamePlan"></div>
@@ -329,7 +329,7 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
     const gameButton = document.getElementById("gameButton");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
-    let wrongMovesLeft = 6;
+    let wrongMovesLeft = 8;
 
     const points = Number(selectedPoints);
 
@@ -464,12 +464,6 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
         return
     });
 }
-
-
-
-
-
-
 
 
 
