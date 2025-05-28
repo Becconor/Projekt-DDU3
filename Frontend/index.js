@@ -520,7 +520,7 @@ async function GETLogin(username, password) {
     // document.body.appendChild(message);
 
     if (response.status === 200) {
-        alert("Login was successful!");
+        // alert("Login was successful!");
         // message.textContent = "2. Inloggning genomförd!";
         await GETCurrentUser();
         homePage();
