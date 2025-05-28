@@ -525,7 +525,7 @@ async function GETCurrentUser() {
     } else if (response.status === 400) {
         alert("Användar information för profilen är uppdaterad");
 
-        message.textContent = `3. Ingen användare är inloggad`;
+        // message.textContent = `3. Ingen användare är inloggad`;
         console.log(`3.`, data);
     }
 }
@@ -545,11 +545,17 @@ async function PATCHScore(username, score) {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
+        alert("4. Poäng har adderats till totalpoängen för användaren!");
+
+        // message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
     } else if (response.status === 404) {
-        message.textContent = "4. Användaren hittades inte!";
+        alert("4. Användaren hittades inte!");
+
+        // message.textContent = "4. Användaren hittades inte!";
     } else {
-        message.textContent = "4. Något gick fel!";
+        alert("4. Något gick fel!");
+
+        // message.textContent = "4. Något gick fel!";
     }
 }
 
