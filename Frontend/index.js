@@ -167,6 +167,7 @@ function homePage() {
         </div>
 
         <div id="playButton" class="mainContent">
+            <p id="onlyOneCategory" class="hidden">Please select both a difficulty and a theme!</p>
             <button class="buttons" id="playNow">PLAY</button> 
         </div>
     `;
@@ -248,7 +249,8 @@ function homePage() {
     const playButton = document.getElementById("playNow")
     playButton.addEventListener("click", function () {
         if (!selectedDifficulty || !selectedTheme) {
-            alert("Please select both a difficulty and a theme!");
+
+            document.getElementById("onlyOneCategory").classList.remove("hidden");
             return;
         }
 
