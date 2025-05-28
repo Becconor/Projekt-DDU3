@@ -207,6 +207,10 @@ header {
     border-bottom: 1px solid black;
 }
 
+#logOutButton:hover {
+    color: rgb(90, 85, 85);
+}
+
 #info {
     display: flex;
     justify-content: center;
