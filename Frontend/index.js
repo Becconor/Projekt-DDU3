@@ -424,24 +424,6 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
 
         gamePlan.append(cardDiv);
     }
-
-
-
-
-
-
-    //Lägg till addventListener till 
-
-    const exitButton = document.getElementById("gameButton")
-    exitButton.addEventListener("click", function () {
-        // if () {
-        //     PATCHScore();
-        //     homePage();
-        // } else {
-        PATCHExitGame();
-        homePage();
-        // }
-    });
 }
 
 
