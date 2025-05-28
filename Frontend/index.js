@@ -567,7 +567,8 @@ async function PATCHScore(username, score) {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        alert("4. Poäng har adderats till totalpoängen för användaren!");
+        // alert("4. Poäng har adderats till totalpoängen för användaren!");
+        console.log("Poängen har uppdaterats för användaren");
 
         // message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
     } else if (response.status === 404) {
