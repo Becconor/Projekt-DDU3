@@ -145,21 +145,6 @@ function homePage() {
     mainDOM.innerHTML = ``;
     bodyDOM.removeAttribute("id");
 
-
-    if (currentUser.score >= 2000) {
-        levelPoints.textContent = 2000;
-        myLevel.textContent = 2;
-    } else if (currentUser.score >= 3000) {
-        levelPoints.textContent = 3000;
-        myLevel.textContent = 3;
-    } else if (currentUser.score >= 4000) {
-        levelPoints.textContent = 4000;
-        myLevel.textContent = 4;
-    } else if (currentUser.score >= 5000) {
-        levelPoints.textContent = 5000;
-        myLevel.textContent = 5;
-    }
-
     bodyDOM.id = "sites";
     headerDOM.id = "logotype";
     titleDOM.id = "titleH2";
