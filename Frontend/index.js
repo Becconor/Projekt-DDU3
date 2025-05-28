@@ -324,6 +324,7 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
     `;
 
     const gamePlan = document.getElementById("gamePlan");
+    const gameButton = document.getElementById("gameButton");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
     let wrongMovesLeft = 6;
@@ -452,6 +453,10 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
 
         gamePlan.append(cardDiv);
     }
+    gameButton.addEventListener("click", function () {
+        homePage();
+        return
+    });
 }
 
 

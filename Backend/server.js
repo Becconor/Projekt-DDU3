@@ -14,7 +14,7 @@ class User {
     constructor(username, password) {
         this.username = username;
         this.password = password;
-        this.level = 1;
+        this.level = 0;
         this.score = 0;
     }
 }
