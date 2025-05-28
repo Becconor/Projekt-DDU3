@@ -500,7 +500,7 @@ async function POSTHandlerRegistration(username, password, password2) {
     });
 
     if (response.status === 200) {
-        alert("User registered successfully! Please log in.");
+        // alert("User registered successfully! Please log in.");
         login()
     } else if (response.status === 409) {
         alert("1. Användaren finns redan!");
