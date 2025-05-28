@@ -402,8 +402,8 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
                         `;
 
                         gameButton.textContent = `Collect Points`;
-                        gameButton.addEventListener("click", function () {
-                            PATCHScore(currentUser.username, points);
+                        gameButton.addEventListener("click", async function () {
+                            await PATCHScore(currentUser.username, points);
                             homePage();
                             return
                         });
