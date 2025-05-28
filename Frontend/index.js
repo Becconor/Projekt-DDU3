@@ -1,5 +1,5 @@
 class Card {
-    constructor(url, theme) {
+    constructor(url, id, theme) {
         this.url = url;
         this.theme = theme;
         this.flipped = false;
@@ -51,6 +51,9 @@ function login() {
                 <div id="inputPassword">
                     <input type="password" placeholder="Password" id="password">
                     <button type="button" id="hidePassword">👁️</button>
+                </div>
+                <div class="wrongPasswordDiv">
+                    <p id="wrongPasswordMessage" class="hidden">Fel lösenord!</p>
                 </div>
             </div>
 
@@ -152,9 +155,9 @@ function homePage() {
 
     mainDOM.innerHTML = `
         <div id="levelButtons" class="mainContent">
-            <button value="4" data-points="4" class="buttons" class="difficultyButton" id="easy">EASY</button>
-            <button value="6" data-points="4" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
-            <button value="8" data-points="4" class="buttons" class="difficultyButton"  id="hard">HARD</button>
+            <button value="4" data-points="100" class="buttons" class="difficultyButton" id="easy">EASY</button>
+            <button value="6" data-points="200" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
+            <button value="8" data-points="300" class="buttons" class="difficultyButton"  id="hard">HARD</button>
         </div>
 
         <div id="categoryButtons" class="mainContent">
@@ -200,14 +203,14 @@ function homePage() {
 
     let selectedDifficulty = null;
     let selectedTheme = null;
-    let selectedChances = null;
+    let selectedPoints = null;
 
     difficultyButtons.forEach(button => {
         button.addEventListener("click", function () {
             difficultyButtons.forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
             selectedDifficulty = this.value;
-            selectedChances = this.dataset.points;
+            selectedPoints = this.dataset.points;
         });
     });
 
@@ -232,7 +235,7 @@ function homePage() {
         console.log("numPairs:", selectedDifficulty);
         console.log("Theme:", selectedTheme);
 
-        playGame(selectedDifficulty, selectedTheme, selectedChances);
+        playGame(selectedDifficulty, selectedTheme, selectedPoints);
     });
 
     logOutButton.addEventListener("click", function () {
@@ -285,10 +288,10 @@ async function ranking() {
 }
 
 
-async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
+async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
-    titleDOM.textContent = `Chances left: 4`;
+    titleDOM.textContent = `Wrong Moves Left: 6`;
 
     mainDOM.innerHTML = `
         <div id="gamePlan"></div>
@@ -296,35 +299,18 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
 
     footerDOM.innerHTML = `
         <div id="gameFooter">
-        <button id="gameButton">Exit game! / Game over! / Collect points!</button>
+        <button id="gameButton">Exit game</button>
         </div>
     `;
 
     const gamePlan = document.getElementById("gamePlan");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
-    let chancesLeft = Number(selectedChances);
+    let wrongMovesLeft = 6;
+
+    const points = Number(selectedPoints);
 
     let images = [];
-
-    async function getImage(animal) {
-        if (animal === "dog") {
-            const response = await fetch("https://dog.ceo/api/breeds/image/random");
-            const data = await response.json();
-            console.log(data.message);
-            return data.message;
-        }
-        if (animal === "fox") {
-            const response = await fetch("https://randomfox.ca/floof/");
-            const data = await response.json();
-            return data.image;
-        }
-        if (animal === "cat") {
-            const response = await fetch("https://api.thecatapi.com/v1/images/search");
-            const data = await response.json();
-            return data[0].url;
-        }
-    }
 
     //Lägg till skapandet av korten här
 
@@ -388,43 +374,59 @@ async function playGame(selectedDifficulty, selectedTheme, selectedChances) {
                         firstCard.style.backgroundImage = "url(`img/backside.png`)";
                         secondCard.style.backgroundImage = "url(`img/backside.png`)";
 
-                        chancesLeft--;
-                        titleDOM.textContent = "Chances left: " + chancesLeft;
+                        wrongMovesLeft--;
+                        titleDOM.textContent = "Wrong Moves Left: " + wrongMovesLeft;
+                    }
+
+                    flippedCards = [];
+
+                    let allFlipped = false;
+                    let flippedCount = 0;
+                    const allCards = document.querySelectorAll(".memoryCard");
+
+                    for (let i = 0; i < allCards.length; i++) {
+                        if (allCards[i].cardData.flipped) {
+                            flippedCount++;
+                        }
+                    }
+
+                    if (flippedCount === allCards.length) {
+                        allFlipped = true;
+                    }
+
+                    if (allFlipped) {
+                        mainDOM.innerHTML = ``;
+                        mainDOM.innerHTML = `
+                        <h1>You Win!</h1>
+                        <h2>Collect Points Down Below</h2>
+                        `;
+
+                        gameButton.textContent = `Collect Points`;
+                        gameButton.addEventListener("click", function () {
+                            PATCHScore(currentUser.username, points);
+                            homePage();
+                            return
+                        });
+                    } else if (wrongMovesLeft === 0) {
+                        mainDOM.innerHTML = ``;
+                        mainDOM.innerHTML = `
+                        <h1>You Have Used All Your Wrong Moves</h1>
+                        <h2>Please Exit Down Below</h2>
+                        `;
+
+                        gameButton.textContent = `Game Over`;
+                        gameButton.addEventListener("click", function () {
+                            homePage();
+                            return
+                        });
 
                     }
-                    if (chancesLeft <= 0) {
-                        alert("Game over");
-                        homePage()
-                        return
-                    }
-                    flippedCards = [];
                 }, 1000)
             }
         });
 
-
-
-
         gamePlan.append(cardDiv);
     }
-
-
-
-
-
-
-    //Lägg till addventListener till 
-
-    const exitButton = document.getElementById("gameButton")
-    exitButton.addEventListener("click", function () {
-        // if () {
-        //     PATCHScore();
-        //     homePage();
-        // } else {
-        PATCHExitGame();
-        homePage();
-        // }
-    });
 }
 
 
@@ -493,8 +495,9 @@ async function GETLogin(username, password) {
         await GETCurrentUser();
         homePage();
     } else if (response.status === 401) {
-        alert("Fel lösenord!");
-        // message.textContent = "2. Fel lösenord!";
+
+        document.getElementById("inputPassword").value = "";
+        document.getElementById("wrongPasswordMessage").classList.remove("hidden");
         console.log(user);
     } else if (response.status === 404) {
         alert("Användarnamnet finns inte, skapa ett konto!");
@@ -597,7 +600,7 @@ async function POSTLogout() {
         console.log(`7. ${logOutMessage}`)
     }
 
-} 
+}
 
 
 login();

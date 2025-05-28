@@ -66,6 +66,11 @@ header {
     box-sizing: border-box;
 }
 
+.hidden {
+    display: none;
+    color: black;
+}
+
 .loginButtons {
     background-color: rgb(252, 179, 75);
     border-radius: 5px;

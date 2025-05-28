@@ -47,6 +47,7 @@ async function handler(request) {
                                 headers: headers
                             });
                         } else {
+
                             return new Response(JSON.stringify("Fel lösenord!"), {
                                 status: 401,
                                 headers: headers
