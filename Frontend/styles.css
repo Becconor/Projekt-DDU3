@@ -310,6 +310,7 @@ header {
     display: grid;
     grid-template-columns: repeat(4, 100px);
     gap: 10px;
+    padding: 50px;
 }
 
 .memoryCard {
@@ -337,4 +338,8 @@ header {
     font-size: 25px;
     font-weight: bold;
     text-align: center;
+}
+
+#onlyOneCategory {
+    width: 200px;
 }
