@@ -322,6 +322,11 @@ header {
     background-size: cover;
 }
 
+.flip {
+    transform: rotateY(180deg);
+    transition: transform 0.4s;
+}
+
 .finishedGameMessages {
     display: flex;
     flex-direction: column;
