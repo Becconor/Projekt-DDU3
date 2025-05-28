@@ -53,7 +53,7 @@ function login() {
                     <button type="button" id="hidePassword">👁️</button>
                 </div>
                 <div class="wrongPasswordDiv">
-                    <p id="wrongPasswordMessage" class="hidden">Fel lösenord!</p>
+                    <p id="wrongPasswordMessage" class="hidden">Wrong password!</p>
                 </div>
             </div>
 
@@ -145,11 +145,6 @@ function homePage() {
     mainDOM.innerHTML = ``;
     bodyDOM.removeAttribute("id");
 
-    let myLevel = document.getElementById("myLevel");
-    myLevel.textContent = 1;
-
-    let levelPoints = document.getElementById("level");
-    levelPoints.textContent = 1000;
 
     if (currentUser.score >= 2000) {
         levelPoints.textContent = 2000;
@@ -203,21 +198,13 @@ function homePage() {
                 <div id="myScoreBoard">
                     <div id="myLevel">
                         <h3>Level</h3>
-<<<<<<< Updated upstream
-                        <h3 id="level">1</h3>
-=======
                         <h3 id="myLevel">1</h3>
->>>>>>> Stashed changes
                     </div>
 
                     <div id="myPoints">
                         <p>${currentUser.score}</p>
                         <p>/</p>
-<<<<<<< Updated upstream
-                        <p id="levelPoints">1000</p>
-=======
-                        <p id="level">${levelPoints}</p>
->>>>>>> Stashed changes
+                        <p id="levelPoints">${levelPoints}</p>
                     </div>
                 </div>
 
@@ -226,8 +213,11 @@ function homePage() {
         </div>
     `;
 
-    let myLevel = document.getElementById("level");
+    let myLevel = document.getElementById("myLevel");
     let levelPoints = document.getElementById("levelPoints");
+    myLevel.textContent = 1;
+
+    levelPoints.textContent = 1000;
 
     if (currentUser.score >= 2000) {
         levelPoints.textContent = 2000;
