@@ -150,20 +150,40 @@ header {
     background-color: plum;
 }
 
+.buttons:hover {
+    background-color: rgb(181, 132, 181);
+}
+
 #easy {
     background-color: greenyellow;
+}
+
+#easy:hover {
+    background-color: rgb(138, 203, 39);
 }
 
 #medium {
     background-color: yellow;
 }
 
+#medium:hover {
+    background-color: rgb(214, 214, 4);
+}
+
 #hard {
     background-color: red;
 }
 
+#hard:hover {
+    background-color: rgba(184, 0, 0, 0.759);
+}
+
 #playNow {
     background-color: rgb(252, 179, 75);
+}
+
+#playNow:hover {
+    background-color: rgb(224, 159, 69);
 }
 
 #footerContainer {
