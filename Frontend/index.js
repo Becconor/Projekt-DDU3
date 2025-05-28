@@ -201,24 +201,19 @@ function homePage() {
     let myLevel = document.getElementById("level");
     let levelPoints = document.getElementById("levelPoints");
 
-    if (currentUser.score >= 5000) {
-        levelPoints.textContent = ``;
+    if (currentUser.score >= 4000) {
         levelPoints.textContent = 5000;
         myLevel.textContent = 4;
-    } else if (currentUser.score >= 4000) {
-        levelPoints.textContent = ``;
+    } else if (currentUser.score >= 3000) {
         levelPoints.textContent = 4000;
         myLevel.textContent = 3;
-    } else if (currentUser.score >= 3000) {
-        levelPoints.textContent = ``;
+    } else if (currentUser.score >= 2000) {
         levelPoints.textContent = 3000;
         myLevel.textContent = 2;
-    } else if (currentUser.score >= 2000) {
-        levelPoints.textContent = ``;
+    } else if (currentUser.score >= 1000) {
         levelPoints.textContent = 2000;
         myLevel.textContent = 1;
-    } else if (currentUser.score >= 1000) {
-        levelPoints.textContent = ``;
+    } else {
         levelPoints.textContent = 1000;
         myLevel.textContent = 0;
     }
