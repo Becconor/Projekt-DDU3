@@ -2,20 +2,20 @@
   {
     "username": "Test",
     "password": "test",
-    "score": 1000,
-    "level": 0
+    "level": 0,
+    "score": 1000
   },
   {
     "username": "Test2",
     "password": "test2",
-    "score": 300,
-    "level": 3
+    "level": 4,
+    "score": 4500
   },
   {
     "username": "Test3",
     "password": "test3",
-    "score": 200,
-    "level": 2
+    "level": 3,
+    "score": 3200
   },
   {
     "username": "RebeccaJJ",
