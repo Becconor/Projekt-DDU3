@@ -375,19 +375,6 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
                         titleDOM.textContent = "Wrong Moves Left: " + wrongMovesLeft;
                     }
 
-                    if (wrongMovesLeft === 0) {
-                        mainDOM.innerHTML = ``;
-                        mainDOM.innerHTML = `
-                        <h1>You Have Used All Your Wrong Moves</h1>
-                        <h2>Please Exit Down Below</h2>
-                        `;
-
-                        gameButton.textContent = `Game Over`;
-                        gameButton.addEventListener("click", function () {
-                            homePage();
-                            return
-                        });
-                    }
                     flippedCards = [];
 
                     let allFlipped = false;
@@ -395,7 +382,9 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
                     const allCards = document.querySelectorAll(".memoryCard");
 
                     for (let i = 0; i < allCards.length; i++) {
-                        flippedCount++;
+                        if (allCards[i].cardData.flipped) {
+                            flippedCount++;
+                        }
                     }
 
                     if (flippedCount === allCards.length) {
@@ -415,6 +404,19 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
                             homePage();
                             return
                         });
+                    } else if (wrongMovesLeft === 0) {
+                        mainDOM.innerHTML = ``;
+                        mainDOM.innerHTML = `
+                        <h1>You Have Used All Your Wrong Moves</h1>
+                        <h2>Please Exit Down Below</h2>
+                        `;
+
+                        gameButton.textContent = `Game Over`;
+                        gameButton.addEventListener("click", function () {
+                            homePage();
+                            return
+                        });
+
                     }
                 }, 1000)
             }
