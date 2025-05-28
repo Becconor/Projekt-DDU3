@@ -288,7 +288,7 @@ async function ranking() {
 async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
-    titleDOM.textContent = `Chances: 4`;
+    titleDOM.textContent = `Wrong Moves Left: 4`;
 
     mainDOM.innerHTML = `
         <div id="gamePlan"></div>
@@ -296,14 +296,14 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
 
     footerDOM.innerHTML = `
         <div id="gameFooter">
-        <button id="gameButton">Exit game!/ Collect points!</button>
+        <button id="gameButton">Exit game</button>
         </div>
     `;
 
     const gamePlan = document.getElementById("gamePlan");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
-    let chancesLeft = 4;
+    let wrongMovesLeft = 4;
 
     const points = Number(selectedPoints);
 
@@ -371,14 +371,18 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
                         firstCard.style.backgroundImage = "url(`img/backside.png`)";
                         secondCard.style.backgroundImage = "url(`img/backside.png`)";
 
-                        chancesLeft--;
-                        titleDOM.textContent = "Chances: " + chancesLeft;
+                        wrongMovesLeft--;
+                        titleDOM.textContent = "Wrong Moves Left: " + wrongMovesLeft;
                     }
 
-                    if (chancesLeft === 0) {
+                    if (wrongMovesLeft === 0) {
                         mainDOM.innerHTML = ``;
+                        mainDOM.innerHTML = `
+                        <h1>You Have Used All Your Wrong Moves</h1>
+                        <h2>Please Exit Down Below</h2>
+                        `;
 
-                        mainDOM.innerHTML = `<h1>Game Over!</h1>`;
+                        gameButton.textContent = `Game Over`;
                         gameButton.addEventListener("click", function () {
                             homePage();
                             return
