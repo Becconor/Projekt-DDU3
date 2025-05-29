@@ -284,6 +284,13 @@ async function ranking() {
 
     const listDOM = document.getElementById("list");
 
+    if (players.length === 0) {
+        const errorMessage = document.createElement("h2");
+        errorMessage.textContent = "Gick inte att hämta lista";
+        listDOM.style.textAlign = "center";
+        listDOM.appendChild(errorMessage);
+    }
+
     for (let i = 0; i < players.length; i++) {
         const user = players[i];
         listDOM.innerHTML += `
@@ -296,6 +303,7 @@ async function ranking() {
                 <h2>${user.score}p</h2>
             </div>
         `;
+
     }
 
     const topPlayButton = document.getElementById("topPlayButton");
@@ -531,11 +539,11 @@ async function GETLogin(username, password) {
 
         document.getElementById("inputPassword").value = "";
         document.getElementById("wrongPasswordMessage").classList.remove("hidden");
-        console.log(user);
+        // console.log(user);
     } else if (response.status === 404) {
         alert("Användarnamnet finns inte, skapa ett konto!");
         // message.textContent = "2. Användarnamnet finns inte, skapa ett konto!";
-        console.log(user);
+        // console.log(user);
     }
 }
 
@@ -551,15 +559,15 @@ async function GETCurrentUser() {
 
     if (response.status === 200) {
         // message.textContent = `3. Användar information för profilen är uppdaterad`;
-        console.log(`3.`, data);
+        // console.log(`3.`, data);
         currentUser = data
     } else if (response.status === 400) {
         const errorMessage = await response.json();
-        console.log(errorMessage);
+        // console.log(errorMessage);
         alert(errorMessage);
 
         // message.textContent = `3. Ingen användare är inloggad`;
-        console.log(`3.`, data);
+        // console.log(`3.`, data);
     }
 }
 
@@ -579,17 +587,17 @@ async function PATCHScore(username, score) {
 
     if (response.status === 200) {
         // alert("4. Poäng har adderats till totalpoängen för användaren!");
-        console.log("Poängen har uppdaterats för användaren");
+        //console.log("Poängen har uppdaterats för användaren");
 
-        // message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
+        message.textContent = "Poäng har adderats till totalpoängen för användaren!";
     } else if (response.status === 404) {
-        alert("4. Användaren hittades inte!");
+        // alert("4. Användaren hittades inte!");
 
-        // message.textContent = "4. Användaren hittades inte!";
+        message.textContent = "Användaren hittades inte!";
     } else {
-        alert("4. Något gick fel!");
+        // alert("4. Något gick fel!");
 
-        // message.textContent = "4. Något gick fel!";
+        message.textContent = "Något gick fel!";
     }
 }
 
@@ -608,11 +616,11 @@ async function PATCHExitGame(username) {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        alert("Spel avbrutet, poängen uppdaterades ej.");
-        // message.textContent = "5. Spel avbrutet, poängen uppdaterades ej.";
+        //alert("Spel avbrutet, poängen uppdaterades ej.");
+        message.textContent = "Spel avbrutet, poängen uppdaterades ej.";
     } else if (response.status === 404) {
-        alert("Något gick fel vid avslut.");
-        // message.textContent = "5. Något gick fel vid avslut.";
+        //alert("Något gick fel vid avslut.");
+        message.textContent = "Något gick fel vid avslut.";
     }
 }
 
@@ -624,7 +632,7 @@ async function GETHandlerAllUsers() {
         console.log("6. Någonting gick fel!");
     } else {
         const rankning = await response.json();
-        console.log("6. Alla användare är rankade!");
+        // console.log("6. Alla användare är rankade!");
         return rankning;
     }
 }
