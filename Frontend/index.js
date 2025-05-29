@@ -581,24 +581,9 @@ async function PATCHScore(username, score) {
         }),
     });
 
-    const message = document.createElement("p");
-    message.id = "p-alert";
-    document.body.appendChild(message);
-
-    if (response.status === 200) {
-        // alert("4. Poäng har adderats till totalpoängen för användaren!");
-        //console.log("Poängen har uppdaterats för användaren");
-
-        message.textContent = "Poäng har adderats till totalpoängen för användaren!";
-    } else if (response.status === 404) {
-        // alert("4. Användaren hittades inte!");
-
-        message.textContent = "Användaren hittades inte!";
-    } else {
-        // alert("4. Något gick fel!");
-
-        message.textContent = "Något gick fel!";
-    }
+    if (!response.ok) {
+        alert("Något gick fel!");
+    } 
 }
 
 
