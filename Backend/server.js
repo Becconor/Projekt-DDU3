@@ -29,15 +29,18 @@ async function handler(request) {
     //
     if (request.method == "GET") {
         const allUsers = await loadUsers();
+
         if (url.pathname == "/login") {
             if (url.searchParams.has("username") && url.searchParams.has("password")) {
                 const usernameValue = url.searchParams.get("username");
                 const passwordValue = url.searchParams.get("password");
+
                 if (usernameValue && passwordValue) {
                     const user = allUsers.find(u => u.username === usernameValue);
+
                     if (user) {
                         if (user.password === passwordValue) {
-                            currentUser = user;
+                            // currentUser = user;
                             // console.log(currentUser)
                             return new Response(null, {
                                 status: 200,
@@ -65,7 +68,7 @@ async function handler(request) {
         if (url.pathname === "/profil") {
             if (!currentUser) {
                 return new Response(JSON.stringify("Ingen användare är inloggad"), {
-                    status: 400,
+                    status: 401,
                     headers: headers
                 });
             }
