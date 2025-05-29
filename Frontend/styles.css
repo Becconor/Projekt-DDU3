@@ -1,0 +1,318 @@
+* {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#loginSite,
+#login,
+#inputBox,
+#registerUser,
+#sites {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#loginSite {
+    height: 100vh;
+    background-image: linear-gradient(to right, #fcb34b, #ffffff, #fcb34b);
+}
+
+header {
+    color: #fcb34b;
+    font-size: 22px;
+    padding-top: 150px;
+}
+
+#login {
+    justify-content: center;
+    gap: 10px;
+    width: 300px;
+    padding-top: 100px;
+    box-sizing: border-box;
+}
+
+#login h2 {
+    font-weight: 100;
+    font-size: 26px;
+    padding-bottom: 10px;
+}
+
+#inputBox {
+    width: 300px;
+    justify-content: center;
+    gap: 10px;
+}
+
+.inputs,
+#password {
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+}
+
+#inputPassword {
+    display: flex;
+    gap: 5px;
+    width: 300px;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none;
+    color: #000000;
+}
+
+.loginButtons {
+    background-color: #fcb34b;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bolder;
+}
+
+.loginButtons:hover {
+    background-color: #e4a244;
+}
+
+#registerButton {
+    width: 250px;
+}
+
+#registerUser {
+    gap: 10px;
+    padding-top: 150px;
+}
+
+#back {
+    margin-top: 135px;
+    box-sizing: border-box;
+}
+
+#sites {
+    height: 100vh;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+#logotype {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    padding: 0;
+    height: 10%;
+}
+
+#titleH2 {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    height: 7%;
+}
+
+#chooseGame {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    height: 63%;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    padding: 0 50px;
+}
+
+.buttons {
+    width: 200px;
+    height: 100px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #dda0dd;
+}
+
+.buttons:hover {
+    background-color: #b584b5;
+}
+
+#easy {
+    background-color: #adff2f;
+}
+
+#easy:hover {
+    background-color: #8acb27;
+}
+
+#medium {
+    background-color: #ffff00;
+}
+
+#medium:hover {
+    background-color: #d6d604;
+}
+
+#hard {
+    background-color: #ff0000;
+}
+
+#hard:hover {
+    background-color: #b80000c2;
+}
+
+#playNow {
+    background-color: #fcb34b;
+}
+
+#playNow:hover {
+    background-color: #e09f45;
+}
+
+#footerContainer {
+    width: 100%;
+    height: 20%;
+    background-image: linear-gradient(#ffffff, #fcb34b);
+}
+
+#footerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 200px;
+}
+
+#logOutButton {
+    border: 0;
+    background-color: transparent;
+    border-bottom: 1px solid #000000;
+}
+
+#logOutButton:hover {
+    color: #5a5555;
+}
+
+#info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+#myScoreBoard {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#myLevel,
+#myPoints {
+    display: flex;
+    gap: 5px;
+}
+
+#topPlayButton {
+    background-color: #2fc5ff;
+    height: 50px;
+    width: 150px;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+#topPlayButton:hover {
+    background-color: #2198c8d9;
+}
+
+
+#list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 50px;
+    overflow-y: scroll;
+    padding: 0 75px;
+    width: 750px;
+    background-color: #fcb34b;
+    border: 20px solid #fcb34b;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.user {
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rankingUser {
+    display: flex;
+    gap: 50px;
+}
+
+#gameFooter {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2fc5ff;
+    height: 50px;
+    width: 150px;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.selected {
+    border: 3px solid #0000ff;
+}
+
+#gamePlan {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    gap: 10px;
+    padding: 50px;
+}
+
+.memoryCard {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    background-image: url(img/backside.png);
+    background-color: #fcb34b;
+    cursor: pointer;
+    background-size: cover;
+}
+
+.flip {
+    transform: rotateY(180deg);
+    transition: transform 0.4s;
+}
+
+.finishedGameMessages {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.finishedMessage {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#onlyOneCategory {
+    width: 200px;
+}
