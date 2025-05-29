@@ -13,23 +13,18 @@ class Card {
     }
 }
 
-
 let currentUser = null;
-
 let bodyDOM = document.querySelector("body");
 let headerDOM = document.createElement("header");
 let titleDOM = document.createElement("h2");
 let mainDOM = document.createElement("main");
 let footerDOM = document.createElement("footer");
-
-
 bodyDOM.appendChild(headerDOM);
 bodyDOM.appendChild(titleDOM);
 bodyDOM.appendChild(mainDOM);
 bodyDOM.appendChild(footerDOM);
 
 headerDOM.innerHTML = `<h1>REMEMBER ME</h1>`;
-
 
 function login() {
     footerDOM.removeAttribute("id");
@@ -38,7 +33,6 @@ function login() {
     headerDOM.removeAttribute("id");
     footerDOM.innerHTML = ``;
     titleDOM.innerHTML = ``;
-
     bodyDOM.id = "loginSite";
 
     mainDOM.innerHTML = `
@@ -67,9 +61,8 @@ function login() {
     `;
 
     let signInButton = document.getElementById("signIn");
-    let registerUserButton = document.getElementById("registerUser");
+    let registerUserButton = document.getElementById("registerButton");
     const hidePassword = document.getElementById("hidePassword");
-
     let usernameDOM = document.getElementById("username");
     let PasswordDOM = document.getElementById("password");
 
@@ -93,7 +86,6 @@ function login() {
     registerUserButton.addEventListener("click", registerUser);
 }
 
-
 function registerUser() {
     mainDOM.innerHTML = `
         <div id="login">
@@ -108,13 +100,11 @@ function registerUser() {
         </div>
     `;
 
-    // loginButtonDOM.textContent = "SIGN UP"
     let usernameDOM = document.getElementById("username");
     let PasswordDOM1 = document.getElementById("password1");
     let PasswordDOM2 = document.getElementById("password2");
     let signUpButton = document.getElementById("signUp")
     let backToLoginButton = document.getElementById("back")
-
 
     signUpButton.addEventListener("click", () => {
         let usernameValue = usernameDOM.value;
@@ -136,7 +126,6 @@ function registerUser() {
 
     backToLoginButton.addEventListener("click", login);
 };
-
 
 function homePage() {
     let headerH1 = document.querySelector("h1");
@@ -271,7 +260,6 @@ function homePage() {
     topPlayButton.addEventListener("click", ranking);
 }
 
-
 async function ranking() {
     const players = await GETHandlerAllUsers()
 
@@ -283,6 +271,13 @@ async function ranking() {
     `;
 
     const listDOM = document.getElementById("list");
+
+    if (players.length === 0) {
+        const errorMessage = document.createElement("h2");
+        errorMessage.textContent = "Gick inte att hämta lista";
+        listDOM.style.textAlign = "center";
+        listDOM.appendChild(errorMessage);
+    }
 
     for (let i = 0; i < players.length; i++) {
         const user = players[i];
@@ -296,6 +291,7 @@ async function ranking() {
                 <h2>${user.score}p</h2>
             </div>
         `;
+
     }
 
     const topPlayButton = document.getElementById("topPlayButton");
@@ -310,7 +306,6 @@ async function ranking() {
     topPlayButton.removeEventListener("click", ranking);
     topPlayButton.addEventListener("click", homePage);
 }
-
 
 async function playGame(selectedDifficulty, selectedTheme, selectedPoints, wrongChances) {
     let wrongMovesLeft = Number(wrongChances);
@@ -332,12 +327,8 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints, wrong
     const gameButton = document.getElementById("gameButton");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
-
     const points = Number(selectedPoints);
-
     let images = [];
-
-    //Lägg till skapandet av korten här
 
     while (images.length < numberOfCards) {
         const url = await getImage(animalValue);
@@ -364,7 +355,6 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints, wrong
     }
 
     images.sort(() => Math.random() - 0.5);
-
     let flippedCards = [];
 
     for (let i = 0; i < images.length; i++) {
@@ -408,7 +398,6 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints, wrong
                     }
 
                     flippedCards = [];
-
                     let allFlipped = false;
                     let flippedCount = 0;
                     const allCards = document.querySelectorAll(".memoryCard");
@@ -468,27 +457,22 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints, wrong
 }
 
 
-
-// Server request
 async function getImage(animal) {
     if (animal === "dog") {
         const response = await fetch("https://dog.ceo/api/breeds/image/random");
         const data = await response.json();
         console.log(data.message);
         return data.message;
-    }
-    if (animal === "fox") {
+    } else if (animal === "fox") {
         const response = await fetch("https://randomfox.ca/floof/");
         const data = await response.json();
         return data.image;
-    }
-    if (animal === "cat") {
+    } else if (animal === "cat") {
         const response = await fetch("https://api.thecatapi.com/v1/images/search");
         const data = await response.json();
         return data[0].url;
     }
 }
-
 
 async function POSTHandlerRegistration(username, password, password2) {
     const response = await fetch("http://localhost:8000/registrering", {
@@ -502,7 +486,6 @@ async function POSTHandlerRegistration(username, password, password2) {
     });
 
     if (response.status === 200) {
-
         login()
     } else if (response.status === 409) {
         alert("1. Användaren finns redan!");
@@ -511,33 +494,21 @@ async function POSTHandlerRegistration(username, password, password2) {
     }
 }
 
-
 async function GETLogin(username, password) {
     const response = await fetch(`http://localhost:8000/login?username=${username}&password=${password}`, {
         method: "GET"
     });
 
-    const user = await response.json();
-    // const message = document.createElement("p");
-    // document.body.appendChild(message);
-
     if (response.status === 200) {
-
-        // message.textContent = "2. Inloggning genomförd!";
         await GETCurrentUser();
         homePage();
     } else if (response.status === 401) {
-
         document.getElementById("inputPassword").value = "";
         document.getElementById("wrongPasswordMessage").classList.remove("hidden");
-        console.log(user);
     } else if (response.status === 404) {
         alert("Användarnamnet finns inte, skapa ett konto!");
-        // message.textContent = "2. Användarnamnet finns inte, skapa ett konto!";
-        console.log(user);
     }
 }
-
 
 async function GETCurrentUser() {
     const response = await fetch("http://localhost:8000/profil", {
@@ -549,19 +520,12 @@ async function GETCurrentUser() {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        // message.textContent = `3. Användar information för profilen är uppdaterad`;
-        console.log(`3.`, data);
         currentUser = data
     } else if (response.status === 400) {
         const errorMessage = await response.json();
-        console.log(errorMessage);
         alert(errorMessage);
-
-        // message.textContent = `3. Ingen användare är inloggad`;
-        console.log(`3.`, data);
     }
 }
-
 
 async function PATCHScore(username, score) {
     const response = await fetch("http://localhost:8000/gameScore", {
@@ -573,78 +537,30 @@ async function PATCHScore(username, score) {
         }),
     });
 
-    const message = document.createElement("p");
-    document.body.appendChild(message);
-
-    if (response.status === 200) {
-        // alert("4. Poäng har adderats till totalpoängen för användaren!");
-        console.log("Poängen har uppdaterats för användaren");
-
-        // message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
-    } else if (response.status === 404) {
-        alert("4. Användaren hittades inte!");
-
-        // message.textContent = "4. Användaren hittades inte!";
-    } else {
-        alert("4. Något gick fel!");
-
-        // message.textContent = "4. Något gick fel!";
+    if (!response.ok) {
+        alert("Något gick fel!");
     }
 }
-
-
-async function PATCHExitGame(username) {
-    const response = await fetch("http://localhost:8000/gameScore", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            username: username,
-            score: 0
-        }),
-    });
-
-    const message = document.createElement("p");
-    document.body.appendChild(message);
-
-    if (response.status === 200) {
-        alert("Spel avbrutet, poängen uppdaterades ej.");
-        // message.textContent = "5. Spel avbrutet, poängen uppdaterades ej.";
-    } else if (response.status === 404) {
-        alert("Något gick fel vid avslut.");
-        // message.textContent = "5. Något gick fel vid avslut.";
-    }
-}
-
 
 async function GETHandlerAllUsers() {
     const response = await fetch("http://localhost:8000/rankningslista");
 
     if (!response.ok) {
-        console.log("6. Någonting gick fel!");
+        return [];
     } else {
         const rankning = await response.json();
-        console.log("6. Alla användare är rankade!");
         return rankning;
     }
 }
-
 
 async function POSTLogout() {
     const response = await fetch("http://localhost:8000/logout", {
         method: "POST"
     })
 
-    if (response.status === 200) {
-        const logOutMessage = await response.json();
-        //const message = document.createElement("p");
-        console.log(`7. ${logOutMessage}`)
+    if (!response.ok) {
+        alert("Något gick fel!");
     }
-
 }
 
-
 login();
-
-
-
-

@@ -14,10 +14,8 @@ async function POSTHandlerRegistration(username, password, password2) {
 
     if (response.status === 200) {
         message.textContent = "1. En ny användaren har registrerats!";
-        await GETLogin(username, password);
-
     } else if (response.status === 409) {
-        message.textContent = "1. Användaren finns redan!";
+        message.textContent = "1. Användarnamnet är upptaget!";
     } else if (response.status === 400) {
         message.textContent = "1. Användarnamn eller lösenord saknas!";
     }
@@ -28,40 +26,31 @@ async function GETLogin(username, password) {
         method: "GET"
     });
 
-    const user = await response.json();
     const message = document.createElement("p");
     document.body.appendChild(message);
 
     if (response.status === 200) {
         message.textContent = "2. Inloggning genomförd!";
-        await GETCurrentUser();
-
     } else if (response.status === 401) {
         message.textContent = "2. Fel lösenord!";
-        console.log(user);
     } else if (response.status === 404) {
         message.textContent = "2. Användarnamnet finns inte, skapa ett konto!";
-        console.log(user);
     }
 }
 
 async function GETCurrentUser() {
     const response = await fetch("http://localhost:8000/profil", {
         method: "GET"
-    })
+    });
 
-    const data = await response.json();
     const message = document.createElement("p");
     document.body.appendChild(message);
 
-    if (response.status === 200) {
-        message.textContent = `3. Användar information för profilen är uppdaterad`;
-        console.log(`3.`, data);
-        await PATCHScore("Sebastian", 150);
-
-    } else if (response.status === 400) {
-        message.textContent = `3. Ingen användare är inloggad`;
-        console.log(`3.`, data);
+    const data = await response.json();
+    if (!response.ok) {
+        message.textContent = `3. Något gick fel: ${data.message || "okänt fel"}`;
+    } else {
+        message.textContent = `3. Användarinformation: ${JSON.stringify(data)}`;
     }
 }
 
@@ -78,36 +67,11 @@ async function PATCHScore(username, score) {
     const message = document.createElement("p");
     document.body.appendChild(message);
 
-    if (response.status === 200) {
-        message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
-        await PATCHExitGame("Sebastian");
-
-    } else if (response.status === 404) {
-        message.textContent = "4. Användaren hittades inte!";
+    if (!response.ok) {
+        message.textContent = `4. Något gick fel!`;
     } else {
-        message.textContent = "4. Något gick fel!";
-    }
-}
+        message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
 
-async function PATCHExitGame(username) {
-    const response = await fetch("http://localhost:8000/gameScore", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            username: username,
-            score: 0
-        }),
-    });
-
-    const message = document.createElement("p");
-    document.body.appendChild(message);
-
-    if (response.status === 200) {
-        message.textContent = "5. Spel avbrutet, poängen uppdaterades ej.";
-        await GETHandlerAllUsers();
-
-    } else if (response.status === 404) {
-        message.textContent = "5. Något gick fel vid avslut.";
     }
 }
 
@@ -118,14 +82,9 @@ async function GETHandlerAllUsers() {
     document.body.appendChild(message);
 
     if (!response.ok) {
-        message.textContent = "6. Någonting gick fel!";
+        message.textContent = "5. Något gick fel!";
     } else {
-        const rankning = await response.json();
-        message.textContent = "6. Alla användare är rankade!";
-        console.log(rankning);
-        // await POSTHandler();
-        // return rankning;
-        await POSTLogout();
+        message.textContent = "5. Alla användare är rankade!";
     }
 }
 
@@ -134,35 +93,33 @@ async function POSTLogout() {
         method: "POST"
     })
 
-    if (response.status === 200) {
+    const message = document.createElement("p");  // ← Borde stå överst
+    if (!response.ok) {
+        message.textContent = "6. Något gick fel!";
+    } else {
         const logOutMessage = await response.json();
-        const message = document.createElement("p");
-        message.textContent = `7. ${logOutMessage}`;
-        document.body.appendChild(message);
+        message.textContent = `6. ${logOutMessage}`;
     }
+    document.body.appendChild(message);
 
 }
 
-
 async function testDriver() {
-    await POSTHandlerRegistration("Sebastian", "sebbe123", "sebbe123");
+    await POSTHandlerRegistration("Tester", "tester", "tester");
+    await POSTHandlerRegistration("Tester", "tester", "");
     await POSTHandlerRegistration("Test", "hej", "hej");
-    await POSTHandlerRegistration("Hej", "hej", "");
 
-    // await GETLogin("Test", "test");
-    // await GETLogin("Sebastian", "sebbe123");
+    await GETLogin("Tester", "tester");
+    await GETLogin("Tester", "test");
     await GETLogin("Tes", "test");
 
-    // await GETCurrentUser();
+    await GETCurrentUser();
 
-    // await PATCHScore("Sebastian", 150);
-    await PATCHScore("Tes", 150);
+    await PATCHScore("Tester", 200);
 
-    // await PATCHExitGame("Sebastian");
-    await PATCHExitGame("Tes");
+    await GETHandlerAllUsers();
 
-    // await GETHandlerAllUsers();
-    // await POSTLogout();
+    await POSTLogout();
 }
 
 testDriver();

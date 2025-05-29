@@ -3,34 +3,30 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#loginSite {
-    background-image: linear-gradient(to right, rgb(252, 179, 75), rgb(255, 255, 255), rgb(252, 179, 75));
-
+#loginSite,
+#login,
+#inputBox,
+#registerUser,
+#sites {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    height: 100vh;
 }
 
-/* #logo {
-    font-size: 42px;
-    padding-top: 150px;
-} */
+#loginSite {
+    height: 100vh;
+    background-image: linear-gradient(to right, #fcb34b, #ffffff, #fcb34b);
+}
 
 header {
-    color: rgb(252, 179, 75);
+    color: #fcb34b;
     font-size: 22px;
     padding-top: 150px;
 }
 
 #login {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
     gap: 10px;
-
     width: 300px;
     padding-top: 100px;
     box-sizing: border-box;
@@ -43,13 +39,9 @@ header {
 }
 
 #inputBox {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-
     width: 300px;
+    justify-content: center;
+    gap: 10px;
 }
 
 .inputs,
@@ -68,19 +60,18 @@ header {
 
 .hidden {
     display: none;
-    color: black;
+    color: #000000;
 }
 
 .loginButtons {
-    background-color: rgb(252, 179, 75);
+    background-color: #fcb34b;
     border-radius: 5px;
     padding: 5px 10px;
-
     font-weight: bolder;
 }
 
 .loginButtons:hover {
-    background-color: rgb(228, 162, 68);
+    background-color: #e4a244;
 }
 
 #registerButton {
@@ -88,11 +79,7 @@ header {
 }
 
 #registerUser {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 10px;
-
     padding-top: 150px;
 }
 
@@ -102,19 +89,15 @@ header {
 }
 
 #sites {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
     height: 100vh;
-    background-color: white;
+    background-color: #ffffff;
+    box-sizing: border-box;
 }
 
 #logotype {
     display: flex;
     justify-content: center;
     align-items: center;
-
     font-size: 16px;
     padding: 0;
     height: 10%;
@@ -139,7 +122,6 @@ header {
     flex-direction: column;
     justify-content: center;
     gap: 30px;
-
     padding: 0 50px;
 }
 
@@ -149,69 +131,67 @@ header {
     font-size: 18px;
     font-weight: bold;
     border-radius: 5px;
-
-    background-color: plum;
+    background-color: #dda0dd;
 }
 
 .buttons:hover {
-    background-color: rgb(181, 132, 181);
+    background-color: #b584b5;
 }
 
 #easy {
-    background-color: greenyellow;
+    background-color: #adff2f;
 }
 
 #easy:hover {
-    background-color: rgb(138, 203, 39);
+    background-color: #8acb27;
 }
 
 #medium {
-    background-color: yellow;
+    background-color: #ffff00;
 }
 
 #medium:hover {
-    background-color: rgb(214, 214, 4);
+    background-color: #d6d604;
 }
 
 #hard {
-    background-color: red;
+    background-color: #ff0000;
 }
 
 #hard:hover {
-    background-color: rgba(184, 0, 0, 0.759);
+    background-color: #b80000c2;
 }
 
 #playNow {
-    background-color: rgb(252, 179, 75);
+    background-color: #fcb34b;
 }
 
 #playNow:hover {
-    background-color: rgb(224, 159, 69);
+    background-color: #e09f45;
 }
 
 #footerContainer {
     width: 100%;
     height: 20%;
-    background-image: linear-gradient(rgb(255, 255, 255), rgb(252, 179, 75));
+    background-image: linear-gradient(#ffffff, #fcb34b);
 }
 
 #footerContent {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     height: 100%;
     padding: 0 200px;
 }
 
 #logOutButton {
-    background-color: transparent;
     border: 0;
-    border-bottom: 1px solid black;
+    background-color: transparent;
+    border-bottom: 1px solid #000000;
 }
 
 #logOutButton:hover {
-    color: rgb(90, 85, 85);
+    color: #5a5555;
 }
 
 #info {
@@ -238,7 +218,6 @@ header {
     height: 50px;
     width: 150px;
     border-radius: 5px;
-
     font-weight: bolder;
     font-size: 18px;
 }
@@ -253,27 +232,23 @@ header {
     flex-direction: column;
     gap: 10px;
     margin: 50px;
-
     overflow-y: scroll;
     padding: 0 75px;
     width: 750px;
-
-    background-color: rgb(252, 179, 75);
-    border: 20px solid rgb(252, 179, 75);
+    background-color: #fcb34b;
+    border: 20px solid #fcb34b;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
 .user {
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 5px;
-
+    padding: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-    padding: 10px;
 }
 
 .rankingUser {
@@ -292,18 +267,16 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background-color: greenyellow;
+    background-color: #2fc5ff;
     height: 50px;
     width: 150px;
     border-radius: 5px;
-
     font-weight: bolder;
     font-size: 18px;
 }
 
 .selected {
-    border: 3px solid blue;
+    border: 3px solid #0000ff;
 }
 
 #gamePlan {
@@ -318,7 +291,7 @@ header {
     height: 100px;
     border-radius: 5px;
     background-image: url(img/backside.png);
-    background-color: rgb(252, 179, 75);
+    background-color: #fcb34b;
     cursor: pointer;
     background-size: cover;
 }
