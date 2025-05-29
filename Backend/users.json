@@ -1,74 +1,20 @@
 [
   {
-    "username": "Test",
-    "password": "test",
-    "level": 0,
-    "score": 1000
-  },
-  {
-    "username": "Test2",
-    "password": "test2",
+    "username": "Rebecca",
+    "password": "rebecca",
     "level": 4,
-    "score": 4500
+    "score": 4600
   },
   {
-    "username": "Test3",
-    "password": "test3",
+    "username": "Jonah",
+    "password": "jonah",
     "level": 3,
     "score": 3200
   },
   {
-    "username": "RebeccaJJ",
-    "password": "JJ98",
+    "username": "Sebastian",
+    "password": "sebastian",
     "level": 1,
     "score": 2700
-  },
-  {
-    "username": "Mumin ",
-    "password": "Mumin123",
-    "level": 1,
-    "score": 0
-  },
-  {
-    "username": "Mumin",
-    "password": "Mumin123",
-    "level": 1,
-    "score": 1300
-  },
-  {
-    "username": "sebbe",
-    "password": "sebbe123",
-    "level": 0,
-    "score": 300
-  },
-  {
-    "username": "Snusmumriken",
-    "password": "Munspel",
-    "level": 0,
-    "score": 0
-  },
-  {
-    "username": "LillaMy",
-    "password": "röd",
-    "level": 0,
-    "score": 0
-  },
-  {
-    "username": "Muminpappa",
-    "password": "teater",
-    "level": 0,
-    "score": 0
-  },
-  {
-    "username": "Muminmamma",
-    "password": "odling",
-    "level": 0,
-    "score": 0
-  },
-  {
-    "username": "hej",
-    "password": "1234",
-    "level": 0,
-    "score": 0
   }
 ]
