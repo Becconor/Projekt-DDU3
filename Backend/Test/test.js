@@ -54,13 +54,13 @@ async function GETCurrentUser() {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        const data = await response.json();
+        // const data = await response.json();
         message.textContent = `3. Användarinformation för profilen är uppdaterad`;
-        console.log("3.", data);
+        // console.log("3.", data);
     } else if (response.status === 401) {
-        const data = await response.json();
+        // const data = await response.json();
         message.textContent = `3. Något gick fel vid hämtning av profil`;
-        console.log("3.", data);
+        // console.log("3.", data);
     }
 }
 
