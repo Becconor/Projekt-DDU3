@@ -155,9 +155,9 @@ function homePage() {
 
     mainDOM.innerHTML = `
         <div id="levelButtons" class="mainContent">
-            <button value="4" data-points="100" class="buttons" class="difficultyButton" id="easy">EASY</button>
-            <button value="6" data-points="200" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
-            <button value="8" data-points="300" class="buttons" class="difficultyButton"  id="hard">HARD</button>
+            <button value="4" data-points="100" data-wrongchances="6" class="buttons" class="difficultyButton" id="easy">EASY</button>
+            <button value="6" data-points="200" data-wrongchances="9" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
+            <button value="8" data-points="300" data-wrongchances="12" class="buttons" class="difficultyButton"  id="hard">HARD</button>
         </div>
 
         <div id="categoryButtons" class="mainContent">
@@ -225,6 +225,7 @@ function homePage() {
     let selectedDifficulty = null;
     let selectedTheme = null;
     let selectedPoints = null;
+    let wrongChances = null;
 
     difficultyButtons.forEach(button => {
         button.addEventListener("click", function () {
@@ -232,6 +233,7 @@ function homePage() {
             button.classList.add("selected");
             selectedDifficulty = this.value;
             selectedPoints = this.dataset.points;
+            wrongChances = this.dataset.wrongchances;
         });
     });
 
@@ -257,7 +259,7 @@ function homePage() {
         console.log("numPairs:", selectedDifficulty);
         console.log("Theme:", selectedTheme);
 
-        playGame(selectedDifficulty, selectedTheme, selectedPoints);
+        playGame(selectedDifficulty, selectedTheme, selectedPoints, wrongChances);
     });
 
     logOutButton.addEventListener("click", function () {
@@ -310,10 +312,11 @@ async function ranking() {
 }
 
 
-async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
+async function playGame(selectedDifficulty, selectedTheme, selectedPoints, wrongChances) {
+    let wrongMovesLeft = Number(wrongChances);
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
-    titleDOM.textContent = `Wrong Moves Left: 8`;
+    titleDOM.textContent = `Wrong Moves Left: ${wrongMovesLeft}`;
 
     mainDOM.innerHTML = `
         <div id="gamePlan"></div>
@@ -329,7 +332,6 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
     const gameButton = document.getElementById("gameButton");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
-    let wrongMovesLeft = 8;
 
     const points = Number(selectedPoints);
 
