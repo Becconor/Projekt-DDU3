@@ -130,7 +130,7 @@ async function handler(request) {
             console.log("Användare i allUsers:", allUsers);
             await saveUsers(allUsers);
 
-            return new Response(JSON.stringify(currentUser), {
+            return new Response(null, {
                 status: 200,
                 headers: headers,
             })
