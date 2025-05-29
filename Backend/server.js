@@ -64,7 +64,6 @@ async function handler(request) {
             }
         }
 
-
         if (url.pathname === "/profil") {
             const userCopy = {
                 username: currentUser.username,

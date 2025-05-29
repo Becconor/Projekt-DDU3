@@ -510,7 +510,6 @@ async function POSTHandlerRegistration(username, password, password2) {
     });
 
     if (response.status === 200) {
-
         login()
     } else if (response.status === 409) {
         alert("1. Användaren finns redan!");
@@ -583,6 +582,7 @@ async function PATCHScore(username, score) {
     });
 
     const message = document.createElement("p");
+    message.id = "p-alert";
     document.body.appendChild(message);
 
     if (response.status === 200) {
