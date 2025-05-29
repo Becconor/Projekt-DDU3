@@ -26,7 +26,7 @@ async function handler(request) {
             headers: headers
         });
     }
-    //
+
     if (request.method == "GET") {
         const allUsers = await loadUsers();
 
@@ -118,9 +118,9 @@ async function handler(request) {
             }
 
             currentUser = new User(inputUsername, inputPassword);
-            //console.log(currentUser, "Den spelaren som precis registrerade sig!");
+            console.log(currentUser, "Den spelaren som precis registrerade sig!");
             allUsers.push(currentUser);
-            //console.log("Användare i allUsers:", allUsers);
+            console.log("Användare i allUsers:", allUsers);
             await saveUsers(allUsers);
 
             return new Response(null, {
@@ -161,12 +161,12 @@ async function handler(request) {
                 user.score += score;
                 await saveUsers(allUsers);
                 currentUser = user;
-                return new Response(null, {
+                return new Response(JSON.stringify(`Poäng har uppdaterats för ${currentUser.username}`), {
                     status: 200,
                     headers: headers
                 });
             } else {
-                return new Response(JSON.stringify("Användaren hittades inte i databasen!"), { status: 404, headers });
+                return new Response(JSON.stringify("Användaren hittades inte i databasen!"), { status: 401, headers });
             }
 
         }
