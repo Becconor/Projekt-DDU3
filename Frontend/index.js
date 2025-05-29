@@ -517,13 +517,14 @@ async function GETLogin(username, password) {
         method: "GET"
     });
 
-    const user = await response.json();
+    // const user = await response.json();
     // const message = document.createElement("p");
     // document.body.appendChild(message);
 
     if (response.status === 200) {
 
         // message.textContent = "2. Inloggning genomförd!";
+        // console.log(user);
         await GETCurrentUser();
         homePage();
     } else if (response.status === 401) {

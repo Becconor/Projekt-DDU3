@@ -38,8 +38,8 @@ async function handler(request) {
                     if (user) {
                         if (user.password === passwordValue) {
                             currentUser = user;
-                            console.log(currentUser)
-                            return new Response(JSON.stringify(user), {
+                            // console.log(currentUser)
+                            return new Response(null, {
                                 status: 200,
                                 headers: headers
                             });
