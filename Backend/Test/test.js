@@ -89,27 +89,6 @@ async function PATCHScore(username, score) {
     }
 }
 
-async function PATCHExitGame(username) {
-    const response = await fetch("http://localhost:8000/gameScore", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            username: username,
-            score: 0
-        }),
-    });
-
-    const message = document.createElement("p");
-    document.body.appendChild(message);
-
-    if (response.status === 200) {
-        message.textContent = "5. Spel avbrutet, poängen uppdaterades ej.";
-        await GETHandlerAllUsers();
-
-    } else if (response.status === 404) {
-        message.textContent = "5. Något gick fel vid avslut.";
-    }
-}
 
 async function GETHandlerAllUsers() {
     const response = await fetch("http://localhost:8000/rankningslista");
@@ -118,10 +97,10 @@ async function GETHandlerAllUsers() {
     document.body.appendChild(message);
 
     if (!response.ok) {
-        message.textContent = "6. Någonting gick fel!";
+        message.textContent = "5. Någonting gick fel!";
     } else {
         const rankning = await response.json();
-        message.textContent = "6. Alla användare är rankade!";
+        message.textContent = "5. Alla användare är rankade!";
         console.log(rankning);
         // await POSTHandler();
         // return rankning;
@@ -137,7 +116,7 @@ async function POSTLogout() {
     if (response.status === 200) {
         const logOutMessage = await response.json();
         const message = document.createElement("p");
-        message.textContent = `7. ${logOutMessage}`;
+        message.textContent = `6. ${logOutMessage}`;
         document.body.appendChild(message);
     }
 
