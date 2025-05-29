@@ -51,11 +51,13 @@ async function GETCurrentUser() {
     })
 
     const data = await response.json();
+    console.log(data);
     const message = document.createElement("p");
     document.body.appendChild(message);
 
     if (response.status === 200) {
         message.textContent = `3. Användar information för profilen är uppdaterad`;
+        console.log(message);
         console.log(`3.`, data);
         await PATCHScore("Sebastian", 150);
 
