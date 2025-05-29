@@ -67,7 +67,7 @@ function login() {
     `;
 
     let signInButton = document.getElementById("signIn");
-    let registerUserButton = document.getElementById("registerUser");
+    let registerUserButton = document.getElementById("registerButton");
     const hidePassword = document.getElementById("hidePassword");
 
     let usernameDOM = document.getElementById("username");
