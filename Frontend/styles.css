@@ -131,7 +131,6 @@ header {
     display: flex;
     justify-content: center;
     gap: 30px;
-    padding: 50px;
     height: 63%;
 }
 
@@ -253,6 +252,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin: 50px;
 
     overflow-y: scroll;
     padding: 0 75px;
@@ -310,6 +310,7 @@ header {
     display: grid;
     grid-template-columns: repeat(4, 100px);
     gap: 10px;
+    padding: 50px;
 }
 
 .memoryCard {
@@ -322,6 +323,11 @@ header {
     background-size: cover;
 }
 
+.flip {
+    transform: rotateY(180deg);
+    transition: transform 0.4s;
+}
+
 .finishedGameMessages {
     display: flex;
     flex-direction: column;
@@ -332,4 +338,8 @@ header {
     font-size: 25px;
     font-weight: bold;
     text-align: center;
+}
+
+#onlyOneCategory {
+    width: 200px;
 }

@@ -1,5 +1,5 @@
 class Card {
-    constructor(url, id, theme) {
+    constructor(url, theme) {
         this.url = url;
         this.theme = theme;
         this.flipped = false;
@@ -155,9 +155,9 @@ function homePage() {
 
     mainDOM.innerHTML = `
         <div id="levelButtons" class="mainContent">
-            <button value="4" data-points="100" class="buttons" class="difficultyButton" id="easy">EASY</button>
-            <button value="6" data-points="200" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
-            <button value="8" data-points="300" class="buttons" class="difficultyButton"  id="hard">HARD</button>
+            <button value="4" data-points="100" data-wrongchances="6" class="buttons" class="difficultyButton" id="easy">EASY</button>
+            <button value="6" data-points="200" data-wrongchances="9" class="buttons" class="difficultyButton" id="medium">MEDIUM</button>
+            <button value="8" data-points="300" data-wrongchances="12" class="buttons" class="difficultyButton"  id="hard">HARD</button>
         </div>
 
         <div id="categoryButtons" class="mainContent">
@@ -167,6 +167,7 @@ function homePage() {
         </div>
 
         <div id="playButton" class="mainContent">
+            <p id="onlyOneCategory" class="hidden">Please select both a difficulty and a theme!</p>
             <button class="buttons" id="playNow">PLAY</button> 
         </div>
     `;
@@ -224,6 +225,7 @@ function homePage() {
     let selectedDifficulty = null;
     let selectedTheme = null;
     let selectedPoints = null;
+    let wrongChances = null;
 
     difficultyButtons.forEach(button => {
         button.addEventListener("click", function () {
@@ -231,6 +233,7 @@ function homePage() {
             button.classList.add("selected");
             selectedDifficulty = this.value;
             selectedPoints = this.dataset.points;
+            wrongChances = this.dataset.wrongchances;
         });
     });
 
@@ -248,14 +251,15 @@ function homePage() {
     const playButton = document.getElementById("playNow")
     playButton.addEventListener("click", function () {
         if (!selectedDifficulty || !selectedTheme) {
-            alert("Please select both a difficulty and a theme!");
+
+            document.getElementById("onlyOneCategory").classList.remove("hidden");
             return;
         }
 
         console.log("numPairs:", selectedDifficulty);
         console.log("Theme:", selectedTheme);
 
-        playGame(selectedDifficulty, selectedTheme, selectedPoints);
+        playGame(selectedDifficulty, selectedTheme, selectedPoints, wrongChances);
     });
 
     logOutButton.addEventListener("click", function () {
@@ -308,10 +312,11 @@ async function ranking() {
 }
 
 
-async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
+async function playGame(selectedDifficulty, selectedTheme, selectedPoints, wrongChances) {
+    let wrongMovesLeft = Number(wrongChances);
     mainDOM.innerHTML = ``;
     footerDOM.innerHTML = ``;
-    titleDOM.textContent = `Wrong Moves Left: 6`;
+    titleDOM.textContent = `Wrong Moves Left: ${wrongMovesLeft}`;
 
     mainDOM.innerHTML = `
         <div id="gamePlan"></div>
@@ -327,7 +332,6 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
     const gameButton = document.getElementById("gameButton");
     const numberOfCards = Number(selectedDifficulty);
     const animalValue = selectedTheme;
-    let wrongMovesLeft = 6;
 
     const points = Number(selectedPoints);
 
@@ -376,7 +380,7 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
 
             card.flipStatusTrue();//card är ett objekt från klassen Card
             cardDiv.style.backgroundImage = `url('${card.url}')`;
-
+            cardDiv.classList.add("flip");
             flippedCards.push(cardDiv);
 
             if (flippedCards.length === 2) {
@@ -388,9 +392,13 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
                         // här får vi matchen
                         firstCard.cardData.flipStatusTrue();
                         secondCard.cardData.flipStatusTrue();
+
                     } else {
                         firstCard.cardData.flipStatusFalse();
                         secondCard.cardData.flipStatusFalse();
+
+                        firstCard.classList.remove("flip");
+                        secondCard.classList.remove("flip");
 
                         firstCard.style.backgroundImage = "url(`img/backside.png`)";
                         secondCard.style.backgroundImage = "url(`img/backside.png`)";
@@ -461,12 +469,6 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints) {
 
 
 
-
-
-
-
-
-
 // Server request
 async function getImage(animal) {
     if (animal === "dog") {
@@ -500,7 +502,7 @@ async function POSTHandlerRegistration(username, password, password2) {
     });
 
     if (response.status === 200) {
-        alert("User registered successfully! Please log in.");
+
         login()
     } else if (response.status === 409) {
         alert("1. Användaren finns redan!");
@@ -520,7 +522,7 @@ async function GETLogin(username, password) {
     // document.body.appendChild(message);
 
     if (response.status === 200) {
-        alert("Login was successful!");
+
         // message.textContent = "2. Inloggning genomförd!";
         await GETCurrentUser();
         homePage();
