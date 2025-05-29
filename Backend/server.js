@@ -77,7 +77,6 @@ async function handler(request) {
             });
         }
 
-
         if (url.pathname === "/rankningslista") {
             let sortAllUsers = allUsers.map(user => ({
                 username: user.username,
