@@ -66,13 +66,6 @@ async function handler(request) {
 
 
         if (url.pathname === "/profil") {
-            if (!currentUser) {
-                return new Response(JSON.stringify("Något gick fel vid hämtning av profil"), {
-                    status: 401,
-                    headers: headers
-                });
-            }
-
             const userCopy = {
                 username: currentUser.username,
                 score: currentUser.score,
