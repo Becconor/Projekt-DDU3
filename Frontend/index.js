@@ -368,7 +368,7 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints, wrong
                 return;
             }
 
-            card.flipStatusTrue();//card är ett objekt från klassen Card
+            card.flipStatusTrue();
             cardDiv.style.backgroundImage = `url('${card.url}')`;
             cardDiv.classList.add("flip");
             flippedCards.push(cardDiv);
@@ -379,7 +379,6 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints, wrong
                     const secondCard = flippedCards[1];
 
                     if (firstCard.cardData.url === secondCard.cardData.url) {
-                        // här får vi matchen
                         firstCard.cardData.flipStatusTrue();
                         secondCard.cardData.flipStatusTrue();
 
