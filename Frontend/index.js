@@ -381,7 +381,6 @@ async function playGame(selectedDifficulty, selectedTheme, selectedPoints, wrong
                     if (firstCard.cardData.url === secondCard.cardData.url) {
                         firstCard.cardData.flipStatusTrue();
                         secondCard.cardData.flipStatusTrue();
-
                     } else {
                         firstCard.cardData.flipStatusFalse();
                         secondCard.cardData.flipStatusFalse();
