@@ -143,7 +143,7 @@ async function handler(request) {
         const allUsers = await loadUsers();
         if (url.pathname === "/gameScore") {
             const body = await request.json();
-            console.log(body, "värdet vi får i request-body");
+            // console.log(body, "värdet vi får i request-body");
             // const username = body.username;
             const score = body.score;
 
