@@ -28,7 +28,7 @@ async function GETLogin(username, password) {
         method: "GET"
     });
 
-    const user = await response.json();
+    // const user = await response.json();
     const message = document.createElement("p");
     document.body.appendChild(message);
 
@@ -38,10 +38,10 @@ async function GETLogin(username, password) {
 
     } else if (response.status === 401) {
         message.textContent = "2. Fel lösenord!";
-        console.log(user);
+        // console.log(user);
     } else if (response.status === 404) {
         message.textContent = "2. Användarnamnet finns inte, skapa ett konto!";
-        console.log(user);
+        // console.log(user);
     }
 }
 
