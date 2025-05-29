@@ -629,7 +629,7 @@ async function GETHandlerAllUsers() {
     const response = await fetch("http://localhost:8000/rankningslista");
 
     if (!response.ok) {
-        console.log("6. Någonting gick fel!");
+        return [];
     } else {
         const rankning = await response.json();
         // console.log("6. Alla användare är rankade!");
@@ -646,7 +646,7 @@ async function POSTLogout() {
     if (response.status === 200) {
         const logOutMessage = await response.json();
         //const message = document.createElement("p");
-        console.log(`7. ${logOutMessage}`)
+        //console.log(`7. ${logOutMessage}`)
     }
 
 }
