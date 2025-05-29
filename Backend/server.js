@@ -161,7 +161,7 @@ async function handler(request) {
                 user.score += score;
                 await saveUsers(allUsers);
                 currentUser = user;
-                return new Response(JSON.stringify(`Poäng har uppdaterats för ${currentUser.username}`), {
+                return new Response(null, {
                     status: 200,
                     headers: headers
                 });
