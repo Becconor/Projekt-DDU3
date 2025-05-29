@@ -82,7 +82,6 @@ async function PATCHScore(username, score) {
 
     if (response.status === 200) {
         message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
-        await PATCHExitGame("Sebastian");
 
     } else if (response.status === 404) {
         message.textContent = "4. Användaren hittades inte!";
@@ -130,8 +129,8 @@ async function testDriver() {
     await POSTHandlerRegistration("Test", "hej", "hej");
     await POSTHandlerRegistration("Hej", "hej", "");
 
-    // await GETLogin("Test", "test");
-    // await GETLogin("Sebastian", "sebbe123");
+    await GETLogin("Test", "test");
+    await GETLogin("Sebastian", "sebbe123");
     await GETLogin("Tes", "test");
 
     await GETCurrentUser();
