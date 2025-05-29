@@ -75,7 +75,6 @@ async function PATCHScore(username, score) {
     }
 }
 
-
 async function GETHandlerAllUsers() {
     const response = await fetch("http://localhost:8000/rankningslista");
 
@@ -104,7 +103,6 @@ async function POSTLogout() {
     document.body.appendChild(message);
 
 }
-
 
 async function testDriver() {
     await POSTHandlerRegistration("Tester", "tester", "tester");
