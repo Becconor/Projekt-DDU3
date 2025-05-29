@@ -553,7 +553,6 @@ async function GETHandlerAllUsers() {
     }
 }
 
-
 async function POSTLogout() {
     const response = await fetch("http://localhost:8000/logout", {
         method: "POST"
@@ -564,9 +563,4 @@ async function POSTLogout() {
     }
 }
 
-
 login();
-
-
-
-
