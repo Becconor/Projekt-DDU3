@@ -140,7 +140,7 @@ async function testDriver() {
     await PATCHScore("Tes", 150);
 
     // await PATCHExitGame("Sebastian");
-    await PATCHExitGame("Tes");
+    // await PATCHExitGame("Tes");
 
     // await GETHandlerAllUsers();
     // await POSTLogout();
