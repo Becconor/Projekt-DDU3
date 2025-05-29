@@ -41,7 +41,7 @@ async function handler(request) {
                     if (user) {
                         if (user.password === passwordValue) {
                             currentUser = user;
-                            // console.log(currentUser)
+
                             return new Response(null, {
                                 status: 200,
                                 headers: headers
@@ -118,9 +118,7 @@ async function handler(request) {
             }
 
             currentUser = new User(inputUsername, inputPassword);
-            console.log(currentUser, "Den spelaren som precis registrerade sig!");
             allUsers.push(currentUser);
-            console.log("Användare i allUsers:", allUsers);
             await saveUsers(allUsers);
 
             return new Response(null, {
@@ -141,20 +139,10 @@ async function handler(request) {
 
     if (request.method === "PATCH") {
         const allUsers = await loadUsers();
+
         if (url.pathname === "/gameScore") {
             const body = await request.json();
-            // console.log(body, "värdet vi får i request-body");
-            // const username = body.username;
             const score = body.score;
-
-            //const existingPlayer = allUsers.find(player => player.username === username);
-
-            // if (!currentUser) {
-            //     return new Response(JSON.stringify("Användaren hittades inte!"), {
-            //         status: 404,
-            //         headers: headers
-            //     });
-            // }
 
             const user = allUsers.find(u => u.username === currentUser.username);
             if (user) {
