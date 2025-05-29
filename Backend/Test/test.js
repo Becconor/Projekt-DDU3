@@ -35,13 +35,12 @@ async function GETLogin(username, password) {
     if (response.status === 200) {
         message.textContent = "2. Inloggning genomförd!";
         // await GETCurrentUser();
-
     } else if (response.status === 401) {
         message.textContent = "2. Fel lösenord!";
-        // console.log(user);
+        // await GETCurrentUser();
     } else if (response.status === 404) {
         message.textContent = "2. Användarnamnet finns inte, skapa ett konto!";
-        // console.log(user);
+        // await GETCurrentUser();
     }
 }
 
@@ -54,14 +53,12 @@ async function GETCurrentUser() {
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        // const data = await response.json();
         message.textContent = `3. Användarinformation för profilen är uppdaterad`;
-        // console.log("3.", data);
-    } else if (response.status === 401) {
-        // const data = await response.json();
-        message.textContent = `3. Något gick fel vid hämtning av profil`;
-        // console.log("3.", data);
     }
+
+    // else {
+    //     message.textContent = `3. Något gick fel vid hämtning av profil`;
+    // }
 }
 
 async function PATCHScore(username, score) {
@@ -80,9 +77,13 @@ async function PATCHScore(username, score) {
     if (response.status === 200) {
         message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
 
-    } else if (response.status === 404) {
-        message.textContent = "4. Användaren hittades inte!";
-    } else {
+    }
+
+    // else if (response.status === 404) {
+    //     message.textContent = "4. Användaren hittades inte!";
+    // } 
+
+    else {
         message.textContent = "4. Något gick fel!";
     }
 }
@@ -97,12 +98,7 @@ async function GETHandlerAllUsers() {
     if (!response.ok) {
         message.textContent = "5. Någonting gick fel!";
     } else {
-        const rankning = await response.json();
         message.textContent = "5. Alla användare är rankade!";
-        console.log(rankning);
-        // await POSTHandler();
-        // return rankning;
-        // await POSTLogout();
     }
 }
 
@@ -131,14 +127,12 @@ async function testDriver() {
     await GETLogin("Tes", "test");
 
     await GETCurrentUser();
-    await GETCurrentUser();
 
+    await PATCHScore("Tester", 200);
 
-    // await PATCHScore("Sebastian", 150);
-    // await PATCHScore("Tes", 150);
+    await GETHandlerAllUsers();
 
-    // await GETHandlerAllUsers();
-    // await POSTLogout();
+    await POSTLogout();
 }
 
 testDriver();

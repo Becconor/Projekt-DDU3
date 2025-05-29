@@ -82,7 +82,7 @@ async function handler(request) {
             let sortAllUsers = allUsers.map(user => ({
                 username: user.username,
                 score: user.score
-            }));//ha en klass istället som skapar rankningslistan och därmed går igenom alla users och filtrerar bort password-nyckeln då den inte ska synas på rankningssidan
+            }));
 
             sortAllUsers.sort((a, b) => b.score - a.score);
 
@@ -95,6 +95,7 @@ async function handler(request) {
 
     if (request.method === "POST") {
         const allUsers = await loadUsers();
+
         if (url.pathname === "/registrering") {
             const inputBody = await request.json();
             const inputUsername = inputBody.username;
@@ -148,12 +149,12 @@ async function handler(request) {
 
             //const existingPlayer = allUsers.find(player => player.username === username);
 
-            if (!currentUser) {
-                return new Response(JSON.stringify("Användaren hittades inte!"), {
-                    status: 404,
-                    headers: headers
-                });
-            }
+            // if (!currentUser) {
+            //     return new Response(JSON.stringify("Användaren hittades inte!"), {
+            //         status: 404,
+            //         headers: headers
+            //     });
+            // }
 
             const user = allUsers.find(u => u.username === currentUser.username);
             if (user) {
