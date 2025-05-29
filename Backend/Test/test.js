@@ -46,10 +46,11 @@ async function GETCurrentUser() {
     const message = document.createElement("p");
     document.body.appendChild(message);
 
+    const data = await response.json();
     if (!response.ok) {
-        message.textContent = `3. Något gick fel!`;
+        message.textContent = `3. Något gick fel: ${data.message || "okänt fel"}`;
     } else {
-        message.textContent = `3. Användarinformation för profilen är uppdaterad`;
+        message.textContent = `3. Användarinformation: ${JSON.stringify(data)}`;
     }
 }
 
@@ -93,14 +94,14 @@ async function POSTLogout() {
         method: "POST"
     })
 
+    const message = document.createElement("p");  // ← Borde stå överst
     if (!response.ok) {
         message.textContent = "6. Något gick fel!";
     } else {
         const logOutMessage = await response.json();
-        const message = document.createElement("p");
         message.textContent = `6. ${logOutMessage}`;
-        document.body.appendChild(message);
     }
+    document.body.appendChild(message);
 
 }
 
