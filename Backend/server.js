@@ -128,7 +128,6 @@ async function handler(request) {
 
         if (url.pathname === "/logout") {
             currentUser = null;
-
             return new Response(JSON.stringify("Utloggad"), {
                 status: 200,
                 headers: headers
