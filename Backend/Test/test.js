@@ -14,8 +14,6 @@ async function POSTHandlerRegistration(username, password, password2) {
 
     if (response.status === 200) {
         message.textContent = "1. En ny användaren har registrerats!";
-        // await GETLogin(username, password);
-
     } else if (response.status === 409) {
         message.textContent = "1. Användarnamnet är upptaget!";
     } else if (response.status === 400) {
@@ -28,19 +26,15 @@ async function GETLogin(username, password) {
         method: "GET"
     });
 
-    // const user = await response.json();
     const message = document.createElement("p");
     document.body.appendChild(message);
 
     if (response.status === 200) {
         message.textContent = "2. Inloggning genomförd!";
-        // await GETCurrentUser();
     } else if (response.status === 401) {
         message.textContent = "2. Fel lösenord!";
-        // await GETCurrentUser();
     } else if (response.status === 404) {
         message.textContent = "2. Användarnamnet finns inte, skapa ett konto!";
-        // await GETCurrentUser();
     }
 }
 
@@ -52,13 +46,11 @@ async function GETCurrentUser() {
     const message = document.createElement("p");
     document.body.appendChild(message);
 
-    if (response.status === 200) {
+    if (!response.ok) {
+        message.textContent = `3. Något gick fel!`;
+    } else {
         message.textContent = `3. Användarinformation för profilen är uppdaterad`;
     }
-
-    // else {
-    //     message.textContent = `3. Något gick fel vid hämtning av profil`;
-    // }
 }
 
 async function PATCHScore(username, score) {
@@ -74,17 +66,11 @@ async function PATCHScore(username, score) {
     const message = document.createElement("p");
     document.body.appendChild(message);
 
-    if (response.status === 200) {
+    if (!response.ok) {
+        message.textContent = `4. Något gick fel!`;
+    } else {
         message.textContent = "4. Poäng har adderats till totalpoängen för användaren!";
 
-    }
-
-    // else if (response.status === 404) {
-    //     message.textContent = "4. Användaren hittades inte!";
-    // } 
-
-    else {
-        message.textContent = "4. Något gick fel!";
     }
 }
 
@@ -96,7 +82,7 @@ async function GETHandlerAllUsers() {
     document.body.appendChild(message);
 
     if (!response.ok) {
-        message.textContent = "5. Någonting gick fel!";
+        message.textContent = "5. Något gick fel!";
     } else {
         message.textContent = "5. Alla användare är rankade!";
     }
@@ -107,7 +93,9 @@ async function POSTLogout() {
         method: "POST"
     })
 
-    if (response.status === 200) {
+    if (!response.ok) {
+        message.textContent = "6. Något gick fel!";
+    } else {
         const logOutMessage = await response.json();
         const message = document.createElement("p");
         message.textContent = `6. ${logOutMessage}`;
