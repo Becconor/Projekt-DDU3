@@ -586,30 +586,6 @@ async function PATCHScore(username, score) {
     } 
 }
 
-
-async function PATCHExitGame(username) {
-    const response = await fetch("http://localhost:8000/gameScore", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            username: username,
-            score: 0
-        }),
-    });
-
-    const message = document.createElement("p");
-    document.body.appendChild(message);
-
-    if (response.status === 200) {
-        //alert("Spel avbrutet, poängen uppdaterades ej.");
-        message.textContent = "Spel avbrutet, poängen uppdaterades ej.";
-    } else if (response.status === 404) {
-        //alert("Något gick fel vid avslut.");
-        message.textContent = "Något gick fel vid avslut.";
-    }
-}
-
-
 async function GETHandlerAllUsers() {
     const response = await fetch("http://localhost:8000/rankningslista");
 
