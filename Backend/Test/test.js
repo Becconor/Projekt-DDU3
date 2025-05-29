@@ -14,10 +14,10 @@ async function POSTHandlerRegistration(username, password, password2) {
 
     if (response.status === 200) {
         message.textContent = "1. En ny användaren har registrerats!";
-        await GETLogin(username, password);
+        // await GETLogin(username, password);
 
     } else if (response.status === 409) {
-        message.textContent = "1. Användaren finns redan!";
+        message.textContent = "1. Användarnamnet är upptaget!";
     } else if (response.status === 400) {
         message.textContent = "1. Användarnamn eller lösenord saknas!";
     }
@@ -34,7 +34,7 @@ async function GETLogin(username, password) {
 
     if (response.status === 200) {
         message.textContent = "2. Inloggning genomförd!";
-        await GETCurrentUser();
+        // await GETCurrentUser();
 
     } else if (response.status === 401) {
         message.textContent = "2. Fel lösenord!";
@@ -48,22 +48,19 @@ async function GETLogin(username, password) {
 async function GETCurrentUser() {
     const response = await fetch("http://localhost:8000/profil", {
         method: "GET"
-    })
+    });
 
-    const data = await response.json();
-    console.log(data);
     const message = document.createElement("p");
     document.body.appendChild(message);
 
     if (response.status === 200) {
-        message.textContent = `3. Användar information för profilen är uppdaterad`;
-        console.log(message);
-        console.log(`3.`, data);
-        await PATCHScore("Sebastian", 150);
-
-    } else if (response.status === 400) {
-        message.textContent = `3. Ingen användare är inloggad`;
-        console.log(`3.`, data);
+        const data = await response.json();
+        message.textContent = `3. Användarinformation för profilen är uppdaterad`;
+        console.log("3.", data);
+    } else if (response.status === 401) {
+        const data = await response.json();
+        message.textContent = `3. Något gick fel vid hämtning av profil`;
+        console.log("3.", data);
     }
 }
 
@@ -105,7 +102,7 @@ async function GETHandlerAllUsers() {
         console.log(rankning);
         // await POSTHandler();
         // return rankning;
-        await POSTLogout();
+        // await POSTLogout();
     }
 }
 
@@ -125,24 +122,23 @@ async function POSTLogout() {
 
 
 async function testDriver() {
-    await POSTHandlerRegistration("Sebastian", "sebbe123", "sebbe123");
+    await POSTHandlerRegistration("Tester", "tester", "tester");
+    await POSTHandlerRegistration("Tester", "tester", "");
     await POSTHandlerRegistration("Test", "hej", "hej");
-    await POSTHandlerRegistration("Hej", "hej", "");
 
-    await GETLogin("Test", "test");
-    await GETLogin("Sebastian", "sebbe123");
+    await GETLogin("Tester", "tester");
+    await GETLogin("Tester", "test");
     await GETLogin("Tes", "test");
 
     await GETCurrentUser();
+    await GETCurrentUser();
+
 
     // await PATCHScore("Sebastian", 150);
-    await PATCHScore("Tes", 150);
+    // await PATCHScore("Tes", 150);
 
-    // await PATCHExitGame("Sebastian");
-    // await PATCHExitGame("Tes");
-
-    await GETHandlerAllUsers();
-    await POSTLogout();
+    // await GETHandlerAllUsers();
+    // await POSTLogout();
 }
 
 testDriver();
