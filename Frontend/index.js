@@ -240,13 +240,9 @@ function homePage() {
     const playButton = document.getElementById("playNow")
     playButton.addEventListener("click", function () {
         if (!selectedDifficulty || !selectedTheme) {
-
             document.getElementById("onlyOneCategory").classList.remove("hidden");
             return;
         }
-
-        console.log("numPairs:", selectedDifficulty);
-        console.log("Theme:", selectedTheme);
 
         playGame(selectedDifficulty, selectedTheme, selectedPoints, wrongChances);
     });
@@ -459,7 +455,6 @@ async function getImage(animal) {
     if (animal === "dog") {
         const response = await fetch("https://dog.ceo/api/breeds/image/random");
         const data = await response.json();
-        console.log(data.message);
         return data.message;
     } else if (animal === "fox") {
         const response = await fetch("https://randomfox.ca/floof/");
