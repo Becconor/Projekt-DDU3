@@ -107,7 +107,7 @@ async function POSTLogout() {
 async function testDriver() {
     await POSTHandlerRegistration("Tester", "tester", "tester");
     await POSTHandlerRegistration("Tester", "tester", "");
-    await POSTHandlerRegistration("Test", "hej", "hej");
+    await POSTHandlerRegistration("Rebecca", "hej", "hej");
 
     await GETLogin("Tester", "tester");
     await GETLogin("Tester", "test");
