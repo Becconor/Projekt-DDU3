@@ -16,5 +16,17 @@
     "password": "sebastian",
     "level": 1,
     "score": 2700
+  },
+  {
+    "username": "Sebbe",
+    "password": "sebbe",
+    "level": 0,
+    "score": 0
+  },
+  {
+    "username": "pelle",
+    "password": "pelle",
+    "level": 0,
+    "score": 0
   }
 ]
